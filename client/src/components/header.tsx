@@ -55,7 +55,6 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Munch Munch</DrawerHeader>
-
           <StyledDrawerBody
             display={{ base: 'flex' }}
             flexDirection="column"
@@ -64,7 +63,6 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
           >
             {MenuItems}
           </StyledDrawerBody>
-
           <DrawerFooter></DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -83,10 +81,10 @@ const HeaderContainer = styled.header<{ borderColor?: string }>`
   border-bottom: 1px solid ${props => props.borderColor};
 `;
 const ButtonsContainer = styled.div`
-  display: flex;
-  &.loginButton {
-    margin-right: 8px;
-  }
+  display: inline-grid;
+  grid-column-gap: 8px;
+  grid-template-rows: 1fr;
+  grid-auto-flow: column;
 `;
 const StyledDrawerBody = styled(DrawerBody)`
   button {
