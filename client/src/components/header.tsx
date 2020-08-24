@@ -18,7 +18,7 @@ import {
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef(null);
+
   const MenuItems = (
     <>
       <Button className="loginButton" variant="outline">
@@ -46,11 +46,11 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
             <ButtonsContainer>{MenuItems}</ButtonsContainer>
           </Flex>
           <Flex display={{ base: `flex`, sm: 'none' }}>
-            <HamburgerButton onClick={onOpen} ref={btnRef} />
+            <HamburgerButton onClick={onOpen} />
           </Flex>
         </NavigationContainer>
       </HeaderContainer>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose} finalFocusRef={btnRef}>
+      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />

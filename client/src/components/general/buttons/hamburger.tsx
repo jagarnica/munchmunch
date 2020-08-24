@@ -7,7 +7,6 @@ export interface NavbarButtonProps {
   height?: number;
   onClick?: (mouseEvent: React.MouseEvent) => void;
   iconColor?: string;
-  ref: React.MutableRefObject<null>;
 }
 /**
  * @name HamburgerButton
@@ -27,7 +26,6 @@ export const HamburgerButton: React.FC<NavbarButtonProps> = ({
   onClick,
   tabIndex = 1,
   iconColor,
-  ref = null,
 }) => {
   let barClassName = '';
   if (active) {
@@ -36,7 +34,6 @@ export const HamburgerButton: React.FC<NavbarButtonProps> = ({
   return (
     <>
       <Container
-        ref={ref}
         tabIndex={tabIndex}
         role="button"
         onClick={
