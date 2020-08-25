@@ -1,67 +1,70 @@
 import React, { useState } from 'react';
-import * as Chakra from '@chakra-ui/core';
+import { FormControl, FormLabel, Text, Link, Button, theme, Input } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-export type LoginCustomerFormData = {
+import { FormContainer } from './formcontainer';
+import { customerPasswordRules } from './formrules';
+export type LoginCustomerFormType = {
   email: string;
   password: string;
 };
 export function LoginCustomerForm(): React.ReactElement {
-  const { register, handleSubmit, errors } = useForm<LoginCustomerFormData>();
+  const { register, handleSubmit, errors } = useForm<LoginCustomerFormType>();
   const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = (data: LoginCustomerFormData) => {
+  const onSubmit = (data: LoginCustomerFormType) => {
     setIsLoading(true);
     console.log('here is the data', data);
   };
 
   return (
-    <Chakra.Box width="100%" maxW="md" borderWidth="1px" rounded="lg" overflow="hidden">
-      <Chakra.Flex padding="1.45rem" flexDirection="column">
-        <Chakra.Heading alignSelf="center">Login</Chakra.Heading>
-        <Chakra.FormControl>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Chakra.FormLabel htmlFor="email">Email</Chakra.FormLabel>
-            <Chakra.Input
-              isInvalid={errors.email ? true : false}
-              name="email"
-              ref={register({
-                required: 'Please Enter an Email Address',
-                maxLength: 40,
-                pattern: {
-                  value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                  message: 'Invalid email address',
-                },
-              })}
-              placeholder="Email"
-            />
-            {errors.email && (
-              <Chakra.Text color={Chakra.theme.colors.red[600]} marginTop="0.5rem">
-                {errors.email.message}
-              </Chakra.Text>
-            )}
-            <Chakra.FormLabel marginTop="1.45rem" htmlFor="password">
-              Password
-            </Chakra.FormLabel>
-            <Chakra.Input
-              isInvalid={errors.password ? true : false}
-              name="password"
-              ref={register({ required: 'Please enter a password.', maxLength: 40 })}
-              placeholder="Password"
-              type="password"
-            />
-            {errors.password && (
-              <Chakra.Text color={Chakra.theme.colors.red[600]} marginTop="0.5rem">
-                {errors.password.message}
-              </Chakra.Text>
-            )}
-            <Chakra.Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
-              Log In
-            </Chakra.Button>
-          </form>
-        </Chakra.FormControl>
-        <Chakra.Text marginTop="1.45rem">
-          Don't have an account? <Chakra.Link as="a">Sign Up</Chakra.Link>
-        </Chakra.Text>
-      </Chakra.Flex>
-    </Chakra.Box>
+    <FormContainer formTitle="Login" onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormControl isRequired>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            isInvalid={errors.email ? true : false}
+            name="email"
+            ref={register({
+              required: 'Please Enter an Email Address',
+              maxLength: 40,
+              pattern: {
+                value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: 'Invalid email address',
+              },
+            })}
+            placeholder="Email"
+          />
+          {errors.email && (
+            <Text color={theme.colors.red[600]} marginTop="0.5rem">
+              {errors.email.message}
+            </Text>
+          )}
+        </FormControl>
+        <FormControl isRequired>
+          <FormLabel marginTop="1.45rem" htmlFor="password">
+            Password
+          </FormLabel>
+          <Input
+            isInvalid={errors.password ? true : false}
+            name="password"
+            ref={register({ ...customerPasswordRules })}
+            placeholder="Password"
+            type="password"
+          />
+          {errors.password && (
+            <Text color={theme.colors.red[600]} marginTop="0.5rem">
+              {errors.password.message}
+            </Text>
+          )}
+        </FormControl>
+        <Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
+          Log In
+        </Button>
+      </form>
+
+      <Text marginTop="1.45rem">
+        {`Don't have an account? `}
+        <Link as="a">Sign Up</Link>
+      </Text>
+    </FormContainer>
   );
 }
