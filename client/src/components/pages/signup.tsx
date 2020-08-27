@@ -1,5 +1,5 @@
 import React from 'react';
-import { SEO } from '../general/seo/';
+import SEO from '../seo';
 import { SignUpCustomerForm } from '../auth/';
 import styled from 'styled-components';
 const IndexPage = (): React.ReactElement => (

@@ -5,22 +5,24 @@ import SignUp from '../components/pages/signup';
 import Login from '../components/pages/login';
 import NotFoundPage from './404';
 import { PrivateRoute, PublicRoute } from '../components/routes';
-import Amplify from 'aws-amplify';
-import { withAuthenticator } from 'aws-amplify-react';
-import config from '../aws-exports.js';
-const App = () => {
-  Amplify.configure(config);
+//import Amplify from 'aws-amplify';
+//import config from '../aws-exports.js';
+import { Layout } from '../components/layout';
+function App({ children }) {
+  // Amplify.configure(config);
   return (
     <>
-      <Router basepath="/app">
-        <PublicRoute path="/login" component={Login} />
-        <PublicRoute path="/" component={IndexPage} />
-        <PublicRoute path="/signup" component={SignUp} />
-
-        <NotFoundPage default />
-      </Router>
+      <Layout>
+        <Router basepath="/app">
+          <Home path="/" />
+          <Dash path="/dashboard" />
+          <NotFoundPage default />
+        </Router>
+      </Layout>
     </>
   );
-};
+}
 
-export default withAuthenticator(App);
+export default App;
+const Home = () => <div>Home</div>;
+const Dash = () => <div>In the dashboard!!</div>;

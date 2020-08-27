@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, RouteComponentProps } from '@reach/router';
 
-import { Layout } from 'components/general/layout/layout';
+import { Layout } from '../layout';
 export interface PrivateRouteProps extends RouteComponentProps {
   component: React.ComponentType;
 }

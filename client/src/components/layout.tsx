@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { theme, ThemeProvider, CSSReset } from '@chakra-ui/core';
-import { Header } from '../navbar/header';
+import { Header } from './header';
 
 const baseSiteTheme = {
   ...theme,

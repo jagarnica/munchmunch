@@ -1,8 +1,8 @@
 import React from 'react';
-import { Layout } from '../components/general/layout/layout';
-import { SEO } from '../components/general/seo/seo';
-import { RouteComponentProps } from '@reach/router';
-const NotFoundPage: React.FC<RouteComponentProps> = (): React.ReactElement => (
+import { Layout } from '../components/layout';
+import SEO from '../components/seo';
+
+const NotFoundPage = (): React.ReactElement => (
   <>
     <Layout>
       <SEO title="404: Not found" />
