@@ -1,3 +1,3 @@
 export interface sampleType {
-  name: string;
+    name: string
 }

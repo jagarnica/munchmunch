@@ -1,14 +1,15 @@
 import React from 'react';
-import SEO from '../seo';
-import { LoginCustomerForm } from '../auth/';
+import { Layout } from '../components/layout';
+import SEO from '../components/seo';
+import { LoginCustomerForm } from '../components/auth';
 import styled from 'styled-components';
 const IndexPage = (): React.ReactElement => (
-  <>
+  <Layout>
     <SEO title="Login To Munch Munch" />
     <FormContainer>
       <LoginCustomerForm />
     </FormContainer>
-  </>
+  </Layout>
 );
 
 export default IndexPage;

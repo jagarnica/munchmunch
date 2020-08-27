@@ -6,10 +6,8 @@ import { Header } from './header';
 const baseSiteTheme = {
   ...theme,
 };
-export interface LayoutProps {
-  isUserLoggedIn?: boolean;
-}
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
+
+export const Layout: React.FC = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
