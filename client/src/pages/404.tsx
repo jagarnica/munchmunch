@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { Layout, SEO } from 'components/layout/';
-
 const NotFoundPage = (): ReactElement => (
   <Layout>
     <SEO title="404: Not found" />

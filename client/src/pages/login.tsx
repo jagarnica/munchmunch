@@ -1,8 +1,7 @@
 import React from 'react';
-import { Layout } from '../components/layout/layout';
-import SEO from '../components/layout/seo/seo';
-import { LoginCustomerForm } from '../components/auth';
 import styled from 'styled-components';
+import { Layout, SEO } from 'components/layout';
+import { LoginCustomerForm } from '../components/auth';
 const IndexPage = (): React.ReactElement => (
   <Layout>
     <SEO title="Login To Munch Munch" />
