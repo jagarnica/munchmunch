@@ -1,6 +1,6 @@
-const path = require("path");
+const path = require('path');
 
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 module.exports = {
@@ -27,22 +27,23 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-root-import",
+      resolve: 'gatsby-plugin-root-import',
       options: {
-        src: path.join(__dirname, "src"),
-        pages: path.join(__dirname, "src/pages"),
-        images: path.join(__dirname, "src/images"),
+        src: path.join(__dirname, 'src'),
+        pages: path.join(__dirname, 'src/pages'),
+        images: path.join(__dirname, 'src/images'),
+        components: path.join(__dirname, 'src/components'),
       },
     },
     {
       resolve: `gatsby-plugin-styled-components`,
     },
     {
-      resolve: "gatsby-plugin-eslint",
+      resolve: 'gatsby-plugin-eslint',
       options: {
         test: /\.js$|\.jsx$|\.tsx$|\.ts$/,
         exclude: /(node_modules|.cache|public)/,
-        stages: ["develop"],
+        stages: ['develop'],
         options: {
           emitWarning: true,
           failOnError: false,
@@ -67,4 +68,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

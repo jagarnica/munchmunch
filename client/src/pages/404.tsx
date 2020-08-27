@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import { Layout, SEO } from 'components/layout/';
 
-import { Layout } from '../components/layout';
-import SEO from '../components/seo';
-
-const NotFoundPage = () => (
+const NotFoundPage = (): ReactElement => (
   <Layout>
     <SEO title="404: Not found" />
     <h1>NOT FOUND</h1>
