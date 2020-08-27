@@ -19,13 +19,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `components`,
-        path: `${__dirname}/src/components`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-typescript`,
       options: {
         isTSX: false,
@@ -33,12 +26,14 @@ module.exports = {
         allExtensions: false,
       },
     },
+
     {
       resolve: 'gatsby-plugin-root-import',
       options: {
         src: path.join(__dirname, 'src'),
         pages: path.join(__dirname, 'src/pages'),
         images: path.join(__dirname, 'src/images'),
+        components: path.join(__dirname, 'src/components'),
       },
     },
     {

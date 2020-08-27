@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, RouteComponentProps } from '@reach/router';
-import { Layout } from '../layout';
+import { Layout } from 'components/general/layout/layout';
 
 export interface PublicRouteProps extends RouteComponentProps {
   component: React.ComponentType<any>;

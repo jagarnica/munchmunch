@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import { HamburgerButton } from './general/buttons/hamburger';
+import { HamburgerButton } from 'components/general/buttons/hamburger';
 import styled from 'styled-components';
 import {
   Button,

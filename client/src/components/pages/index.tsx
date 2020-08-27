@@ -1,6 +1,5 @@
 import React from 'react';
-
-import SEO from '../seo';
+import { SEO } from 'components/general/seo';
 
 const IndexPage = (): React.ReactElement => (
   <>
