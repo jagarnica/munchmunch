@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FormControl, FormLabel, Text, Link, Button, theme, Input } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormContainer } from './formcontainer';
-import { customerEmailRulesInput, customerPasswordInput, lastNameInput, firstNameInput } from './formrules';
+import { customerEmail, customerPassword, firstName, lastName } from './formrules';
 export type SignUpCustomerFormType = {
   firstName: string;
   lastName: string;
@@ -19,16 +19,16 @@ export function SignUpCustomerForm(): React.ReactElement {
   };
   return (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isRequired>
+      <FormControl>
         {/** FIRST NAME SECTION */}
-        <FormLabel htmlFor={firstNameInput.id}>First Name</FormLabel>
+        <FormLabel htmlFor={firstName.id}>First Name</FormLabel>
         <Input
           isInvalid={errors.firstName ? true : false}
-          name={firstNameInput.id}
+          name={firstName.id}
           ref={register({
-            ...firstNameInput.rules,
+            ...firstName.rules,
           })}
-          placeholder={firstNameInput.placeholder}
+          placeholder={firstName.placeholder}
         />
         {errors.firstName && (
           <Text color={theme.colors.red[600]} marginTop="0.5rem">
@@ -37,15 +37,15 @@ export function SignUpCustomerForm(): React.ReactElement {
         )}
       </FormControl>
       {/** LAST NAME SECTION */}
-      <FormControl isRequired>
-        <FormLabel htmlFor={lastNameInput.id}>Last Name</FormLabel>
+      <FormControl>
+        <FormLabel htmlFor={lastName.id}>Last Name</FormLabel>
         <Input
           isInvalid={errors.lastName ? true : false}
           name="lastName"
           ref={register({
-            ...lastNameInput.rules,
+            ...lastName.rules,
           })}
-          placeholder={lastNameInput.placeholder}
+          placeholder={lastName.placeholder}
         />
         {errors.lastName && (
           <Text color={theme.colors.red[600]} marginTop="0.5rem">
@@ -54,13 +54,13 @@ export function SignUpCustomerForm(): React.ReactElement {
         )}
       </FormControl>
       {/** Email SECTION */}
-      <FormControl isRequired>
-        <FormLabel htmlFor={customerEmailRulesInput.id}>Email</FormLabel>
+      <FormControl>
+        <FormLabel htmlFor={customerEmail.id}>Email</FormLabel>
         <Input
           isInvalid={errors.email ? true : false}
-          name={customerEmailRulesInput.id}
+          name={customerEmail.id}
           ref={register({
-            ...customerEmailRulesInput.rules,
+            ...customerEmail.rules,
           })}
           placeholder="Email"
         />
@@ -70,16 +70,16 @@ export function SignUpCustomerForm(): React.ReactElement {
           </Text>
         )}
       </FormControl>
-      <FormControl isRequired>
+      <FormControl>
         {/** Password SECTION */}
-        <FormLabel htmlFor={customerPasswordInput.id}>Password</FormLabel>
+        <FormLabel htmlFor={customerPassword.id}>Password</FormLabel>
         <Input
           isInvalid={errors.password ? true : false}
-          name={customerPasswordInput.id}
+          name={customerPassword.id}
           ref={register({
-            ...customerPasswordInput.rules,
+            ...customerPassword.rules,
           })}
-          placeholder={customerPasswordInput.placeholder}
+          placeholder={customerPassword.placeholder}
           type="password"
         />
         {errors.password && (

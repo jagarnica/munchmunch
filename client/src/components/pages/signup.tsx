@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Layout, SEO } from 'components/layout';
-import { LoginCustomerForm } from '../components/auth';
-const IndexPage = (): React.ReactElement => (
+import { SignUpCustomerForm } from 'components/auth';
+import { DefaultPageProps } from 'types/types';
+export const SignUpPage: React.FC<DefaultPageProps> = (): React.ReactElement => (
   <Layout>
     <SEO title="Login To Munch Munch" />
     <FormContainer>
-      <LoginCustomerForm />
+      <SignUpCustomerForm />
     </FormContainer>
   </Layout>
 );
 
-export default IndexPage;
 const FormContainer = styled.div`
   display: flex;
   width: 100%;

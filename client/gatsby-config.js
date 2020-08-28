@@ -33,6 +33,7 @@ module.exports = {
         pages: path.join(__dirname, 'src/pages'),
         images: path.join(__dirname, 'src/images'),
         components: path.join(__dirname, 'src/components'),
+        types: path.join(__dirname, 'src/types'),
       },
     },
     {

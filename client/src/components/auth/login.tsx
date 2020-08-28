@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { FormControl, FormLabel, Text, Link, Button, theme, Input } from '@chakra-ui/core';
+import { Link } from 'gatsby';
+import { FormControl, FormLabel, Text, Button, theme, Input } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormContainer } from './formcontainer';
-import { customerPasswordRules } from './formrules';
+import { customerEmail, customerPassword } from './formrules/';
 export type LoginCustomerFormType = {
   email: string;
   password: string;
@@ -17,53 +18,44 @@ export function LoginCustomerForm(): React.ReactElement {
 
   return (
     <FormContainer formTitle="Login" onSubmit={handleSubmit(onSubmit)}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl isRequired>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <Input
-            isInvalid={errors.email ? true : false}
-            name="email"
-            ref={register({
-              required: 'Please Enter an Email Address',
-              maxLength: 40,
-              pattern: {
-                value: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                message: 'Invalid email address',
-              },
-            })}
-            placeholder="Email"
-          />
-          {errors.email && (
-            <Text color={theme.colors.red[600]} marginTop="0.5rem">
-              {errors.email.message}
-            </Text>
-          )}
-        </FormControl>
-        <FormControl isRequired>
-          <FormLabel marginTop="1.45rem" htmlFor="password">
-            Password
-          </FormLabel>
-          <Input
-            isInvalid={errors.password ? true : false}
-            name="password"
-            ref={register({ ...customerPasswordRules })}
-            placeholder="Password"
-            type="password"
-          />
-          {errors.password && (
-            <Text color={theme.colors.red[600]} marginTop="0.5rem">
-              {errors.password.message}
-            </Text>
-          )}
-        </FormControl>
-        <Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
-          Log In
-        </Button>
-      </form>
+      <FormControl>
+        <FormLabel htmlFor={customerEmail.id}>Email</FormLabel>
+        <Input
+          isInvalid={errors.email ? true : false}
+          name={customerEmail.id}
+          ref={register({
+            ...customerEmail.rules,
+          })}
+          placeholder={customerEmail.placeholder}
+        />
+        {errors.email && (
+          <Text color={theme.colors.red[600]} marginTop="0.5rem">
+            {errors.email.message}
+          </Text>
+        )}
+      </FormControl>
+      <FormControl>
+        <FormLabel htmlFor={customerPassword.id}>Password</FormLabel>
+        <Input
+          isInvalid={errors.password ? true : false}
+          name={customerPassword.id}
+          ref={register({ ...customerPassword.rules })}
+          placeholder={customerPassword.placeholder}
+          type="password"
+        />
+        {errors.password && (
+          <Text color={theme.colors.red[600]} marginTop="0.5rem">
+            {errors.password.message}
+          </Text>
+        )}
+      </FormControl>
+      <Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
+        Log In
+      </Button>
 
       <Text marginTop="1.45rem">
         {`Don't have an account? `}
-        <Link as="a">Sign Up</Link>
+        <Link to="/signup">Sign Up</Link>
       </Text>
     </FormContainer>
   );

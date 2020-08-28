@@ -1,6 +1,7 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/general/buttons/';
+import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import {
   Button,
@@ -15,16 +16,31 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/core';
+const navigateToPage = (link: string) => {
+  navigate(link);
+};
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const MenuItems = (
     <>
-      <Button className="loginButton" variant="outline">
+      <Button
+        className="loginButton"
+        variant="outline"
+        onClick={() => {
+          navigateToPage('/login');
+        }}
+      >
         Log In
       </Button>
-      <Button>Sign Up</Button>
+      <Button
+        onClick={() => {
+          navigateToPage('/signup');
+        }}
+      >
+        Sign Up
+      </Button>
     </>
   );
   return (
