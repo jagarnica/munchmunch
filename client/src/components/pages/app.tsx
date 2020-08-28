@@ -1,6 +1,7 @@
 import React from 'react';
 import { Router } from '@reach/router';
-import { SignUpPage, LoginPage, HomePage, NotFoundPage } from './';
+import { SignUpPage, LoginPage, HomePage, NotFoundPage } from './index';
+
 export function App(): React.ReactElement {
   return (
     <Router basepath="/">

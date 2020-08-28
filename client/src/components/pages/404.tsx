@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, SEO } from 'components/layout/';
 import { DefaultPageProps } from 'types/types';
+
 export const NotFoundPage: React.FC<DefaultPageProps> = () => (
   <Layout>
     <SEO title="404: Not found" />

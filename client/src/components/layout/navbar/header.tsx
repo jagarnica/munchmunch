@@ -1,7 +1,6 @@
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/general/buttons/';
-import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import {
   Button,
@@ -16,6 +15,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/core';
+
 const navigateToPage = (link: string) => {
   navigate(link);
 };

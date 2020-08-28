@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 export interface NavbarButtonProps {
   width?: number;
   active?: boolean;
@@ -37,19 +38,18 @@ export const HamburgerButton: React.FC<NavbarButtonProps> = ({
         tabIndex={tabIndex}
         role="button"
         onClick={
-          onClick
-            ? onClick
-            : function () {
-                return;
-              }
+          onClick ||
+          function noop() {
+            // other we do nothing
+          }
         } // If there is an onClick func passed in, do it!
         width={width}
         height={height}
         iconColor={iconColor}
       >
-        <BarElement iconColor={iconColor} className={'top ' + barClassName} />
-        <BarElement iconColor={iconColor} className={'center ' + barClassName} />
-        <BarElement iconColor={iconColor} className={'bottom ' + barClassName} />
+        <BarElement iconColor={iconColor} className={`top ${barClassName}`} />
+        <BarElement iconColor={iconColor} className={`center ${barClassName}`} />
+        <BarElement iconColor={iconColor} className={`bottom ${barClassName}`} />
       </Container>
     </>
   );
@@ -66,8 +66,8 @@ interface BarElementProps {
   className?: string;
 }
 const Container = styled.div<React.HtmlHTMLAttributes<HTMLElement> & ContainerProps>`
-  width: ${props => props.width + `px`};
-  height: ${props => props.height + `px`};
+  width: ${props => `${props.width}px`};
+  height: ${props => `${props.height}px`};
   padding: 4px;
   cursor: pointer;
   display: flex;

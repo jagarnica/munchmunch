@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Layout, SEO } from 'components/layout';
 import { LoginCustomerForm } from 'components/auth/';
 import { DefaultPageProps } from 'types';
+
 export const LoginPage: React.FC<DefaultPageProps> = (): React.ReactElement => {
   return (
     <Layout>

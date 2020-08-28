@@ -3,7 +3,8 @@ import { Link } from 'gatsby';
 import { FormControl, FormLabel, Text, Button, theme, Input } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormContainer } from './formcontainer';
-import { customerEmail, customerPassword } from './formrules/';
+import { customerEmail, customerPassword } from './formrules';
+
 export type LoginCustomerFormType = {
   email: string;
   password: string;
@@ -21,7 +22,7 @@ export function LoginCustomerForm(): React.ReactElement {
       <FormControl>
         <FormLabel htmlFor={customerEmail.id}>Email</FormLabel>
         <Input
-          isInvalid={errors.email ? true : false}
+          isInvalid={!!errors.email}
           name={customerEmail.id}
           ref={register({
             ...customerEmail.rules,
@@ -37,7 +38,7 @@ export function LoginCustomerForm(): React.ReactElement {
       <FormControl>
         <FormLabel htmlFor={customerPassword.id}>Password</FormLabel>
         <Input
-          isInvalid={errors.password ? true : false}
+          isInvalid={!!errors.password}
           name={customerPassword.id}
           ref={register({ ...customerPassword.rules })}
           placeholder={customerPassword.placeholder}

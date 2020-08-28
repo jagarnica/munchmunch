@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, SEO } from 'components/layout';
 import { DefaultPageProps } from 'types';
+
 export const HomePage: React.FC<DefaultPageProps> = (): React.ReactElement => (
   <Layout>
     <SEO title="Welcome to Munch Munch!" description="Order food for pickup from your favorite restaurants" />

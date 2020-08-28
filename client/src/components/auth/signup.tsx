@@ -3,6 +3,7 @@ import { FormControl, FormLabel, Text, Link, Button, theme, Input } from '@chakr
 import { useForm } from 'react-hook-form';
 import { FormContainer } from './formcontainer';
 import { customerEmail, customerPassword, firstName, lastName } from './formrules';
+
 export type SignUpCustomerFormType = {
   firstName: string;
   lastName: string;
@@ -23,7 +24,7 @@ export function SignUpCustomerForm(): React.ReactElement {
         {/** FIRST NAME SECTION */}
         <FormLabel htmlFor={firstName.id}>First Name</FormLabel>
         <Input
-          isInvalid={errors.firstName ? true : false}
+          isInvalid={!!errors.firstName}
           name={firstName.id}
           ref={register({
             ...firstName.rules,
@@ -40,7 +41,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       <FormControl>
         <FormLabel htmlFor={lastName.id}>Last Name</FormLabel>
         <Input
-          isInvalid={errors.lastName ? true : false}
+          isInvalid={!!errors.lastName}
           name="lastName"
           ref={register({
             ...lastName.rules,
@@ -57,7 +58,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       <FormControl>
         <FormLabel htmlFor={customerEmail.id}>Email</FormLabel>
         <Input
-          isInvalid={errors.email ? true : false}
+          isInvalid={!!errors.email}
           name={customerEmail.id}
           ref={register({
             ...customerEmail.rules,
@@ -74,7 +75,7 @@ export function SignUpCustomerForm(): React.ReactElement {
         {/** Password SECTION */}
         <FormLabel htmlFor={customerPassword.id}>Password</FormLabel>
         <Input
-          isInvalid={errors.password ? true : false}
+          isInvalid={!!errors.password}
           name={customerPassword.id}
           ref={register({
             ...customerPassword.rules,
