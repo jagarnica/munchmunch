@@ -26,6 +26,7 @@ const lastNameRules = {
 export const firstName: FormRulesType = {
   id: 'firstName',
   label: 'First Name',
+  type: 'text',
   placeholder: 'First Name',
   rules: firstNameRules,
 };
@@ -33,6 +34,7 @@ export const firstName: FormRulesType = {
 export const lastName: FormRulesType = {
   label: 'Last Name',
   id: 'lastName',
+  type: 'text',
   placeholder: `Last name`,
   rules: lastNameRules,
 };

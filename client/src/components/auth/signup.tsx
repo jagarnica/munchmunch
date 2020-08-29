@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Text, Link, Button } from '@chakra-ui/core';
+import { Auth } from 'aws-amplify';
+import { Text, useToast, Link, Button } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { FormInput, FormContainer } from '../formelements';
+import { FormInput, FormContainer, FormPhone } from '../formelements';
 import { customerEmail, customerPassword, firstName, lastName } from './formrules';
 
 export type SignUpCustomerFormType = {
@@ -13,10 +14,38 @@ export type SignUpCustomerFormType = {
 export function SignUpCustomerForm(): React.ReactElement {
   const { register, handleSubmit, errors } = useForm<SignUpCustomerFormType>();
   const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
+  const onSubmit = async (data: SignUpCustomerFormType) => {
+    try {
+      setIsLoading(true);
+      await Auth.signUp({
+        username: data.email,
+        password: data.password,
+        attributes: {
+          family_name: data.lastName,
+          name: data.firstName,
+          phone_number: '+16502834364',
+        },
+      });
 
-  const onSubmit = (data: SignUpCustomerFormType) => {
-    setIsLoading(true);
-    console.log('here is the data', data);
+      toast({
+        title: 'Confirm your email!',
+        description: 'One step closer to deliciousness',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    } catch (e) {
+      console.error(e);
+      toast({
+        title: 'Error',
+        description: 'There was an issue creating your account.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      setIsLoading(false);
+    }
   };
   return (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
@@ -44,6 +73,8 @@ export function SignUpCustomerForm(): React.ReactElement {
           ...customerEmail.rules,
         })}
       />
+      {/** Phone number section */}
+      <FormPhone />
       {/** Password SECTION */}
       <FormInput
         elementDetails={customerPassword}

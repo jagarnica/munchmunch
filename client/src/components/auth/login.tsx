@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'gatsby';
-import { Text, Button } from '@chakra-ui/core';
+import { Link, navigate } from 'gatsby';
+import { Auth } from 'aws-amplify';
+import { Text, Button, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { customerEmail, customerPassword } from './formrules';
@@ -11,10 +12,30 @@ export type LoginCustomerFormType = {
 };
 export function LoginCustomerForm(): React.ReactElement {
   const { register, handleSubmit, errors } = useForm<LoginCustomerFormType>();
+  const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = (data: LoginCustomerFormType) => {
-    setIsLoading(true);
-    console.log('here is the data', data);
+  const onSubmit = async ({ email, password }: LoginCustomerFormType) => {
+    try {
+      setIsLoading(true);
+      await Auth.signIn(email, password);
+      toast({
+        title: 'Logged!',
+        description: 'Welcome back to Munch Munch!',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      });
+      navigate('/');
+    } catch (e) {
+      toast({
+        title: 'Whoops!',
+        description: "We don't recognize that email and password combination. Check your spelling!",
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+      });
+      setIsLoading(false);
+    }
   };
 
   return (
