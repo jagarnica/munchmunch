@@ -1,3 +1,5 @@
+import { FormRulesType } from 'types/';
+
 export const firstNameMinLength = {
   value: 2,
 };
@@ -21,13 +23,15 @@ const lastNameRules = {
   },
   max: 40,
 };
-export const firstName = {
+export const firstName: FormRulesType = {
   id: 'firstName',
+  label: 'First Name',
   placeholder: 'First Name',
   rules: firstNameRules,
 };
 
-export const lastName = {
+export const lastName: FormRulesType = {
+  label: 'Last Name',
   id: 'lastName',
   placeholder: `Last name`,
   rules: lastNameRules,

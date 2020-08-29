@@ -1,3 +1,4 @@
+import { FormRulesType } from 'types/';
 // we are not gonna export this because we just want to be used internally~!
 const customerEmailRules = {
   required: 'Please enter an email address',
@@ -7,8 +8,9 @@ const customerEmailRules = {
     message: 'Please enter a valid email address',
   },
 };
-export const customerEmail = {
+export const customerEmail: FormRulesType = {
   id: `email`,
+  label: 'Email',
   placeholder: 'Email',
   rules: customerEmailRules,
 };

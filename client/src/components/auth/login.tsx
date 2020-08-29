@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { FormControl, FormLabel, Text, Button, theme, Input } from '@chakra-ui/core';
+import { Text, Button } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { FormContainer } from './formcontainer';
+import { FormInput, FormContainer } from 'components/formelements/';
 import { customerEmail, customerPassword } from './formrules';
 
 export type LoginCustomerFormType = {
@@ -19,41 +19,25 @@ export function LoginCustomerForm(): React.ReactElement {
 
   return (
     <FormContainer formTitle="Login" onSubmit={handleSubmit(onSubmit)}>
-      <FormControl>
-        <FormLabel htmlFor={customerEmail.id}>Email</FormLabel>
-        <Input
-          isInvalid={!!errors.email}
-          name={customerEmail.id}
-          ref={register({
-            ...customerEmail.rules,
-          })}
-          placeholder={customerEmail.placeholder}
-        />
-        {errors.email && (
-          <Text color={theme.colors.red[600]} marginTop="0.5rem">
-            {errors.email.message}
-          </Text>
-        )}
-      </FormControl>
-      <FormControl>
-        <FormLabel htmlFor={customerPassword.id}>Password</FormLabel>
-        <Input
-          isInvalid={!!errors.password}
-          name={customerPassword.id}
-          ref={register({ ...customerPassword.rules })}
-          placeholder={customerPassword.placeholder}
-          type="password"
-        />
-        {errors.password && (
-          <Text color={theme.colors.red[600]} marginTop="0.5rem">
-            {errors.password.message}
-          </Text>
-        )}
-      </FormControl>
+      {/* Email Section */}
+      <FormInput
+        elementDetails={customerEmail}
+        errorText={errors.email?.message}
+        ref={register({
+          ...customerEmail.rules,
+        })}
+      />
+      {/* Password section */}
+      <FormInput
+        elementDetails={customerPassword}
+        errorText={errors.password?.message}
+        ref={register({
+          ...customerPassword.rules,
+        })}
+      />
       <Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
         Log In
       </Button>
-
       <Text marginTop="1.45rem">
         {`Don't have an account? `}
         <Link to="/signup">Sign Up</Link>

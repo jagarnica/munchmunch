@@ -1,3 +1,5 @@
+import { FormRulesType } from 'types/';
+
 export const passwordMinLength = {
   value: 8,
 };
@@ -17,8 +19,9 @@ const customerPasswordRules = {
   maxLength: 40,
 };
 
-export const customerPassword = {
+export const customerPassword: FormRulesType = {
   id: `password`,
   placeholder: 'Password',
+  label: 'Password',
   rules: customerPasswordRules,
 };
