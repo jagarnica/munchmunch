@@ -1,7 +1,7 @@
 import React from 'react';
 import { App } from 'components/pages/app';
 import { Amplify } from 'aws-amplify';
-import config from '../config.js';
+import config from '../config';
 
 const IndexPage = (): React.ReactNode => {
   // Configure AWS authentification

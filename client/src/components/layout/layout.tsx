@@ -5,6 +5,10 @@ import { Header } from './navbar/header';
 
 const baseSiteTheme = {
   ...theme,
+  toastDefaults: {
+    duration: 1000,
+    isClosable: true,
+  },
 };
 
 export const Layout: React.FC = ({ children }) => {
