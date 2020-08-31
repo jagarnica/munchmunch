@@ -1,20 +1,21 @@
 import React from 'react';
-import { FormControl, FormLabel, Select, Input, InputProps } from '@chakra-ui/core';
+import { FormControl, FormLabel, Input } from '@chakra-ui/core';
 import { phoneNumber } from 'components/auth/formrules';
 import { FormError } from './formerror';
 
 interface FormPhoneProps {
   errorText?: string;
 }
+/**
+ * @name FormPhone
+ * @description Creates a field for entering a US phone number. Requires a register
+ * object passed in as a ref to use.
+ * @prop {string} errorText If not null, is displayed to the user.
+ */
 export const FormPhone = React.forwardRef<HTMLInputElement, FormPhoneProps>(({ errorText, ...rest }, ref) => {
   return (
     <FormControl>
       <FormLabel htmlFor={phoneNumber.id}>{phoneNumber.label}</FormLabel>
-      <Select placeholder="Select option">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </Select>
       <Input
         {...rest}
         placeholder={phoneNumber.placeholder}

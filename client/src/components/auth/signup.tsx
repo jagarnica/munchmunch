@@ -1,33 +1,44 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
+import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Text, useToast, Link, Button } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
+import { navigate } from '@reach/router';
+import { ConfirmPhoneForm } from 'components/auth/';
+import { formatToAWSPhoneNumber, getSignUpErrorMessage } from 'utils/';
 import { FormInput, FormContainer, FormPhone } from '../formelements';
-import { customerEmail, customerPassword, firstName, lastName } from './formrules';
+import { customerEmail, phoneNumber, customerPassword, firstName, lastName } from './formrules';
 
 export type SignUpCustomerFormType = {
   firstName: string;
   lastName: string;
   email: string;
+  phoneNumber: string;
   password: string;
 };
+
 export function SignUpCustomerForm(): React.ReactElement {
   const { register, handleSubmit, errors } = useForm<SignUpCustomerFormType>();
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState<null | ISignUpResult>(null);
+  const [accountCreated, setAccountCreated] = useState(false);
   const toast = useToast();
   const onSubmit = async (data: SignUpCustomerFormType) => {
     try {
       setIsLoading(true);
-      await Auth.signUp({
+      const userPhoneNumber = formatToAWSPhoneNumber(data.phoneNumber);
+      const newUser = await Auth.signUp({
         username: data.email,
         password: data.password,
         attributes: {
           family_name: data.lastName,
           name: data.firstName,
-          phone_number: '+16502834364',
+          phone_number: userPhoneNumber,
         },
       });
-
+      console.log('Account created', newUser);
+      setUser(newUser);
+      setAccountCreated(true);
       toast({
         title: 'Confirm your email!',
         description: 'One step closer to deliciousness',
@@ -36,10 +47,10 @@ export function SignUpCustomerForm(): React.ReactElement {
         isClosable: true,
       });
     } catch (e) {
-      console.error(e);
+      const errorMessage = getSignUpErrorMessage(e?.code);
       toast({
-        title: 'Error',
-        description: 'There was an issue creating your account.',
+        title: 'Oops!',
+        description: errorMessage,
         status: 'error',
         duration: 3000,
         isClosable: true,
@@ -47,7 +58,27 @@ export function SignUpCustomerForm(): React.ReactElement {
       setIsLoading(false);
     }
   };
-  return (
+  function handleConfirmationCodeSubmit(result: boolean) {
+    if (!result) {
+      toast({
+        title: 'Oops!',
+        description: 'Check your cofirmation code for any typos!',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    } else {
+      navigate('/');
+      toast({
+        title: 'Success!',
+        description: 'Welcome to Munch Munch!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }
+  return !accountCreated || !user ? (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
       {/** FIRST NAME SECTION */}
       <FormInput
@@ -74,7 +105,16 @@ export function SignUpCustomerForm(): React.ReactElement {
         })}
       />
       {/** Phone number section */}
-      <FormPhone />
+      <FormPhone
+        errorText={errors.phoneNumber?.message}
+        ref={register({
+          required: {
+            value: true,
+            message: 'Please enter a valid US phone number',
+          },
+          ...phoneNumber.rules,
+        })}
+      />
       {/** Password SECTION */}
       <FormInput
         elementDetails={customerPassword}
@@ -91,5 +131,7 @@ export function SignUpCustomerForm(): React.ReactElement {
         <Link as="a">Log in</Link>
       </Text>
     </FormContainer>
+  ) : (
+    <ConfirmPhoneForm callback={handleConfirmationCodeSubmit} userEmailAddress={user.user.getUsername()} />
   );
 }
