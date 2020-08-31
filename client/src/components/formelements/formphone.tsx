@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormControl, FormLabel, Input } from '@chakra-ui/core';
-import { phoneNumber } from 'components/auth/formrules';
+import { phoneNumber } from 'utils/formrules';
 import { FormError } from './formerror';
 
 interface FormPhoneProps {

@@ -5,9 +5,9 @@ import { Text, useToast, Link, Button } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { navigate } from '@reach/router';
 import { ConfirmPhoneForm } from 'components/auth/';
-import { formatToAWSPhoneNumber, getSignUpErrorMessage } from 'utils/';
+import { formatToAWSPhoneNumber, getSignUpErrorMessage } from 'utils/aws';
+import { customerEmail, phoneNumber, customerPassword, firstName, lastName } from 'utils/formrules';
 import { FormInput, FormContainer, FormPhone } from '../formelements';
-import { customerEmail, phoneNumber, customerPassword, firstName, lastName } from './formrules';
 
 export type SignUpCustomerFormType = {
   firstName: string;
@@ -36,7 +36,7 @@ export function SignUpCustomerForm(): React.ReactElement {
           phone_number: userPhoneNumber,
         },
       });
-      console.log('Account created', newUser);
+
       setUser(newUser);
       setAccountCreated(true);
     } catch (e) {

@@ -4,7 +4,7 @@ import { Auth } from 'aws-amplify';
 import { Text, Button, Link, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
-import { customerEmail, customerPassword } from './formrules';
+import { customerEmail, customerPassword } from 'utils/formrules';
 
 export type LoginCustomerFormType = {
   email: string;

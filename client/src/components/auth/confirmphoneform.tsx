@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { Box, Text, Flex, Button, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
-import { getSignUpErrorMessage } from 'utils/';
+import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
-import { ConfirmationCode } from 'components/auth/formrules';
+import { ConfirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
 
 interface CofirmPhoneProps {
