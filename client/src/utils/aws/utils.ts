@@ -19,11 +19,13 @@ export function formatToAWSPhoneNumber(phoneNumber: string, country: CountryCode
  * @param {string} code This is the code we get back from aws
  * @returns {string} Returns a more descriptive and friendly error message.
  */
-export function getSignUpErrorMessage(code?: string): string {
+export function getSignUpErrorMessage(code?: string, defaultMessage?: string): string {
   switch (code) {
     case 'UsernameExistsException':
       return 'An account with that email already exists.';
+    case 'LimitExceededException':
+      return 'There have been too many attempts! Please try again later.';
     default:
-      return 'There was an issue creating your account.';
+      return defaultMessage || 'There was an issue creating your account.';
   }
 }
