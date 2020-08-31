@@ -123,7 +123,13 @@ export function SignUpCustomerForm(): React.ReactElement {
       </Button>
       <Text>
         {`Already have an account? `}
-        <Link as="a">Log in</Link>
+        <Link
+          onClick={() => {
+            navigate('/login');
+          }}
+        >
+          Log in
+        </Link>
       </Text>
     </FormContainer>
   );

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { Box, Text, Button, useToast } from '@chakra-ui/core';
+import { Box, Text, Flex, Button, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { getSignUpErrorMessage } from 'utils/';
 import { FormContainer, FormInput } from 'components/formelements/';
@@ -27,6 +27,15 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProp
       setIsLoading(false);
     }
   };
+  const handleChangePhoneNumber = debounce(async () => {
+    try {
+      await Auth.updateUserAttributes(userEmailAddress, {
+        phone_number: '+16502834364',
+      });
+    } catch (e) {
+      console.log('changing number', e);
+    }
+  }, 500);
   const handleResendText = debounce(async () => {
     try {
       setResentTextLoading(true);
@@ -66,22 +75,34 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProp
         <Button isLoading={isLoading} type="submit">
           Confirm
         </Button>
-
-        <Button
-          isLoading={resentTextLoading}
-          variant="ghost"
-          onClick={event => {
-            event.preventDefault();
-            event.stopPropagation();
-            if (!resentTextLoading) {
-              setResentTextLoading(true);
-            }
-            handleResendText();
-          }}
-          variantColor="blue"
-        >
-          Resend confirmation text
-        </Button>
+        <Flex flexDirection="column">
+          <Button
+            isLoading={resentTextLoading}
+            variant="ghost"
+            onClick={event => {
+              event.preventDefault();
+              event.stopPropagation();
+              if (!resentTextLoading) {
+                setResentTextLoading(true);
+              }
+              handleResendText();
+            }}
+            variantColor="blue"
+          >
+            Resend confirmation text
+          </Button>
+          <Button
+            variant="ghost"
+            variantColor="blue"
+            onClick={event => {
+              event.preventDefault();
+              event.stopPropagation();
+              handleChangePhoneNumber();
+            }}
+          >
+            Change phone number
+          </Button>
+        </Flex>
       </FormContainer>
     </Box>
   );

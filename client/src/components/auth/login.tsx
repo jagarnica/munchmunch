@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, navigate } from 'gatsby';
+import { navigate } from '@reach/router';
 import { Auth } from 'aws-amplify';
-import { Text, Button, useToast } from '@chakra-ui/core';
+import { Text, Button, Link, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { customerEmail, customerPassword } from './formrules';
@@ -61,7 +61,15 @@ export function LoginCustomerForm(): React.ReactElement {
       </Button>
       <Text marginTop="1.45rem">
         {`Don't have an account? `}
-        <Link to="/signup">Sign Up</Link>
+        <Link
+          onClick={(event: React.MouseEvent) => {
+            event.stopPropagation();
+            event.preventDefault();
+            navigate('/signup');
+          }}
+        >
+          Sign Up
+        </Link>
       </Text>
     </FormContainer>
   );
