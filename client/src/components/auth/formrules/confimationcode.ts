@@ -3,7 +3,7 @@ import { FormRulesType } from 'types/';
 const CodeRules = {
   required: {
     value: true,
-    message: 'Please enter a confirmation code',
+    message: 'Please enter a valid confirmation code',
   },
   pattern: {
     value: /^(?=.*[0-9]).*/,

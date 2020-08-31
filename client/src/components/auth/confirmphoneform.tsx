@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { Box, Heading, Button } from '@chakra-ui/core';
+import { Box, Text, Button } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { FormContainer, FormInput } from 'components/formelements/';
 import { ConfirmationCode } from 'components/auth/formrules';
@@ -8,8 +8,8 @@ interface CofirmPhoneProps {
   userEmailAddress: string;
   callback: (success: boolean) => void;
 }
-export const ConfirmPhoneForm = ({ userEmailAddress, callback }: CofirmPhoneProps) => {
-  const { register, errors, handleSubmit } = useForm();
+export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProps) {
+  const { register, errors, handleSubmit } = useForm<{ confirmationCode: string }>();
   const [isLoading, setIsLoading] = useState(false);
   const handleConfirmation = async (data: { confirmationCode: string }) => {
     console.log('This code was received!');
@@ -26,16 +26,18 @@ export const ConfirmPhoneForm = ({ userEmailAddress, callback }: CofirmPhoneProp
   return (
     <Box>
       <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
-        <Heading>Last step!</Heading>
+        <Text>We sent you a text to the number you entered.</Text>
         <FormInput
           elementDetails={ConfirmationCode}
           ref={register({
             ...ConfirmationCode.rules,
           })}
-          errorText={errors?.confirmationCode}
+          errorText={errors?.confirmationCode?.message}
         />
-        <Button type="submit">Confirm</Button>
+        <Button isLoading={isLoading} type="submit">
+          Confirm
+        </Button>
       </FormContainer>
     </Box>
   );
-};
+}

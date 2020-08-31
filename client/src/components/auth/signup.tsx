@@ -39,13 +39,6 @@ export function SignUpCustomerForm(): React.ReactElement {
       console.log('Account created', newUser);
       setUser(newUser);
       setAccountCreated(true);
-      toast({
-        title: 'Confirm your email!',
-        description: 'One step closer to deliciousness',
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
     } catch (e) {
       const errorMessage = getSignUpErrorMessage(e?.code);
       toast({
@@ -70,7 +63,7 @@ export function SignUpCustomerForm(): React.ReactElement {
     } else {
       navigate('/');
       toast({
-        title: 'Success!',
+        title: 'Account Created!',
         description: 'Welcome to Munch Munch!',
         status: 'success',
         duration: 3000,
@@ -78,7 +71,9 @@ export function SignUpCustomerForm(): React.ReactElement {
       });
     }
   }
-  return !accountCreated || !user ? (
+  return accountCreated && user ? (
+    <ConfirmPhoneForm callback={handleConfirmationCodeSubmit} userEmailAddress={user?.user?.getUsername()} />
+  ) : (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
       {/** FIRST NAME SECTION */}
       <FormInput
@@ -131,7 +126,5 @@ export function SignUpCustomerForm(): React.ReactElement {
         <Link as="a">Log in</Link>
       </Text>
     </FormContainer>
-  ) : (
-    <ConfirmPhoneForm callback={handleConfirmationCodeSubmit} userEmailAddress={user.user.getUsername()} />
   );
 }

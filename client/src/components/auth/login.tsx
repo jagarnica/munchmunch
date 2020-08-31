@@ -19,7 +19,7 @@ export function LoginCustomerForm(): React.ReactElement {
       setIsLoading(true);
       await Auth.signIn(email, password);
       toast({
-        title: 'Logged!',
+        title: 'Logged in!',
         description: 'Welcome back to Munch Munch!',
         status: 'success',
         duration: 9000,
