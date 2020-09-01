@@ -15,6 +15,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/core';
+import { useAppContext } from 'libs/contextLib';
 
 const navigateToPage = (link: string) => {
   navigate(link);
@@ -22,6 +23,7 @@ const navigateToPage = (link: string) => {
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { userHasAuthenticated } = useAppContext();
 
   const MenuItems = (
     <>

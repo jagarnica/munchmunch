@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+
 module.exports = {
   siteMetadata: {
     title: `munch munch`,
@@ -34,6 +35,7 @@ module.exports = {
         images: path.join(__dirname, 'src/images'),
         components: path.join(__dirname, 'src/components'),
         types: path.join(__dirname, 'src/types'),
+        libs: path.join(__dirname, 'src/libs'),
         utils: path.join(__dirname, 'src/utils'),
       },
     },

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { App } from 'components/pages/app';
 import { Amplify } from 'aws-amplify';
+import { AppContext } from 'libs/contextLib';
 import config from '../config';
 
 const IndexPage = (): React.ReactNode => {
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
   // Configure AWS authentification
   Amplify.configure({
     Auth: {
@@ -14,6 +16,10 @@ const IndexPage = (): React.ReactNode => {
       userPoolWebClientId: config.cognito.APP_CLIENT_ID,
     },
   });
-  return <App />;
+  return (
+    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+      <App />
+    </AppContext.Provider>
+  );
 };
 export default IndexPage;
