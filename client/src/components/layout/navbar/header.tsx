@@ -23,9 +23,11 @@ const navigateToPage = (link: string) => {
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { userHasAuthenticated } = useAppContext();
+  const { isAuthenticated } = useAppContext(); // we are only using it if it not null
 
-  const MenuItems = (
+  const MenuItems = isAuthenticated ? (
+    <Button variant="outline">Cart</Button>
+  ) : (
     <>
       <Button
         className="loginButton"
@@ -45,6 +47,33 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
       </Button>
     </>
   );
+  if (isAuthenticated) {
+    return (
+      <HeaderContainer borderColor={colors.gray[700]}>
+        <NavigationContainer>
+          <Flex>
+            <HamburgerButton onClick={onOpen} />
+          </Flex>
+          <h1 style={{ margin: 0 }}>
+            <Link
+              to="/"
+              style={{
+                color: `black`,
+                textDecoration: `none`,
+              }}
+            >
+              {siteTitle}
+            </Link>
+          </h1>
+          <Flex flexDirection="row" alignItems="center" justifyContent="center">
+            <ButtonsContainer>
+              <Button>CART</Button>
+            </ButtonsContainer>
+          </Flex>
+        </NavigationContainer>
+      </HeaderContainer>
+    );
+  }
   return (
     <>
       <HeaderContainer borderColor={colors.gray[700]}>
@@ -72,7 +101,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Munch Munch</DrawerHeader>
+          <DrawerHeader>MunchMunch</DrawerHeader>
           <StyledDrawerBody
             display={{ base: 'flex' }}
             flexDirection="column"

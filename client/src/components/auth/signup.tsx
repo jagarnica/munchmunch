@@ -36,8 +36,9 @@ export function SignUpCustomerForm(): React.ReactElement {
           phone_number: userPhoneNumber,
         },
       });
-
+      console.log('account created', newUser);
       setUser(newUser);
+      setIsLoading(true);
       setAccountCreated(true);
     } catch (e) {
       const errorMessage = getSignUpErrorMessage(e?.code);
