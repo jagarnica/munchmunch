@@ -1,4 +1,4 @@
-import { Link, navigate } from 'gatsby';
+import { Link } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/general/buttons/';
 import styled from 'styled-components';
@@ -11,50 +11,29 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
+  Text,
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
 } from '@chakra-ui/core';
 import { useAppContext } from 'libs/contextLib';
+import { PublicSideMenu } from 'components/layout/navbar/publicnav';
+import { CustomerOrderSideDrawer } from 'components/layout/navbar/privatenav';
 
-const navigateToPage = (link: string) => {
-  navigate(link);
-};
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuthenticated } = useAppContext(); // we are only using it if it not null
 
-  const MenuItems = isAuthenticated ? (
-    <Button variant="outline">Cart</Button>
-  ) : (
+  const MenuItems = isAuthenticated ? <Button variant="outline">Cart</Button> : <PublicSideMenu />;
+  return isAuthenticated ? (
     <>
-      <Button
-        className="loginButton"
-        variant="outline"
-        onClick={() => {
-          navigateToPage('/login');
-        }}
-      >
-        Log In
-      </Button>
-      <Button
-        onClick={() => {
-          navigateToPage('/signup');
-        }}
-      >
-        Sign Up
-      </Button>
-    </>
-  );
-  if (isAuthenticated) {
-    return (
       <HeaderContainer borderColor={colors.gray[700]}>
         <NavigationContainer>
           <Flex>
             <HamburgerButton onClick={onOpen} />
           </Flex>
-          <h1 style={{ margin: 0 }}>
+          <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>
             <Link
               to="/"
               style={{
@@ -64,7 +43,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
             >
               {siteTitle}
             </Link>
-          </h1>
+          </Text>
           <Flex flexDirection="row" alignItems="center" justifyContent="center">
             <ButtonsContainer>
               <Button>CART</Button>
@@ -72,9 +51,9 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
           </Flex>
         </NavigationContainer>
       </HeaderContainer>
-    );
-  }
-  return (
+      <CustomerOrderSideDrawer isOpen={isOpen} onClose={onClose} />
+    </>
+  ) : (
     <>
       <HeaderContainer borderColor={colors.gray[700]}>
         <NavigationContainer>
@@ -110,7 +89,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
           >
             {MenuItems}
           </StyledDrawerBody>
-          <DrawerFooter></DrawerFooter>
+          <DrawerFooter />
         </DrawerContent>
       </Drawer>
     </>

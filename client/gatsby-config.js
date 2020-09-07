@@ -6,7 +6,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `munchmunch`,
+    title: `MunchMunch`,
     description: `Get food ordered quickly.`,
     author: `Jesus Garnica`,
   },
@@ -66,6 +66,13 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Lobster:400`],
+        display: 'swap',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
