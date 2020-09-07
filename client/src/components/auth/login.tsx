@@ -26,7 +26,7 @@ export function LoginCustomerForm(): React.ReactElement {
         title: 'Logged in!',
         description: 'Welcome back to Munch Munch!',
         status: 'success',
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       });
       navigate('/');
@@ -35,7 +35,7 @@ export function LoginCustomerForm(): React.ReactElement {
         title: 'Whoops!',
         description: "We don't recognize that email and password combination. Check your spelling!",
         status: 'error',
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
       });
       setIsLoading(false);

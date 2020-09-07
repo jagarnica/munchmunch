@@ -57,17 +57,18 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
     <>
       <HeaderContainer borderColor={colors.gray[700]}>
         <NavigationContainer>
-          <h1 style={{ margin: 0 }}>
+          <Text fontSize="2xl">
             <Link
               to="/"
               style={{
+                fontFamily: `lobster`,
                 color: `black`,
                 textDecoration: `none`,
               }}
             >
               {siteTitle}
             </Link>
-          </h1>
+          </Text>
           <Flex display={{ base: 'none', sm: 'flex' }} flexDirection="row" alignItems="center" justifyContent="center">
             <ButtonsContainer>{MenuItems}</ButtonsContainer>
           </Flex>
