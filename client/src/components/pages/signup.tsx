@@ -6,7 +6,7 @@ import { DefaultPageProps } from 'types/types';
 
 export const SignUpPage: React.FC<DefaultPageProps> = (): React.ReactElement => (
   <Layout>
-    <SEO title="Login To Munch Munch" />
+    <SEO title="Sign Up for Munch Munch" />
     <FormContainer>
       <SignUpCustomerForm />
     </FormContainer>

@@ -3,7 +3,7 @@ import { FormControl, FormLabel, Input, InputProps } from '@chakra-ui/core';
 import { FormRulesType } from 'types/';
 import { FormError } from './formerror';
 
-interface FormInputProps extends Omit<InputProps, 'placeholder' | 'isInvalid' | 'htmlFor' | 'name'> {
+interface FormInputProps extends Omit<InputProps, 'placeholder' | 'isInvalid' | 'htmlFor' | 'name' | 'type'> {
   elementDetails: FormRulesType;
   errorText?: string;
 }
@@ -25,6 +25,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
           placeholder={elementDetails.placeholder}
           isInvalid={!!errorText}
           ref={ref}
+          type={elementDetails.type}
           name={elementDetails.id}
         />
         <FormError errorText={errorText} />

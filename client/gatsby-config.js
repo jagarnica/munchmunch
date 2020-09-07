@@ -3,9 +3,10 @@ const path = require('path');
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+
 module.exports = {
   siteMetadata: {
-    title: `munch munch`,
+    title: `MunchMunch`,
     description: `Get food ordered quickly.`,
     author: `Jesus Garnica`,
   },
@@ -34,6 +35,8 @@ module.exports = {
         images: path.join(__dirname, 'src/images'),
         components: path.join(__dirname, 'src/components'),
         types: path.join(__dirname, 'src/types'),
+        libs: path.join(__dirname, 'src/libs'),
+        utils: path.join(__dirname, 'src/utils'),
       },
     },
     {
@@ -63,6 +66,13 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Lobster:400`],
+        display: 'swap',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

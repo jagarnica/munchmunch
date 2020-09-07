@@ -15,4 +15,5 @@ export type FormRulesType = {
   id: string;
   placeholder?: string;
   rules: ValidationRules;
+  type: string;
 };

@@ -12,5 +12,6 @@ export const customerEmail: FormRulesType = {
   id: `email`,
   label: 'Email',
   placeholder: 'Email',
+  type: 'text',
   rules: customerEmailRules,
 };
