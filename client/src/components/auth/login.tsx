@@ -29,7 +29,7 @@ export function LoginCustomerForm(): React.ReactElement {
         duration: 2000,
         isClosable: true,
       });
-      navigate('/');
+      navigate('/'); // Navigate to the home page
     } catch (e) {
       toast({
         title: 'Whoops!',
@@ -63,13 +63,25 @@ export function LoginCustomerForm(): React.ReactElement {
       <Button isLoading={isLoading} marginTop="1.45rem" width="100%" type="submit">
         Log In
       </Button>
+      <Link
+        onClick={(event: React.MouseEvent) => {
+          event.stopPropagation();
+          event.preventDefault();
+          navigate('forgotpassword');
+        }}
+      >
+        Forgot your password?
+      </Link>
       <Text marginTop="1.45rem">
         {`Don't have an account? `}
         <Link
+          style={{
+            fontWeight: 'bold',
+          }}
           onClick={(event: React.MouseEvent) => {
             event.stopPropagation();
             event.preventDefault();
-            navigate('/signup');
+            navigate('signup');
           }}
         >
           Sign Up

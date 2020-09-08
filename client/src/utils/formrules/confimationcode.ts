@@ -10,7 +10,7 @@ const CodeRules = {
     message: 'The confirmation code can only have numbers.',
   },
 };
-export const ConfirmationCode: FormRulesType = {
+export const confirmationCode: FormRulesType = {
   label: 'Confirmation Code',
   id: 'confirmationCode',
   type: 'number',
