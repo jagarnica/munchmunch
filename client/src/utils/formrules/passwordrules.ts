@@ -24,5 +24,15 @@ export const customerPassword: FormRulesType = {
   placeholder: 'Password',
   label: 'Password',
   type: 'password',
+  maxLength: '100',
+  rules: customerPasswordRules,
+};
+
+export const confirmPassword: FormRulesType = {
+  id: `confirmPassword`,
+  placeholder: 'Confirm Password',
+  label: 'Confirm Password',
+  type: 'Password',
+  maxLength: '100',
   rules: customerPasswordRules,
 };

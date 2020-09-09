@@ -25,6 +25,8 @@ export function getSignUpErrorMessage(code?: string, defaultMessage?: string): s
       return 'An account with that email already exists.';
     case 'LimitExceededException':
       return 'There have been too many attempts! Please try again later.';
+    case 'CodeMismatchException':
+      return 'Invalid verification code provided, please check your code.';
     default:
       return defaultMessage || 'There was an issue creating your account.';
   }
