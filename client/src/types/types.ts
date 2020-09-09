@@ -14,6 +14,7 @@ export type FormRulesType = {
   label: string;
   id: string;
   placeholder?: string;
+  maxLength?: string;
   rules: ValidationRules;
   type: string;
 };

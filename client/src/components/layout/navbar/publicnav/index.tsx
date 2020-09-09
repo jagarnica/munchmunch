@@ -10,14 +10,14 @@ export const PublicSideMenu = (): JSX.Element => {
         className="loginButton"
         variant="outline"
         onClick={() => {
-          navigate('/login');
+          navigate('/auth/login');
         }}
       >
         Log In
       </Button>
       <Button
         onClick={() => {
-          navigate('/signup');
+          navigate('/auth/signup');
         }}
       >
         Sign Up

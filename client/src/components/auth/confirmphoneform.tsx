@@ -4,7 +4,7 @@ import { Box, Text, Flex, Button, useToast } from '@chakra-ui/core';
 import { useForm } from 'react-hook-form';
 import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
-import { ConfirmationCode } from 'utils/formrules';
+import { confirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
 
 interface CofirmPhoneProps {
@@ -76,9 +76,9 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProp
           <Text>We sent you a text to the number you entered.</Text>
 
           <FormInput
-            elementDetails={ConfirmationCode}
+            elementDetails={confirmationCode}
             ref={register({
-              ...ConfirmationCode.rules,
+              ...confirmationCode.rules,
             })}
             errorText={errors?.confirmationCode?.message}
           />

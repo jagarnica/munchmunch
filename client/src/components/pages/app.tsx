@@ -1,13 +1,18 @@
 import React from 'react';
-import { Router } from '@reach/router';
-import { SignUpPage, LoginPage, HomePage, NotFoundPage } from './index';
+import { Router, Redirect } from '@reach/router';
+import { SignUpPage, ForgotPasswordPage, LoginPage, HomePage, NotFoundPage, AuthPage } from './index';
 
 export function App(): React.ReactElement {
   return (
     <Router basepath="/">
-      <SignUpPage path="/signup" />
-      <LoginPage path="/login" />
+      <AuthPage path="/auth">
+        <SignUpPage path="signup" />
+        <LoginPage path="login" />
+        <ForgotPasswordPage path="forgotpassword" />
+      </AuthPage>
       <HomePage path="/" />
+      <Redirect noThrow from="login" to="/auth/login" />
+      <Redirect noThrow from="signup" to="/auth/signup" />
       <NotFoundPage path="/404" default />
     </Router>
   );
