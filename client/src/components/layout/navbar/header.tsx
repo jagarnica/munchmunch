@@ -2,97 +2,70 @@ import { Link } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/general/buttons/';
 import styled from 'styled-components';
-import {
-  Button,
-  useTheme,
-  Flex,
-  useDisclosure,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  Text,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from '@chakra-ui/core';
+import { Button, useTheme, Flex, useDisclosure, DrawerBody, Text } from '@chakra-ui/core';
 import { useAppContext } from 'libs/contextLib';
-import { PublicSideMenu } from 'components/layout/navbar/publicnav';
+import { PublicSideMenuItems, PublicSideMenuDrawer } from 'components/layout/navbar/publicnav';
 import { CustomerOrderSideDrawer } from 'components/layout/navbar/privatenav';
 
+export const SiteLogo = ({ title }: { title?: string }): JSX.Element => (
+  <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>
+    <Link
+      to="/"
+      style={{
+        color: `black`,
+        textDecoration: `none`,
+      }}
+    >
+      {title}
+    </Link>
+  </Text>
+);
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuthenticated } = useAppContext(); // we are only using it if it not null
 
-  const MenuItems = isAuthenticated ? <Button variant="outline">Cart</Button> : <PublicSideMenu />;
-  return isAuthenticated ? (
+  return (
     <>
       <HeaderContainer borderColor={colors.gray[700]}>
         <NavigationContainer>
-          <Flex>
-            <HamburgerButton onClick={onOpen} />
-          </Flex>
-          <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>
-            <Link
-              to="/"
-              style={{
-                color: `black`,
-                textDecoration: `none`,
-              }}
-            >
-              {siteTitle}
-            </Link>
-          </Text>
-          <Flex flexDirection="row" alignItems="center" justifyContent="center">
-            <ButtonsContainer>
-              <Button>CART</Button>
-            </ButtonsContainer>
-          </Flex>
+          {isAuthenticated ? (
+            <>
+              <Flex>
+                <HamburgerButton onClick={onOpen} />
+              </Flex>
+              <SiteLogo title={siteTitle} />
+              <Flex flexDirection="row" alignItems="center" justifyContent="center">
+                <ButtonsContainer>
+                  <Button>CART</Button>
+                </ButtonsContainer>
+              </Flex>
+            </>
+          ) : (
+            <>
+              <SiteLogo title={siteTitle} />
+              <Flex
+                display={{ base: 'none', sm: 'flex' }}
+                flexDirection="row"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <ButtonsContainer>
+                  <PublicSideMenuItems />
+                </ButtonsContainer>
+              </Flex>
+              <Flex display={{ base: `flex`, sm: 'none' }}>
+                <HamburgerButton onClick={onOpen} />
+              </Flex>
+            </>
+          )}
         </NavigationContainer>
       </HeaderContainer>
-      <CustomerOrderSideDrawer isOpen={isOpen} onClose={onClose} />
-    </>
-  ) : (
-    <>
-      <HeaderContainer borderColor={colors.gray[700]}>
-        <NavigationContainer>
-          <Text fontSize="2xl">
-            <Link
-              to="/"
-              style={{
-                fontFamily: `lobster`,
-                color: `black`,
-                textDecoration: `none`,
-              }}
-            >
-              {siteTitle}
-            </Link>
-          </Text>
-          <Flex display={{ base: 'none', sm: 'flex' }} flexDirection="row" alignItems="center" justifyContent="center">
-            <ButtonsContainer>{MenuItems}</ButtonsContainer>
-          </Flex>
-          <Flex display={{ base: `flex`, sm: 'none' }}>
-            <HamburgerButton onClick={onOpen} />
-          </Flex>
-        </NavigationContainer>
-      </HeaderContainer>
-      <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>MunchMunch</DrawerHeader>
-          <StyledDrawerBody
-            display={{ base: 'flex' }}
-            flexDirection="column"
-            alignItems="stretch"
-            alignContent="stretch"
-          >
-            {MenuItems}
-          </StyledDrawerBody>
-          <DrawerFooter />
-        </DrawerContent>
-      </Drawer>
+      {isAuthenticated ? (
+        <CustomerOrderSideDrawer isOpen={isOpen} onClose={onClose} />
+      ) : (
+        <PublicSideMenuDrawer isOpen={isOpen} placement="right" onClose={onClose} />
+      )}
     </>
   );
 }
