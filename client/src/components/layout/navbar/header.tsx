@@ -1,8 +1,8 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import { HamburgerButton } from 'components/general/buttons/';
+import { HamburgerButton } from 'components/shared/buttons';
 import styled from 'styled-components';
-import { Button, useTheme, Flex, useDisclosure, DrawerBody, Text } from '@chakra-ui/core';
+import { Button, Box, Flex, useDisclosure, Text } from '@chakra-ui/core';
 import { useAppContext } from 'libs/contextLib';
 import { PublicSideMenuItems, PublicSideMenuDrawer } from 'components/layout/navbar/publicnav';
 import { CustomerOrderSideDrawer } from 'components/layout/navbar/privatenav';
@@ -21,13 +21,12 @@ export const SiteLogo = ({ title }: { title?: string }): JSX.Element => (
   </Text>
 );
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
-  const { colors } = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isAuthenticated } = useAppContext(); // we are only using it if it not null
 
   return (
     <>
-      <HeaderContainer borderColor={colors.gray[700]}>
+      <Box marginBottom="1.45rem" borderBottomWidth="1px" borderBottomColor="header.borderColor">
         <NavigationContainer>
           {isAuthenticated ? (
             <>
@@ -60,7 +59,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
             </>
           )}
         </NavigationContainer>
-      </HeaderContainer>
+      </Box>
       {isAuthenticated ? (
         <CustomerOrderSideDrawer isOpen={isOpen} onClose={onClose} />
       ) : (
@@ -85,9 +84,4 @@ const ButtonsContainer = styled.div`
   grid-column-gap: 8px;
   grid-template-rows: 1fr;
   grid-auto-flow: column;
-`;
-const StyledDrawerBody = styled(DrawerBody)`
-  button {
-    margin: 8px 0;
-  }
 `;

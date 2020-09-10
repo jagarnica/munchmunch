@@ -10,7 +10,7 @@ import {
   useToast,
 } from '@chakra-ui/core';
 import { Auth } from 'aws-amplify';
-import { NavItem } from 'components/general/navitem';
+import { NavItem } from 'components/shared/navitem';
 import { navigate } from 'gatsby';
 import { useAppContext } from 'libs/contextLib';
 

@@ -1,10 +1,22 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { theme, ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { theme, ThemeProvider, CSSReset, ITheme } from '@chakra-ui/core';
 import { Header } from './navbar/header';
 
-const baseSiteTheme = {
+interface customTheme extends ITheme {
+  header: {
+    borderColor: string;
+  };
+  toastDefaults: {
+    duration: number;
+    isClosable: boolean;
+  };
+}
+const baseSiteTheme: customTheme = {
   ...theme,
+  header: {
+    borderColor: theme.colors.gray[100],
+  },
   toastDefaults: {
     duration: 1000,
     isClosable: true,
