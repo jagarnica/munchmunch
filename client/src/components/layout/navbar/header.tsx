@@ -26,7 +26,13 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
 
   return (
     <>
-      <Box marginBottom="1.45rem" borderBottomWidth="1px" borderBottomColor="header.borderColor">
+      <Box
+        zIndex={10}
+        background="white"
+        marginBottom="1.45rem"
+        borderBottomWidth="1px"
+        borderBottomColor="header.borderColor"
+      >
         <NavigationContainer>
           {isAuthenticated ? (
             <>
@@ -75,10 +81,7 @@ const NavigationContainer = styled.div`
   width: 100%;
   padding: 16px;
 `;
-const HeaderContainer = styled.header<{ borderColor?: string }>`
-  margin-bottom: 1.45rem;
-  border-bottom: 1px solid ${props => props.borderColor};
-`;
+
 const ButtonsContainer = styled.div`
   display: inline-grid;
   grid-column-gap: 8px;

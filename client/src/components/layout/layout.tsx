@@ -6,6 +6,7 @@ import { Header } from './navbar/header';
 interface customTheme extends ITheme {
   header: {
     borderColor: string;
+    zIndex: number;
   };
   toastDefaults: {
     duration: number;
@@ -16,6 +17,7 @@ const baseSiteTheme: customTheme = {
   ...theme,
   header: {
     borderColor: theme.colors.gray[100],
+    zIndex: 10,
   },
   toastDefaults: {
     duration: 1000,
