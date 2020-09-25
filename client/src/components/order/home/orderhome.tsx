@@ -56,7 +56,7 @@ export const UserPastOrders = ({
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Text fontSize="xl" fontWeight="bold" color="orange.500">
-        My Favorites
+        My Orders
       </Text>
       <SimpleGrid minChildWidth="280px" spacing="20px" overflow="scroll" maxWidth="100%">
         {orders && orders.length > 0 ? (
