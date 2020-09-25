@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, SimpleGrid } from '@chakra-ui/core';
+import { Text, SimpleGrid, Icon, Flex, Box } from '@chakra-ui/core';
 import Img from 'gatsby-image';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -26,6 +26,7 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
   return (
     <SimpleGrid maxW="100%" spacing="2.45rem">
       <SearchRestuarants />
+      <UserFavorites />
       <UserPastOrders orders={null} />
     </SimpleGrid>
   );
@@ -55,9 +56,14 @@ export const UserPastOrders = ({
 }): JSX.Element => {
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
-      <Text fontSize="xl" fontWeight="bold" color="orange.500">
-        My Orders
-      </Text>
+      <Flex alignItems="center" justifyContent="flex-start">
+        <Icon name="shoppingbag" color="orange.500" size="2rem" />
+
+        <Text as="span" fontSize="xl" transform="translateY(0.2rem)" fontWeight="bold" color="orange.500">
+          My Orders
+        </Text>
+      </Flex>
+
       <SimpleGrid minChildWidth="280px" spacing="20px" overflow="scroll" maxWidth="100%">
         {orders && orders.length > 0 ? (
           <>
@@ -76,6 +82,16 @@ export const UserPastOrders = ({
           <OrderHistoryPlaceholder />
         )}
       </SimpleGrid>
+    </SimpleGrid>
+  );
+};
+
+export const UserFavorites = (): JSX.Element => {
+  return (
+    <SimpleGrid>
+      <Text fontSize="xl" fontWeight="bold" color="orange.500">
+        My Favorites
+      </Text>
     </SimpleGrid>
   );
 };
