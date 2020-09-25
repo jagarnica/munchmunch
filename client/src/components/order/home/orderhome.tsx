@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, SimpleGrid, Flex } from '@chakra-ui/core';
+import { Text, SimpleGrid } from '@chakra-ui/core';
 import Img from 'gatsby-image';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { useStaticQuery, graphql } from 'gatsby';
 import { DefaultPageProps } from 'types';
-import { OrderHistoryCard } from 'components/shared/card';
+import { OrderHistoryCard, OrderHistoryPlaceholder } from 'components/shared/card';
 
 const HERO_HEIGHT = '400px;';
 
@@ -49,24 +49,24 @@ export const SearchRestuarants = (): JSX.Element => {
 };
 
 export const UserPastOrders = (): JSX.Element => {
+  const apiDemoLink = 'https://source.unsplash.com/600x600/?cafe';
+  const orders = null;
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Text fontSize="xl" fontWeight="bold" color="orange.500">
         My Favorites
       </Text>
       <SimpleGrid minChildWidth="280px" spacing="20px" overflow="scroll" maxWidth="100%">
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
-        <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" />
+        {orders ? (
+          <>
+            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />
+            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />{' '}
+            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />{' '}
+            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />
+          </>
+        ) : (
+          <OrderHistoryPlaceholder />
+        )}
       </SimpleGrid>
     </SimpleGrid>
   );

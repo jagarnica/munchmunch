@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Flex } from '@chakra-ui/core';
+import { Image, Flex, Skeleton } from '@chakra-ui/core';
 import LazyLoad, { LazyLoadProps } from 'react-lazyload';
 import { AspectRatioBox } from 'components/shared/aspectratiobox';
 
@@ -23,9 +23,16 @@ export interface LazyImageProps {
 export function SmartImage({ src, offset = 500, ratio, lazyLoadProps, ...rest }: LazyImageProps): JSX.Element {
   return (
     <AspectRatioBox ratio={ratio}>
-      <Flex background="#E2E8F0" alignItems="stretch" justifyContent="stretch" height="100%">
-        <LazyLoad height="100%" offset={offset} throttle={150} once {...lazyLoadProps}>
-          <Image src={src} height="100%" width="auto" objectFit="cover" {...rest} />
+      <Flex bg="#E2E8F0" alignItems="stretch" justifyContent="stretch" height="100%">
+        <LazyLoad
+          height="100%"
+          offset={offset}
+          throttle={150}
+          once
+          {...lazyLoadProps}
+          placeholder={<Skeleton height="100%" width="100%" />}
+        >
+          <Image src={src} height="100%" width="100%" objectFit="cover" {...rest} />
         </LazyLoad>
       </Flex>
     </AspectRatioBox>

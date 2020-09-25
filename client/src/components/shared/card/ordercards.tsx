@@ -1,25 +1,52 @@
 import React from 'react';
-import { Text, SimpleGrid } from '@chakra-ui/core';
+import { Text, Stack } from '@chakra-ui/core';
 import { SmartImage } from 'components/shared/smartimage';
+import { AspectRatioBox } from 'components/shared/aspectratiobox/';
 import { Card } from './card';
 
 export interface OrderHistoryCardProps {
   title: string;
   orderDate: string;
+  image: string;
 }
-
-export const OrderHistoryCard = ({ title, orderDate }: OrderHistoryCardProps): JSX.Element => (
-  <Card borderRadius="4px" minWidth="200px" maxWidth="250px" padding="0px">
-    <SmartImage
-      ratio={16 / 9}
-      src="https://static.wixstatic.com/media/8b90a9_2c0bd332fa1740578e1c273eb5c7cd92~mv2.jpg/v1/fill/w_1100,h_426,al_c,q_85/8b90a9_2c0bd332fa1740578e1c273eb5c7cd92~mv2.webp"
-    />
-
-    <SimpleGrid padding="1.0rem">
-      <Text fontWeight="bold" size="large" color="grey.700">
+/**
+ * @name OrderHistoryCard
+ * @description Displays a card with the date, image, and name of the restaurant
+ * @param param0
+ */
+export const OrderHistoryCard = ({ title, orderDate, image }: OrderHistoryCardProps): JSX.Element => (
+  <Card borderRadius="4px" minWidth="200px" maxWidth="250px" padding="0px" justifyContent="flex-start">
+    <SmartImage ratio={16 / 9} src={image} />
+    <Stack padding="0.8rem" spacing={0.5}>
+      <Text as="span" fontWeight="bold" fontSize="large" color="gray.700">
         {title}
       </Text>
-      <Text color="grey.400">{orderDate}</Text>
-    </SimpleGrid>
+      <Text as="span" color="gray.600">
+        {orderDate}
+      </Text>
+    </Stack>
   </Card>
 );
+/**
+ * @name OrderHistoryPlaceholder
+ * @description This is useful to display incase the user has no orders yet.
+ */
+export const OrderHistoryPlaceholder = (): JSX.Element => {
+  return (
+    <Card
+      borderRadius="4px"
+      minWidth="200px"
+      bg="#F7FAFC"
+      maxWidth="250px"
+      padding="0px"
+      boxShadow="none"
+      justifyContent="flex-start"
+    >
+      <AspectRatioBox>
+        <Text as="span" color="gray.600">
+          No orders yet!
+        </Text>
+      </AspectRatioBox>
+    </Card>
+  );
+};
