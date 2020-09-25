@@ -52,7 +52,7 @@ export const SearchRestuarants = (): JSX.Element => {
 export const UserPastOrders = ({
   orders,
 }: {
-  orders: Array<Pick<RestaurantOrder, 'date' | 'image' | 'name'>> | null;
+  orders: Array<Pick<RestaurantOrder, 'date' | 'image' | 'name', 'id'>> | null;
 }): JSX.Element => {
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
@@ -68,14 +68,7 @@ export const UserPastOrders = ({
         {orders && orders.length > 0 ? (
           <>
             {orders.map(order => {
-              return (
-                <OrderHistoryCard
-                  key={order.date + order.name}
-                  title={order.name}
-                  image={order.image}
-                  orderDate={order.date}
-                />
-              );
+              return <OrderHistoryCard key={order.id} title={order.name} image={order.image} orderDate={order.date} />;
             })}
           </>
         ) : (

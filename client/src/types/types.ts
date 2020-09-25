@@ -23,5 +23,6 @@ export type CustomChakraIcon = {
 export type RestaurantOrder = {
   name: string;
   image: string;
+  id: string;
   date: string;
 };
