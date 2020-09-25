@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Stack } from '@chakra-ui/core';
+import { Text, Stack, Icon, Flex } from '@chakra-ui/core';
 import { SmartImage } from 'components/shared/smartimage';
 import { AspectRatioBox } from 'components/shared/aspectratiobox/';
 import { Card } from './card';
@@ -15,7 +15,14 @@ export interface OrderHistoryCardProps {
  * @param param0
  */
 export const OrderHistoryCard = ({ title, orderDate, image }: OrderHistoryCardProps): JSX.Element => (
-  <Card borderRadius="4px" minWidth="200px" maxWidth="250px" padding="0px" justifyContent="flex-start">
+  <Card
+    borderRadius="4px"
+    minWidth="200px"
+    maxWidth="220px"
+    padding="0px"
+    justifyContent="flex-start"
+    overflow="hidden"
+  >
     <SmartImage ratio={16 / 9} src={image} />
     <Stack padding="0.8rem" spacing={0.5}>
       <Text as="span" fontWeight="bold" fontSize="large" color="gray.700">
@@ -37,15 +44,18 @@ export const OrderHistoryPlaceholder = (): JSX.Element => {
       borderRadius="4px"
       minWidth="200px"
       bg="#F7FAFC"
-      maxWidth="250px"
+      maxWidth="220px"
       padding="0px"
       boxShadow="none"
       justifyContent="flex-start"
     >
       <AspectRatioBox>
-        <Text as="span" color="gray.600">
-          No orders yet!
-        </Text>
+        <Flex height="100%" justifyContent="center" alignItems="center" flexDirection="column">
+          <Icon name="happytakeoutbox" size="57px" color="gray.500" />
+          <Text marginTop="12px" fontWeight="bold" as="span" color="gray.500">
+            No orders yet!
+          </Text>
+        </Flex>
       </AspectRatioBox>
     </Card>
   );

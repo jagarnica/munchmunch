@@ -3,7 +3,7 @@ import { Text, SimpleGrid } from '@chakra-ui/core';
 import Img from 'gatsby-image';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { useStaticQuery, graphql } from 'gatsby';
-import { DefaultPageProps } from 'types';
+import { DefaultPageProps, RestaurantOrder } from 'types';
 import { OrderHistoryCard, OrderHistoryPlaceholder } from 'components/shared/card';
 
 const HERO_HEIGHT = '400px;';
@@ -26,7 +26,7 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
   return (
     <SimpleGrid maxW="100%" spacing="2.45rem">
       <SearchRestuarants />
-      <UserPastOrders />
+      <UserPastOrders orders={null} />
     </SimpleGrid>
   );
 };
@@ -48,21 +48,29 @@ export const SearchRestuarants = (): JSX.Element => {
   );
 };
 
-export const UserPastOrders = (): JSX.Element => {
-  const apiDemoLink = 'https://source.unsplash.com/600x600/?cafe';
-  const orders = null;
+export const UserPastOrders = ({
+  orders,
+}: {
+  orders: Array<Pick<RestaurantOrder, 'date' | 'image' | 'name'>> | null;
+}): JSX.Element => {
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Text fontSize="xl" fontWeight="bold" color="orange.500">
         My Favorites
       </Text>
       <SimpleGrid minChildWidth="280px" spacing="20px" overflow="scroll" maxWidth="100%">
-        {orders ? (
+        {orders && orders.length > 0 ? (
           <>
-            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />
-            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />{' '}
-            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />{' '}
-            <OrderHistoryCard title="Yayoi" orderDate="Ordered on: August 26, 2020" image={apiDemoLink} />
+            {orders.map(order => {
+              return (
+                <OrderHistoryCard
+                  key={order.date + order.name}
+                  title={order.name}
+                  image={order.image}
+                  orderDate={order.date}
+                />
+              );
+            })}
           </>
         ) : (
           <OrderHistoryPlaceholder />

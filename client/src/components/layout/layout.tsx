@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { theme, ThemeProvider, CSSReset, ITheme } from '@chakra-ui/core';
+import * as customIcons from 'images/tsxicons';
 import { Header } from './navbar/header';
 
 interface customTheme extends ITheme {
@@ -15,6 +16,10 @@ interface customTheme extends ITheme {
 }
 const baseSiteTheme: customTheme = {
   ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  },
   header: {
     borderColor: theme.colors.gray[100],
     zIndex: 10,
@@ -35,7 +40,7 @@ export const Layout: React.FC = ({ children }) => {
       }
     }
   `);
-
+  console.log('icons', baseSiteTheme.icons);
   return (
     <>
       <ThemeProvider theme={baseSiteTheme}>

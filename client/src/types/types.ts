@@ -1,10 +1,6 @@
 import { RouteComponentProps } from '@reach/router';
 import { ValidationRules } from 'react-hook-form';
 
-export interface sampleType {
-  name: string;
-}
-
 export type DefaultPageProps = RouteComponentProps;
 /**
  * @name FormRulesType
@@ -17,4 +13,15 @@ export type FormRulesType = {
   maxLength?: string;
   rules: ValidationRules;
   type: string;
+};
+
+export type CustomChakraIcon = {
+  path: JSX.Element;
+  viewBox: string;
+};
+
+export type RestaurantOrder = {
+  name: string;
+  image: string;
+  date: string;
 };
