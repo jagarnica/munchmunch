@@ -26,3 +26,10 @@ export type RestaurantOrder = {
   id: string;
   date: string;
 };
+
+export type Restaurant = {
+  id: string;
+  name: string;
+  location: string;
+  image: string;
+};

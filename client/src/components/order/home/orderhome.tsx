@@ -1,33 +1,15 @@
 import React from 'react';
-import { Text, SimpleGrid, Icon, Flex, Box } from '@chakra-ui/core';
-import Img from 'gatsby-image';
+import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
-import { useStaticQuery, graphql } from 'gatsby';
-import { DefaultPageProps, RestaurantOrder } from 'types';
+import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
 import { OrderHistoryCard, OrderHistoryPlaceholder } from 'components/shared/card';
 
-const HERO_HEIGHT = '400px;';
-
-export const HeroImage = (): JSX.Element => {
-  const data = useStaticQuery(graphql`
-    query MyQuery {
-      heroImage: file(relativePath: { eq: "heroimages/bgheroimage.jpg" }) {
-        childImageSharp {
-          fluid(fit: CONTAIN, maxHeight: 1200, quality: 90) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-    }
-  `);
-  return <Img style={{ height: HERO_HEIGHT, width: '100%' }} fluid={data.heroImage.childImageSharp.fluid} />;
-};
 export const OrderHome: React.FC<DefaultPageProps> = () => {
   return (
     <SimpleGrid maxW="100%" spacing="2.45rem">
       <SearchRestuarants />
       <UserFavorites />
-      <UserPastOrders orders={null} />
+      <UserPastOrders />
     </SimpleGrid>
   );
 };
@@ -50,22 +32,22 @@ export const SearchRestuarants = (): JSX.Element => {
 };
 
 export const UserPastOrders = ({
-  orders,
+  orders = [],
 }: {
-  orders: Array<Pick<RestaurantOrder, 'date' | 'image' | 'name', 'id'>> | null;
+  orders?: Array<Pick<RestaurantOrder, 'date' | 'image' | 'name' | 'id'>>;
 }): JSX.Element => {
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Flex alignItems="center" justifyContent="flex-start">
-        <Icon name="shoppingbag" color="orange.500" size="2rem" />
+        <Icon name="shoppingbag" color="orange.500" size="2rem" marginRight="0.3rem" />
 
         <Text as="span" fontSize="xl" transform="translateY(0.2rem)" fontWeight="bold" color="orange.500">
           My Orders
         </Text>
       </Flex>
 
-      <SimpleGrid minChildWidth="280px" spacing="20px" overflow="scroll" maxWidth="100%">
-        {orders && orders.length > 0 ? (
+      <SimpleGrid minChildWidth="280px" spacing="20px" maxWidth="100%">
+        {orders.length > 0 ? (
           <>
             {orders.map(order => {
               return <OrderHistoryCard key={order.id} title={order.name} image={order.image} orderDate={order.date} />;
@@ -79,12 +61,27 @@ export const UserPastOrders = ({
   );
 };
 
-export const UserFavorites = (): JSX.Element => {
+export const UserFavorites = ({ favorites = [] }: { favorites?: Array<Restaurant> }): JSX.Element => {
   return (
-    <SimpleGrid>
-      <Text fontSize="xl" fontWeight="bold" color="orange.500">
-        My Favorites
-      </Text>
+    <SimpleGrid spacing="20px" maxWidth="100%">
+      <Flex alignItems="center" justifyContent="flex-start">
+        <Icon name="star" color="orange.500" size="1.8rem" marginRight="0.3rem" />
+
+        <Text as="span" fontSize="xl" transform="translateY(0.2rem)" fontWeight="bold" color="orange.500">
+          My Favorites
+        </Text>
+      </Flex>
+      <SimpleGrid minChildWidth="280px" spacing="20px" maxWidth="100%">
+        {favorites.length > 0 ? (
+          <>
+            {favorites?.map(favItem => {
+              return <Text key={favItem.id}>{favItem}</Text>;
+            })}
+          </>
+        ) : (
+          <div>No favorites...</div>
+        )}
+      </SimpleGrid>
     </SimpleGrid>
   );
 };
