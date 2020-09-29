@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SEO } from 'components/layout';
+import { SEO } from 'components/shared/layout';
 import { LoginCustomerForm } from 'components/auth/';
 import { DefaultPageProps } from 'types';
 

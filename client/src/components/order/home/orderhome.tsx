@@ -2,9 +2,24 @@ import React from 'react';
 import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
-import { OrderHistoryCard, OrderHistoryPlaceholder } from 'components/shared/card';
+import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
 
 export const OrderHome: React.FC<DefaultPageProps> = () => {
+  const testOrders = [
+    {
+      id: '23',
+      name: 'El grullense',
+      image: 'https://source.unsplash.com/1600x900/?taco',
+      location: 'Redwood City, CA',
+    },
+    {
+      id: '232',
+      name: 'Jeffreys',
+      image: 'https://source.unsplash.com/1600x900/?cheeseburger',
+      location: 'Menlo Park, CA',
+    },
+  ];
+
   return (
     <SimpleGrid maxW="100%" spacing="2.45rem">
       <SearchRestuarants />
@@ -54,7 +69,7 @@ export const UserPastOrders = ({
             })}
           </>
         ) : (
-          <OrderHistoryPlaceholder />
+          <GeneralPlaceholderCard text="No orders yet!" icon="happytakeoutbox" />
         )}
       </SimpleGrid>
     </SimpleGrid>
@@ -74,12 +89,19 @@ export const UserFavorites = ({ favorites = [] }: { favorites?: Array<Restaurant
       <SimpleGrid minChildWidth="280px" spacing="20px" maxWidth="100%">
         {favorites.length > 0 ? (
           <>
-            {favorites?.map(favItem => {
-              return <Text key={favItem.id}>{favItem}</Text>;
+            {favorites.map(favItem => {
+              return (
+                <RestaurantCard
+                  title={favItem.name}
+                  location={favItem.location}
+                  image={favItem.image}
+                  key={favItem.id}
+                ></RestaurantCard>
+              );
             })}
           </>
         ) : (
-          <div>No favorites...</div>
+          <GeneralPlaceholderCard text="Your favorites will show up here." icon="togobox" />
         )}
       </SimpleGrid>
     </SimpleGrid>

@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const OrderHistory = () => <span>user's order history</span>;
+export const OrderHistory = (): JSX.Element => <span>{`user's order history`}</span>;

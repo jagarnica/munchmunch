@@ -40,7 +40,7 @@ export const Layout: React.FC = ({ children }) => {
       }
     }
   `);
-  console.log('icons', baseSiteTheme.icons);
+
   return (
     <>
       <ThemeProvider theme={baseSiteTheme}>

@@ -4,8 +4,8 @@ import { HamburgerButton } from 'components/shared/buttons';
 import styled from 'styled-components';
 import { Button, Box, Flex, useDisclosure, Text } from '@chakra-ui/core';
 import { useAppContext } from 'libs/contextLib';
-import { PublicSideMenuItems, PublicSideMenuDrawer } from 'components/layout/navbar/publicnav';
-import { CustomerOrderSideDrawer } from 'components/layout/navbar/privatenav';
+import { PublicSideMenuItems, PublicSideMenuDrawer } from './publicnav';
+import { CustomerOrderSideDrawer } from './privatenav';
 
 export const SiteLogo = ({ title }: { title?: string }): JSX.Element => (
   <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>

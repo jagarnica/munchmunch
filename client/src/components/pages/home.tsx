@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, SEO } from 'components/layout';
+import { Layout, SEO } from 'components/shared/layout';
 import { DefaultPageProps } from 'types';
 
 export const HomePage: React.FC<DefaultPageProps> = (): React.ReactElement => (

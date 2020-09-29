@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout } from 'components/layout';
+import { Layout } from 'components/shared/layout';
 import { Router } from '@reach/router';
 import { DefaultPageProps } from 'types';
 import { PrivateRoute } from 'components/shared/privateroute';
