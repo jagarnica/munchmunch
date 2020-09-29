@@ -1,10 +1,29 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { theme, ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { theme, ThemeProvider, CSSReset, ITheme } from '@chakra-ui/core';
+import * as customIcons from 'images/tsxicons';
 import { Header } from './navbar/header';
 
-const baseSiteTheme = {
+interface customTheme extends ITheme {
+  header: {
+    borderColor: string;
+    zIndex: number;
+  };
+  toastDefaults: {
+    duration: number;
+    isClosable: boolean;
+  };
+}
+const baseSiteTheme: customTheme = {
   ...theme,
+  icons: {
+    ...theme.icons,
+    ...customIcons,
+  },
+  header: {
+    borderColor: theme.colors.gray[100],
+    zIndex: 10,
+  },
   toastDefaults: {
     duration: 1000,
     isClosable: true,

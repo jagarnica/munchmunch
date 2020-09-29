@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex } from '@chakra-ui/core';
-import { SEO } from 'components/layout';
+import { SEO } from 'components/shared/layout';
 import { ForgotPasswordForm } from 'components/auth/';
 import { DefaultPageProps } from 'types';
 
