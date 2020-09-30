@@ -1,8 +1,10 @@
-import React from 'react';
-import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
+import React, { useEffect } from 'react';
+import { SEO } from 'components/shared/layout';
+import { Text, SimpleGrid, Icon, Flex, Skeleton } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
+import { Auth } from 'aws-amplify';
 
 export const OrderHome: React.FC<DefaultPageProps> = () => {
   const testOrders = [
@@ -21,26 +23,42 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
   ];
 
   return (
-    <SimpleGrid maxW="100%" spacing="2.45rem">
-      <SearchRestuarants />
-      <UserFavorites />
-      <UserPastOrders />
-    </SimpleGrid>
+    <>
+      <SEO title="Home" />
+      <SimpleGrid maxW="100%" spacing="2.45rem">
+        <SearchRestuarants />
+        <UserFavorites />
+        <UserPastOrders />
+      </SimpleGrid>
+    </>
   );
 };
 
 export const SearchRestuarants = (): JSX.Element => {
+  const [userFirstName, setUserFirsName] = React.useState(null);
+  useEffect(() => {
+    const getUserName = async () => {
+      const { attributes } = await Auth.currentUserInfo();
+      setUserFirsName(attributes.name);
+    };
+    getUserName();
+  }, []);
+  const isLoaded = !!userFirstName;
   return (
     <SimpleGrid spacing="20px">
-      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
-        Welcome Back,{' '}
-        <Text as="span" color="orange.500">
-          USERNAME 👋{' '}
-        </Text>{' '}
-      </Text>
-      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
-        What are you craving today?
-      </Text>
+      <Skeleton isLoaded={isLoaded} maxWidth={isLoaded ? '' : '270px'}>
+        <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+          Welcome Back,{' '}
+          <Text as="span" color="orange.500" whiteSpace="nowrap">
+            {userFirstName} 👋
+          </Text>{' '}
+        </Text>
+      </Skeleton>
+      <Skeleton isLoaded={isLoaded} maxWidth={isLoaded ? '' : '300px'}>
+        <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+          What are you craving today?
+        </Text>
+      </Skeleton>
       <LargeSearchBar placeholder="Search Here..." />
     </SimpleGrid>
   );
