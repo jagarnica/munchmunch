@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { App } from 'components/pages/app';
 import { Amplify, Auth } from 'aws-amplify';
 import { AppContext } from 'libs/contextLib';
+import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
 import config from '../config';
 
 const IndexPage = (): React.ReactNode => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [loadingUser, setLoadingUser] = useState(true);
   // Configure AWS authentification
   useEffect(() => {
     const authenticateSession = async () => {
@@ -22,7 +23,7 @@ const IndexPage = (): React.ReactNode => {
         }
       }
 
-      setIsAuthenticating(false);
+      setLoadingUser(false);
     };
     authenticateSession();
   }, []);
@@ -36,10 +37,22 @@ const IndexPage = (): React.ReactNode => {
       userPoolWebClientId: config.cognito.APP_CLIENT_ID,
     },
   });
+  if (loadingUser) {
+    return <FullPageSpinner />;
+  }
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
-      {isAuthenticating ? <span>Loading deliciousness...</span> : <App />}
+      <App />
     </AppContext.Provider>
   );
 };
 export default IndexPage;
+
+const FullPageSpinner = (): JSX.Element => (
+  <ThemeProvider>
+    <CSSReset></CSSReset>
+    <Box height="3rem" width="3rem" position="fixed" top="50%" left="50%" marginLeft="-1.5rem" marginTop="-1.5rem">
+      <Spinner thickness="4px" textAlign="center" size="xl" color="orange.500" />
+    </Box>
+  </ThemeProvider>
+);
