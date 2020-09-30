@@ -40,6 +40,7 @@ export const SearchRestuarants = (): JSX.Element => {
     const getUserName = async () => {
       const { attributes } = await Auth.currentUserInfo();
       setUserFirsName(attributes.name);
+      console.log('attributes', attributes);
     };
     getUserName();
   }, []);

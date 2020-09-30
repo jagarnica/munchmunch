@@ -8,23 +8,23 @@ const IndexPage = (): React.ReactNode => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   // Configure AWS authentification
-  async function onLoad() {
-    try {
-      // Load the current user session
-      await Auth.currentSession();
-      userHasAuthenticated(true);
-    } catch (e) {
-      if (e !== 'No current user') {
-        if (isAuthenticated) {
-          userHasAuthenticated(false);
+  useEffect(() => {
+    const authenticateSession = async () => {
+      try {
+        // Load the current user session
+        await Auth.currentSession();
+        userHasAuthenticated(true);
+      } catch (e) {
+        if (e !== 'No current user') {
+          if (isAuthenticated) {
+            userHasAuthenticated(false);
+          }
         }
       }
-    }
 
-    setIsAuthenticating(false);
-  }
-  useEffect(() => {
-    onLoad();
+      setIsAuthenticating(false);
+    };
+    authenticateSession();
   }, []);
 
   Amplify.configure({
