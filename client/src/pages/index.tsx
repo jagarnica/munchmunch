@@ -3,10 +3,12 @@ import { App } from 'components/pages/app';
 import { Amplify, Auth } from 'aws-amplify';
 import { AppContext } from 'libs/contextLib';
 import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
+import { User, AWSCurrentUserInfo } from 'types/';
 import config from '../config';
 
 const IndexPage = (): React.ReactNode => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
+  const [user, setUser] = useState<User>();
   const [loadingUser, setLoadingUser] = useState(true);
   // Configure AWS authentification
   useEffect(() => {
@@ -14,6 +16,13 @@ const IndexPage = (): React.ReactNode => {
       try {
         // Load the current user session
         await Auth.currentSession();
+        const { attributes }: AWSCurrentUserInfo = await Auth.currentUserInfo();
+        const loadedUser: User = {
+          name: attributes.name,
+          familyName: attributes.family_name,
+          email: attributes.email,
+        };
+        setUser(loadedUser);
         userHasAuthenticated(true);
       } catch (e) {
         if (e !== 'No current user') {
@@ -41,7 +50,7 @@ const IndexPage = (): React.ReactNode => {
     return <FullPageSpinner />;
   }
   return (
-    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
+    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user, setUser }}>
       <App />
     </AppContext.Provider>
   );
