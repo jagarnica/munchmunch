@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { SEO } from 'components/shared/layout';
-import { Text, SimpleGrid, Icon, Flex, Skeleton } from '@chakra-ui/core';
+import { useAppContext } from 'libs/contextLib';
+import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
-import { Auth } from 'aws-amplify';
 
 export const OrderHome: React.FC<DefaultPageProps> = () => {
   const testOrders = [
@@ -35,30 +35,19 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
 };
 
 export const SearchRestuarants = (): JSX.Element => {
-  const [userFirstName, setUserFirsName] = React.useState(null);
-  useEffect(() => {
-    const getUserName = async () => {
-      const { attributes } = await Auth.currentUserInfo();
-      setUserFirsName(attributes.name);
-    };
-    getUserName();
-  }, []);
-  const isLoaded = !!userFirstName;
+  const { user } = useAppContext();
+
   return (
     <SimpleGrid spacing="20px">
-      <Skeleton isLoaded={isLoaded} maxWidth={isLoaded ? '' : '270px'}>
-        <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
-          Welcome Back,{' '}
-          <Text as="span" color="orange.500" whiteSpace="nowrap">
-            {userFirstName} 👋
-          </Text>{' '}
-        </Text>
-      </Skeleton>
-      <Skeleton isLoaded={isLoaded} maxWidth={isLoaded ? '' : '300px'}>
-        <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
-          What are you craving today?
-        </Text>
-      </Skeleton>
+      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+        Welcome Back,{' '}
+        <Text as="span" color="orange.500" whiteSpace="nowrap">
+          {user?.name} 👋
+        </Text>{' '}
+      </Text>
+      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+        What are you craving today?
+      </Text>
       <LargeSearchBar placeholder="Search Here..." />
     </SimpleGrid>
   );

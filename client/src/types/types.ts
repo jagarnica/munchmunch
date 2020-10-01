@@ -33,3 +33,20 @@ export type Restaurant = {
   location: string;
   image: string;
 };
+
+export type User = {
+  familyName: string;
+  name: string;
+  email: string;
+};
+
+export type AWSCurrentUserInfo = {
+  id: string;
+  username: string;
+  attributes: {
+    // eslint-disable-next-line camelcase
+    family_name: string;
+    name: string;
+    email: string;
+  };
+};
