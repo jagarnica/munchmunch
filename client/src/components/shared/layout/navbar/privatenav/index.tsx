@@ -26,12 +26,12 @@ export interface CustomerOrderSideDrawerProps {
  * @returns {JSX.Element}
  */
 export const CustomerOrderSideDrawer = ({ isOpen, onClose }: CustomerOrderSideDrawerProps): JSX.Element => {
-  const { userHasAuthenticated, setUser } = useAppContext();
+  const { dispatch } = useAppContext();
   const Toast = useToast();
   async function logOutCurrentUser(): Promise<void> {
     await Auth.signOut();
-    userHasAuthenticated?.(false);
-    setUser?.(undefined); // set the user to nothing
+
+    dispatch?.({ type: 'LOGOUT_SUCCESS' }); // set the user to nothing
     Toast({
       duration: 2000,
       title: 'Signed out!',

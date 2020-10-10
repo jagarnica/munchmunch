@@ -50,3 +50,15 @@ export type AWSCurrentUserInfo = {
     email: string;
   };
 };
+
+export type AWSignInResponse = {
+  attributes: {
+    // eslint-disable-next-line camelcase
+    family_name: string;
+    name: string;
+    email: string;
+    // eslint-disable-next-line camelcase
+    phone_number_verified: boolean;
+  };
+  username: string;
+};

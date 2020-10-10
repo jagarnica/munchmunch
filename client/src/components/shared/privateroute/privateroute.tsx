@@ -9,9 +9,9 @@ export interface PrivateRouteTypes {
   path: string;
 }
 export const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteTypes): React.ReactElement | null => {
-  const { isAuthenticated } = useAppContext();
+  const { state } = useAppContext();
   const { pathname } = useLocation();
-  if (!isAuthenticated && pathname !== `/auth/login`) {
+  if (!state?.isAuthenticated && pathname !== `/auth/login`) {
     // If we’re not logged in, redirect to the login page.
     navigate(`/`);
     return null;

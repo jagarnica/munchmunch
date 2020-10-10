@@ -22,7 +22,8 @@ export const SiteLogo = ({ title }: { title?: string }): JSX.Element => (
 );
 export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { isAuthenticated } = useAppContext(); // we are only using it if it not null
+  const { state } = useAppContext(); // we are only using it if it not null
+  const isAuthenticated = !!state?.isAuthenticated;
 
   return (
     <>
