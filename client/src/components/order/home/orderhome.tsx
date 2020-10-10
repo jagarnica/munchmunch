@@ -35,15 +35,18 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
 };
 
 export const SearchRestuarants = (): JSX.Element => {
-  const { user } = useAppContext();
-
+  const { state } = useAppContext();
+  const user = state?.user;
+  const introText = user?.name ? `Welcome Back,` : `Welcome to MunchMunch 👋`;
   return (
     <SimpleGrid spacing="20px">
       <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
-        Welcome Back,{' '}
-        <Text as="span" color="orange.500" whiteSpace="nowrap">
-          {user?.name} 👋
-        </Text>{' '}
+        {introText}
+        {user?.name && (
+          <Text as="span" color="orange.500" whiteSpace="nowrap">
+            {user?.name} 👋
+          </Text>
+        )}
       </Text>
       <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
         What are you craving today?

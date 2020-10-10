@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import { App } from 'components/pages/app';
 import { Amplify, Auth } from 'aws-amplify';
-import { AppContext } from 'libs/contextLib';
+import { AppContext, AppContextInterface } from 'libs/contextLib';
 import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
 import { User, AWSCurrentUserInfo } from 'types/';
+import { authReducer } from 'libs/reducers';
 import config from '../config';
+
+const InitialState: AppContextInterface = {
+  user: undefined,
+  isAuthenticated: false,
+};
 /**
  * @name IndexPage
  * @description This is the entry point for users when they enter the site.
  */
 const IndexPage = (): React.ReactNode => {
-  const [isAuthenticated, userHasAuthenticated] = useState(false);
-  const [user, setUser] = useState<User>();
+  const [state, dispatch] = useReducer(authReducer, InitialState);
   const [loadingUser, setLoadingUser] = useState(true);
   // Configure AWS authentification
   useEffect(() => {
@@ -25,16 +30,12 @@ const IndexPage = (): React.ReactNode => {
           familyName: attributes.family_name,
           email: attributes.email,
         };
-        setUser(loadedUser);
-        userHasAuthenticated(true);
+        dispatch({ type: 'LOGIN_SUCCESS', payload: { user: loadedUser } });
       } catch (e) {
         if (e !== 'No current user') {
-          if (isAuthenticated) {
-            userHasAuthenticated(false);
-          }
+          dispatch({ type: 'LOGOUT_SUCCESS' });
         }
       }
-
       setLoadingUser(false);
     };
     authenticateSession();
@@ -55,7 +56,7 @@ const IndexPage = (): React.ReactNode => {
   }
   // Show the app when done loading
   return (
-    <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user, setUser }}>
+    <AppContext.Provider value={{ state, dispatch }}>
       <App />
     </AppContext.Provider>
   );

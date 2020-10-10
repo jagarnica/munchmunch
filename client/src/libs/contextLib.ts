@@ -1,14 +1,17 @@
 import { useContext, createContext } from 'react';
 import { User } from 'types/';
+import { authReducerActions } from './reducers';
 
 export interface AppContextInterface {
   isAuthenticated: boolean;
-  userHasAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
-  user: User;
-  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+  user: User | undefined;
 }
-export const AppContext = createContext<Partial<AppContextInterface>>({});
+export interface AppContectStoreInterface {
+  state: AppContextInterface;
+  dispatch: React.Dispatch<authReducerActions>;
+}
+export const AppContext = createContext<Partial<AppContectStoreInterface>>({});
 
-export function useAppContext(): Partial<AppContextInterface> {
+export function useAppContext(): Partial<AppContectStoreInterface> {
   return useContext(AppContext);
 }

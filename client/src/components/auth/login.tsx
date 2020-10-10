@@ -6,22 +6,33 @@ import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { useAppContext } from 'libs/contextLib';
 import { customerEmail, customerPassword } from 'utils/formrules';
+import { AWSignInResponse, User } from 'types/';
 
 export type LoginCustomerFormType = {
   email: string;
   password: string;
 };
 export function LoginCustomerForm(): React.ReactElement {
-  const { userHasAuthenticated } = useAppContext();
+  const { dispatch } = useAppContext();
   const { register, handleSubmit, errors } = useForm<LoginCustomerFormType>();
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = async ({ email, password }: LoginCustomerFormType) => {
     try {
       setIsLoading(true);
-      await Auth.signIn(email, password);
-
-      userHasAuthenticated?.(true); // Login user in our context
+      const response: AWSignInResponse = await Auth.signIn(email, password);
+      const { attributes } = response;
+      const user: User = {
+        familyName: attributes.family_name,
+        name: attributes.name,
+        email: attributes.email,
+      };
+      dispatch?.({
+        type: 'LOGIN_SUCCESS',
+        payload: {
+          user,
+        },
+      });
       toast({
         title: 'Logged in!',
         description: 'Welcome back to Munch Munch!',
