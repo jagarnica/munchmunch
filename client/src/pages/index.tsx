@@ -5,7 +5,10 @@ import { AppContext } from 'libs/contextLib';
 import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
 import { User, AWSCurrentUserInfo } from 'types/';
 import config from '../config';
-
+/**
+ * @name IndexPage
+ * @description This is the entry point for users when they enter the site.
+ */
 const IndexPage = (): React.ReactNode => {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [user, setUser] = useState<User>();
@@ -46,9 +49,11 @@ const IndexPage = (): React.ReactNode => {
       userPoolWebClientId: config.cognito.APP_CLIENT_ID,
     },
   });
+  // Show a spinner while we are checking if the user is authenticated
   if (loadingUser) {
     return <FullPageSpinner />;
   }
+  // Show the app when done loading
   return (
     <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated, user, setUser }}>
       <App />
