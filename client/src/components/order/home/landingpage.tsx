@@ -1,7 +1,8 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Box, SimpleGrid, Stack, Text } from '@chakra-ui/core';
+import { AspectRatioBox } from 'components/shared/aspectratiobox';
+import { Box, SimpleGrid, Stack, Text, Icon, Flex } from '@chakra-ui/core';
 import { IconTitleDesc } from 'components/shared/card/';
 import styled from 'styled-components';
 
@@ -65,22 +66,50 @@ export const PhoneOrderScreenImage = () => {
 
   return data.file.childImageSharp.fluid;
 };
+
+export const CheckMark = (): JSX.Element => {
+  return (
+    <AspectRatioBox maxWidth="40px" ratio={1}>
+      <Box
+        height="100%"
+        width="100%"
+        d="flex"
+        alignItems="center"
+        alignContent="center"
+        justifyContent="center"
+        borderRadius="50%"
+        bg="orange.500"
+        padding="0.3em"
+      >
+        <Icon name="check" color="white" size="1.2em" />
+      </Box>
+    </AspectRatioBox>
+  );
+};
 export const OneStopShop = (): JSX.Element => {
   const image = PhoneOrderScreenImage();
-  console.log('image?', image);
+
   return (
-    <SimpleGrid>
-      <Box maxW="272px" d="flex" width="100%" alignItems="center">
-        <Img style={{ width: `100%` }} fluid={image} objectFit="cover" objectPosition="50% 50%" alt="" />
+    <SimpleGrid minChildWidth="275px">
+      <Box d="flex" width="100%" justifyContent="center" alignItems="center">
+        <Img
+          style={{ maxWidth: `250px`, width: `100%`, objectPosition: `50% 50%`, objectFit: `cover` }}
+          fluid={image}
+          alt="mobile order preview "
+        />
       </Box>
 
-      <Box>
+      <Box d="flex" justifyContent="center">
         <Stack>
           <Text color="gray.700" fontWeight="bold" fontSize="4xl">{`It's a one stop shop.`}</Text>
-          <Text color="gray.600">
-            No more remembering a million logins for a millions different apps. No more entering you credit card every
-            time for every different restaurant. Just log in and you are ready to place an order.{' '}
-          </Text>
+          <Stack direction="row" spacing={15}>
+            <CheckMark />
+            <Text color="gray.600">
+              No more remembering a million logins for a millions different apps. No more entering you credit card every
+              time for every different restaurant. Just log in and you are ready to place an order.{' '}
+            </Text>
+          </Stack>
+
           <Text color="gray.600">Choose when you want to pick up your food at a time that works for you.</Text>
         </Stack>
       </Box>
