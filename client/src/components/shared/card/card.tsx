@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, BoxProps } from '@chakra-ui/core';
 
 // Default Styles for the card
-const defaultStyles: BoxProps = {
+export const CardDefaultStyles: BoxProps = {
   width: '100%',
   d: 'flex',
   flexDir: 'column',
@@ -16,13 +16,13 @@ const defaultStyles: BoxProps = {
   padding: '2.45rem 1.45rem',
 };
 /**
- * @name card
+ * @name Card
  * @description This is a generic card. Useful for creating on the spot or quick cards. Also
  * good for basing the other cards on the site on.
  * @returns JSX.Element
  */
 export const Card: React.FC<BoxProps> = ({ children, ...rest }): JSX.Element => (
-  <Box {...defaultStyles} {...rest}>
+  <Box {...CardDefaultStyles} {...rest}>
     {children}
   </Box>
 );

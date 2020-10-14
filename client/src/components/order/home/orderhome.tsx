@@ -5,6 +5,7 @@ import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
+import { WhyMunchMunch, OneStopShop } from './landingpage';
 
 export const OrderHome: React.FC<DefaultPageProps> = () => {
   const testOrders = [
@@ -27,6 +28,8 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
       <SEO title="Home" />
       <SimpleGrid maxW="100%" spacing="2.45rem">
         <SearchRestuarants />
+        <WhyMunchMunch />
+        <OneStopShop />
         <UserFavorites />
         <UserPastOrders />
       </SimpleGrid>
