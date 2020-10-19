@@ -5,30 +5,44 @@ import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
+import { WhyMunchMunch, OneStopShop } from './landingpage';
 
 export const OrderHome: React.FC<DefaultPageProps> = () => {
-  const testOrders = [
-    {
-      id: '23',
-      name: 'El grullense',
-      image: 'https://source.unsplash.com/1600x900/?taco',
-      location: 'Redwood City, CA',
-    },
-    {
-      id: '232',
-      name: 'Jeffreys',
-      image: 'https://source.unsplash.com/1600x900/?cheeseburger',
-      location: 'Menlo Park, CA',
-    },
-  ];
-
+  const { state } = useAppContext();
+  const isAuthenticated = state?.isAuthenticated;
+  // const testOrders = [
+  //   {
+  //     id: '23',
+  //     name: 'El grullense',
+  //     image: 'https://source.unsplash.com/1600x900/?taco',
+  //     location: 'Redwood City, CA',
+  //   },
+  //   {
+  //     id: '232',
+  //     name: 'Jeffreys',
+  //     image: 'https://source.unsplash.com/1600x900/?cheeseburger',
+  //     location: 'Menlo Park, CA',
+  //   },
+  // ];
+  if (isAuthenticated) {
+    return (
+      <>
+        <SEO title="Home" />
+        <SimpleGrid maxW="100%" spacing="2.45rem">
+          <SearchRestuarants />
+          <UserFavorites />
+          <UserPastOrders />
+        </SimpleGrid>
+      </>
+    );
+  }
   return (
     <>
       <SEO title="Home" />
       <SimpleGrid maxW="100%" spacing="2.45rem">
         <SearchRestuarants />
-        <UserFavorites />
-        <UserPastOrders />
+        <WhyMunchMunch />
+        <OneStopShop />
       </SimpleGrid>
     </>
   );
@@ -37,18 +51,19 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
 export const SearchRestuarants = (): JSX.Element => {
   const { state } = useAppContext();
   const user = state?.user;
-  const introText = user?.name ? `Welcome Back,` : `Welcome to MunchMunch 👋`;
+  const introText = user?.name ? `Welcome Back, ` : `Welcome to `;
   return (
-    <SimpleGrid spacing="20px">
-      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+    <SimpleGrid spacing={5}>
+      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="#2D3748">
         {introText}
         {user?.name && (
           <Text as="span" color="orange.500" whiteSpace="nowrap">
             {user?.name} 👋
           </Text>
         )}
+        {!user?.name && <Text as="span" whiteSpace="nowrap">{`MunchMunch 👋`}</Text>}
       </Text>
-      <Text as="span" fontWeight="bold" fontSize="3xl" color="#2D3748">
+      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="#2D3748">
         What are you craving today?
       </Text>
       <LargeSearchBar placeholder="Search Here..." />
