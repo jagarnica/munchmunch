@@ -1,23 +1,24 @@
 import React from 'react';
-import Img from 'gatsby-image';
+import Img, { FluidObject } from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
-import { AspectRatioBox } from 'components/shared/aspectratiobox';
-import { Box, SimpleGrid, Stack, Text, Icon, Flex } from '@chakra-ui/core';
+import { Box, SimpleGrid, Stack, Text, Icon } from '@chakra-ui/core';
+import { useSiteTitle } from 'utils/hooks/queries/';
 import { IconTitleDesc } from 'components/shared/card/';
 import styled from 'styled-components';
 
 /**
  * @name WhyMunchMunch
  * @description Displays three cards to the user explaining why they should use
- * MunchMunch.
+ * our service.
  */
 export const WhyMunchMunch = (): JSX.Element => {
+  const siteTitle = useSiteTitle();
   return (
     <Stack width="100%" spacing={19.5} flexDirection="column" justifyContent="center">
-      <Text textAlign="center" color="gray.700" fontWeight="bold" fontSize="4xl" as="span">
-        Why MunchMunch
+      <Text textAlign="center" color="gray.700" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} as="span">
+        Why {siteTitle}
       </Text>
-      <SimpleGrid minChildWidth="252px" alignSelf="stretch" spacing="20px">
+      <SimpleGrid minChildWidth={{ base: `100%`, md: `252px` }} alignSelf="stretch" spacing="20px">
         <HoverCard
           boxShadow="none"
           iconSize="2.4em"
@@ -49,7 +50,7 @@ export const WhyMunchMunch = (): JSX.Element => {
     </Stack>
   );
 };
-export const PhoneOrderScreenImage = () => {
+export const PhoneOrderScreenImage = (): FluidObject => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "heroimages/phoneorderscreen.jpg" }) {
@@ -69,28 +70,22 @@ export const PhoneOrderScreenImage = () => {
 
 export const CheckMark = (): JSX.Element => {
   return (
-    <AspectRatioBox maxWidth="40px" ratio={1}>
-      <Box
-        height="100%"
-        width="100%"
-        d="flex"
-        alignItems="center"
-        alignContent="center"
-        justifyContent="center"
-        borderRadius="50%"
-        bg="orange.500"
-        padding="0.3em"
-      >
-        <Icon name="check" color="white" size="1.2em" />
-      </Box>
-    </AspectRatioBox>
+    <Icon
+      style={{ filter: 'drop-shadow(0px 10px 18px #DD6B20)' }}
+      bg="orange.500"
+      borderRadius="50%"
+      padding="8px"
+      name="check"
+      color="white"
+      size="2.2em"
+    />
   );
 };
 export const OneStopShop = (): JSX.Element => {
   const image = PhoneOrderScreenImage();
 
   return (
-    <SimpleGrid minChildWidth="275px">
+    <SimpleGrid minChildWidth="275px" spacing={{ base: 5, md: 0 }}>
       <Box d="flex" width="100%" justifyContent="center" alignItems="center">
         <Img
           style={{ maxWidth: `250px`, width: `100%`, objectPosition: `50% 50%`, objectFit: `cover` }}
@@ -99,20 +94,27 @@ export const OneStopShop = (): JSX.Element => {
         />
       </Box>
 
-      <Box d="flex" justifyContent="center">
-        <Stack>
-          <Text color="gray.700" fontWeight="bold" fontSize="4xl">{`It's a one stop shop.`}</Text>
-          <Stack direction="row" spacing={15}>
-            <CheckMark />
-            <Text color="gray.600">
-              No more remembering a million logins for a millions different apps. No more entering you credit card every
-              time for every different restaurant. Just log in and you are ready to place an order.{' '}
-            </Text>
-          </Stack>
-
-          <Text color="gray.600">Choose when you want to pick up your food at a time that works for you.</Text>
+      <Stack spacing={8}>
+        <Text
+          color="gray.700"
+          fontWeight="bold"
+          textAlign={{ base: 'center', md: 'left' }}
+          fontSize={{ base: '3xl', md: '5xl' }}
+        >{`It's a one stop shop.`}</Text>
+        <Stack isInline spacing={6}>
+          <Icon bg="orange.100" borderRadius="50%" padding="8px" name="check" color="orange.400" size="2.4em" />
+          <Text fontSize="lg" color="gray.600">
+            No more remembering a million logins for a millions different apps. No more entering you credit card every
+            time for every different restaurant. Just log in and you are ready to place an order.{' '}
+          </Text>
         </Stack>
-      </Box>
+        <Stack isInline spacing={6}>
+          <Icon bg="orange.100" borderRadius="50%" padding="8px" name="check" color="orange.400" size="2.4em" />
+          <Text fontSize="lg" color="gray.600">
+            Choose when you want to pick up your food at a time that works for you.
+          </Text>
+        </Stack>
+      </Stack>
     </SimpleGrid>
   );
 };
