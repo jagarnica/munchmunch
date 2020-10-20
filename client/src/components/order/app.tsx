@@ -6,7 +6,8 @@ import { PrivateRoute } from 'components/shared/privateroute';
 import { AuthPage, SignUpPage, LoginPage, ForgotPasswordPage } from './auth';
 import { OrderHome } from './home';
 import { Account } from './account';
-import { OrderHistory } from './orderhistory';
+import { OrderHistory } from './orders';
+import { UserPayments } from './payment';
 /**
  * @name OrderApp
  * @description Holds the app used by customers to order food,
@@ -24,7 +25,8 @@ export const OrderApp: React.FC<DefaultPageProps> = () => {
         </AuthPage>
         <OrderHome path="/" />
         <PrivateRoute path="account" component={Account} />
-        <PrivateRoute path="history" component={OrderHistory} />
+        <PrivateRoute path="orders" component={OrderHistory} />
+        <PrivateRoute path="payment" component={UserPayments} />
         <Redirect noThrow from="*" to="/404" default />
         <Redirect noThrow from="login" to="/auth/login" />
         <Redirect noThrow from="signup" to="/auth/signup" />
