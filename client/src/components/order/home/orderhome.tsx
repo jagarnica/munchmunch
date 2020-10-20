@@ -54,7 +54,7 @@ export const SearchRestuarants = (): JSX.Element => {
   const introText = user?.name ? `Welcome Back, ` : `Welcome to `;
   return (
     <SimpleGrid spacing={5}>
-      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="#2D3748">
+      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="gray.600">
         {introText}
         {user?.name && (
           <Text as="span" color="orange.500" whiteSpace="nowrap">
@@ -63,7 +63,7 @@ export const SearchRestuarants = (): JSX.Element => {
         )}
         {!user?.name && <Text as="span" whiteSpace="nowrap">{`MunchMunch 👋`}</Text>}
       </Text>
-      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="#2D3748">
+      <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="gray.600">
         What are you craving today?
       </Text>
       <LargeSearchBar placeholder="Search Here..." />
