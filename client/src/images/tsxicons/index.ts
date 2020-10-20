@@ -4,3 +4,4 @@ export * from './togobox';
 export * from './cutfee';
 export * from './orderbell';
 export * from './burningtire';
+export * from './shoppingcart';

@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/shared/buttons';
 import styled from 'styled-components';
-import { Button, Box, Flex, useDisclosure, Text } from '@chakra-ui/core';
+import { Button, Box, Flex, useDisclosure, Text, Icon, Stack } from '@chakra-ui/core';
 import { useAppContext } from 'libs/contextLib';
 import { PublicSideMenuItems, PublicSideMenuDrawer } from './publicnav';
 import { CustomerOrderSideDrawer } from './privatenav';
@@ -43,7 +43,18 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
               <SiteLogo title={siteTitle} />
               <Flex flexDirection="row" alignItems="center" justifyContent="center">
                 <ButtonsContainer>
-                  <Button>CART</Button>
+                  <Button
+                    aria-label="cart"
+                    bg="orange.400"
+                    _hover={{ bg: 'orange.500' }}
+                    _active={{ bg: 'orange.600' }}
+                    color="white"
+                  >
+                    <Stack direction="row">
+                      <Icon size="18px" name="shoppingcart" />
+                      <Text>0</Text>
+                    </Stack>
+                  </Button>
                 </ButtonsContainer>
               </Flex>
             </>
