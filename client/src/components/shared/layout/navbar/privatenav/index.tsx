@@ -55,9 +55,9 @@ export const CustomerOrderSideDrawer = ({ isOpen, onClose }: CustomerOrderSideDr
             padding="0px !important"
           >
             <NavItem title={'Home'} link="/" />
-            <NavItem title={'Orders'} />
-            <NavItem title={'Account'} />
-            <NavItem title={'Payment'} />
+            <NavItem title={'Orders'} link="/orders" />
+            <NavItem title={'Account'} link="/account" />
+            <NavItem title={'Payment'} link="/payment" />
             <NavItem title={'Sign Out'} onClick={logOutCurrentUser} />
           </DrawerBody>
           <DrawerFooter></DrawerFooter>
