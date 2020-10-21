@@ -1,13 +1,16 @@
 import React from 'react';
 import { SEO } from 'components/shared/layout';
 import { useAppContext } from 'libs/contextLib';
+import { useNavigate } from '@reach/router';
 import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
-import { DefaultPageProps, RestaurantOrder, Restaurant } from 'types';
+import { MainRouteComponent, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
+import { useForm } from 'react-hook-form';
+import { restuarantSearch } from 'utils/formrules/';
 import { WhyMunchMunch, OneStopShop } from './landingpage';
 
-export const OrderHome: React.FC<DefaultPageProps> = () => {
+export const OrderHome: React.FC<MainRouteComponent> = () => {
   const { state } = useAppContext();
   const isAuthenticated = state?.isAuthenticated;
   // const testOrders = [
@@ -47,11 +50,21 @@ export const OrderHome: React.FC<DefaultPageProps> = () => {
     </>
   );
 };
-
+export type restaurantQuery = {
+  [key: string]: string;
+};
 export const SearchRestuarants = (): JSX.Element => {
+  const { handleSubmit, register } = useForm<restaurantQuery>();
+  const navigate = useNavigate();
   const { state } = useAppContext();
   const user = state?.user;
   const introText = user?.name ? `Welcome Back, ` : `Welcome to `;
+  function getSearchResults(data: restaurantQuery) {
+    const { id } = restuarantSearch;
+    const query = data[id];
+    const encodedString = encodeURIComponent(query);
+    navigate(`/search/resturants/${encodedString}`, { replace: false });
+  }
   return (
     <SimpleGrid spacing={5}>
       <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="gray.600">
@@ -66,12 +79,21 @@ export const SearchRestuarants = (): JSX.Element => {
       <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="gray.600">
         What are you craving today?
       </Text>
-      <LargeSearchBar
-        inputProps={{
-          placeholder: 'Search Here...',
-          size: 'lg',
-        }}
-      />
+      <form onSubmit={handleSubmit(getSearchResults)}>
+        <LargeSearchBar
+          placeholder={restuarantSearch.placeholder}
+          size="lg"
+          autoComplete="off"
+          name={restuarantSearch.id}
+          ref={register({
+            ...restuarantSearch.rules,
+          })}
+          buttonProps={{
+            'aria-label': 'search restuarants',
+            type: 'submit',
+          }}
+        />
+      </form>
     </SimpleGrid>
   );
 };

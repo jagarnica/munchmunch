@@ -3,3 +3,4 @@ export * from './namerules';
 export * from './passwordrules';
 export * from './phonerules';
 export * from './confimationcode';
+export * from './searchrules';
