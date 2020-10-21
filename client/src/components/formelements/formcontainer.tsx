@@ -8,7 +8,8 @@ export interface FormContainerProps {
 }
 /**
  * @name FormContainer
- * @description A general responsive form container with a title.
+ * @description A general responsive form container with a title. It is meant for
+ * use in forms like 'login', 'signup', and etc
  * @prop {string} formTitle This is the name that is displayed to the user.
  * @prop {void} onSubmit This called when the form is submitted
  */
