@@ -1,13 +1,37 @@
 import React from 'react';
-import { InputGroup, InputRightElement, Input, InputProps, Icon, PseudoBox } from '@chakra-ui/core';
+import { InputGroup, InputRightElement, IconButton, Input, InputProps, PseudoBox, ButtonProps } from '@chakra-ui/core';
 
-export const LargeSearchBar = (props: InputProps): JSX.Element => {
+export interface SearchBarProps {
+  inputProps?: InputProps;
+  buttonProps?: ButtonProps;
+}
+
+export const LargeSearchBar = ({ inputProps, buttonProps }: SearchBarProps): JSX.Element => {
   return (
-    <PseudoBox boxShadow="0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12)">
+    <PseudoBox>
       <InputGroup>
-        <Input borderRadius="6px" {...props} size="lg" />
+        <Input
+          focusBorderColor="orange.400"
+          _placeholder={{ color: 'gray.800' }}
+          _focusWithin={{ bg: 'white' }}
+          _hover={{ borderColor: 'orange.500' }}
+          borderRadius="32px"
+          borderColor="gray.500"
+          autoFocus
+          {...inputProps}
+        />
         <InputRightElement>
-          <Icon name="search-2" color="orange.500" />
+          <IconButton
+            _active={{
+              color: 'orange.700',
+            }}
+            variantColor="orange"
+            variant="link"
+            aria-label="search for restaurants"
+            icon="search-2"
+            color="orange.500"
+            {...buttonProps}
+          />
         </InputRightElement>
       </InputGroup>
     </PseudoBox>

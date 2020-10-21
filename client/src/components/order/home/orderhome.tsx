@@ -66,7 +66,12 @@ export const SearchRestuarants = (): JSX.Element => {
       <Text as="span" fontWeight="bold" fontSize={{ base: '3xl', md: '4xl' }} color="gray.600">
         What are you craving today?
       </Text>
-      <LargeSearchBar placeholder="Search Here..." />
+      <LargeSearchBar
+        inputProps={{
+          placeholder: 'Search Here...',
+          size: 'lg',
+        }}
+      />
     </SimpleGrid>
   );
 };
