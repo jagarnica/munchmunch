@@ -1,5 +1,5 @@
 projects:
-  munchmunchmvp:
+  mmnicksapi:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts

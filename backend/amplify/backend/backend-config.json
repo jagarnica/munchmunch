@@ -8,7 +8,7 @@
     }
   },
   "api": {
-    "munchmunchmvp": {
+    "mmnicksapi": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
