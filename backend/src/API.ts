@@ -4,14 +4,12 @@
 
 export type CreateRestaurantInput = {
   id?: string | null,
-  restuarntID: string,
   name: string,
   location: string,
   description?: string | null,
 };
 
 export type ModelRestaurantConditionInput = {
-  restuarntID?: ModelIDInput | null,
   name?: ModelStringInput | null,
   location?: ModelStringInput | null,
   description?: ModelStringInput | null,
@@ -20,7 +18,7 @@ export type ModelRestaurantConditionInput = {
   not?: ModelRestaurantConditionInput | null,
 };
 
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -60,25 +58,8 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelStringInput = {
-  ne?: string | null,
-  eq?: string | null,
-  le?: string | null,
-  lt?: string | null,
-  ge?: string | null,
-  gt?: string | null,
-  contains?: string | null,
-  notContains?: string | null,
-  between?: Array< string | null > | null,
-  beginsWith?: string | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  size?: ModelSizeInput | null,
-};
-
 export type UpdateRestaurantInput = {
   id: string,
-  restuarntID?: string | null,
   name?: string | null,
   location?: string | null,
   description?: string | null,
@@ -104,6 +85,22 @@ export type ModelMenuConditionInput = {
   not?: ModelMenuConditionInput | null,
 };
 
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
 export type UpdateMenuInput = {
   id: string,
   restuarantID?: string | null,
@@ -117,7 +114,6 @@ export type DeleteMenuInput = {
 
 export type ModelRestaurantFilterInput = {
   id?: ModelIDInput | null,
-  restuarntID?: ModelIDInput | null,
   name?: ModelStringInput | null,
   location?: ModelStringInput | null,
   description?: ModelStringInput | null,
@@ -151,7 +147,6 @@ export type CreateRestaurantMutation = {
   createRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -182,7 +177,6 @@ export type UpdateRestaurantMutation = {
   updateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -213,7 +207,6 @@ export type DeleteRestaurantMutation = {
   deleteRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -294,7 +287,6 @@ export type GetRestaurantQuery = {
   getRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -328,7 +320,6 @@ export type ListRestaurantsQuery = {
     items:  Array< {
       __typename: "Restaurant",
       id: string,
-      restuarntID: string,
       name: string,
       location: string,
       description: string | null,
@@ -395,7 +386,6 @@ export type RestaurantsByNameQuery = {
     items:  Array< {
       __typename: "Restaurant",
       id: string,
-      restuarntID: string,
       name: string,
       location: string,
       description: string | null,
@@ -414,7 +404,6 @@ export type OnCreateRestaurantSubscription = {
   onCreateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -440,7 +429,6 @@ export type OnUpdateRestaurantSubscription = {
   onUpdateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,
@@ -466,7 +454,6 @@ export type OnDeleteRestaurantSubscription = {
   onDeleteRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
     description: string | null,

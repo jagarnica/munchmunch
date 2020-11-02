@@ -6,7 +6,6 @@ export const getRestaurant = /* GraphQL */ `
   query GetRestaurant($id: ID!) {
     getRestaurant(id: $id) {
       id
-      restuarntID
       name
       location
       description
@@ -27,7 +26,6 @@ export const listRestaurants = /* GraphQL */ `
     listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        restuarntID
         name
         location
         description
@@ -86,7 +84,6 @@ export const restaurantsByName = /* GraphQL */ `
     ) {
       items {
         id
-        restuarntID
         name
         location
         description

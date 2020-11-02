@@ -6,7 +6,6 @@ export const onCreateRestaurant = /* GraphQL */ `
   subscription OnCreateRestaurant {
     onCreateRestaurant {
       id
-      restuarntID
       name
       location
       description
@@ -30,7 +29,6 @@ export const onUpdateRestaurant = /* GraphQL */ `
   subscription OnUpdateRestaurant {
     onUpdateRestaurant {
       id
-      restuarntID
       name
       location
       description
@@ -54,7 +52,6 @@ export const onDeleteRestaurant = /* GraphQL */ `
   subscription OnDeleteRestaurant {
     onDeleteRestaurant {
       id
-      restuarntID
       name
       location
       description

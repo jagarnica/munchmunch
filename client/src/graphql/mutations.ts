@@ -9,7 +9,6 @@ export const createRestaurant = /* GraphQL */ `
   ) {
     createRestaurant(input: $input, condition: $condition) {
       id
-      restuarntID
       name
       location
       description
@@ -28,7 +27,6 @@ export const updateRestaurant = /* GraphQL */ `
   ) {
     updateRestaurant(input: $input, condition: $condition) {
       id
-      restuarntID
       name
       location
       description
@@ -47,7 +45,6 @@ export const deleteRestaurant = /* GraphQL */ `
   ) {
     deleteRestaurant(input: $input, condition: $condition) {
       id
-      restuarntID
       name
       location
       description

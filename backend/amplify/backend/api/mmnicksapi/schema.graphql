@@ -6,7 +6,6 @@ type Restaurant
     queryField: "restaurantsByName"
   ) {
   id: ID!
-  restuarntID: ID!
   name: String!
   location: String!
   description: String
