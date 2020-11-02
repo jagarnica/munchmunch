@@ -1,0 +1,21 @@
+type Restaurant
+  @model
+  @key(
+    name: "restaurantsByName"
+    fields: ["name"]
+    queryField: "restaurantsByName"
+  ) {
+  id: ID!
+  restuarntID: ID!
+  name: String!
+  location: String!
+  description: String
+  menus: [Menu] @connection(keyName: "byRestuarant", fields: ["id"])
+}
+
+type Menu @model @key(name: "byRestuarant", fields: ["restuarantID"]) {
+  id: ID!
+  restuarantID: ID!
+  name: String!
+  description: String
+}
