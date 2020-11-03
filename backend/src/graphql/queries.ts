@@ -9,6 +9,7 @@ export const getRestaurant = /* GraphQL */ `
       name
       location
       description
+      phoneNumber
       menus {
         items {
           id
@@ -37,6 +38,7 @@ export const listRestaurants = /* GraphQL */ `
         name
         location
         description
+        phoneNumber
         menus {
           nextToken
         }
@@ -98,6 +100,7 @@ export const restaurantsByName = /* GraphQL */ `
         name
         location
         description
+        phoneNumber
         menus {
           nextToken
         }

@@ -9,6 +9,7 @@ export const onCreateRestaurant = /* GraphQL */ `
       name
       location
       description
+      phoneNumber
       menus {
         items {
           id
@@ -32,6 +33,7 @@ export const onUpdateRestaurant = /* GraphQL */ `
       name
       location
       description
+      phoneNumber
       menus {
         items {
           id
@@ -55,6 +57,7 @@ export const onDeleteRestaurant = /* GraphQL */ `
       name
       location
       description
+      phoneNumber
       menus {
         items {
           id
