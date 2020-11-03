@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { SEO } from 'components/shared/layout';
 import { LoginCustomerForm } from 'components/auth/';
-import { DefaultPageProps } from 'types';
+import { MainRouteComponent } from 'types';
 
-export const LoginPage: React.FC<DefaultPageProps> = (): React.ReactElement => {
+export const LoginPage: React.FC<MainRouteComponent> = (): React.ReactElement => {
   return (
     <>
       <SEO title="Login To Munch Munch" />

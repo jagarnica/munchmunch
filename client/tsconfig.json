@@ -45,7 +45,8 @@
     // "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
     "baseUrl": "./src", // done to get absolute paths working in vscode.
     "paths": {
-      "_": ["types/_", "*"]
+      "_": ["types/_", "*"],
+      
     },
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */

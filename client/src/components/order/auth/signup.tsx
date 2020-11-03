@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { SEO } from 'components/shared/layout';
 import { SignUpCustomerForm } from 'components/auth';
-import { DefaultPageProps } from 'types/types';
+import { MainRouteComponent } from 'types/types';
 
-export const SignUpPage: React.FC<DefaultPageProps> = (): React.ReactElement => (
+export const SignUpPage: React.FC<MainRouteComponent> = (): React.ReactElement => (
   <>
     <SEO title="Sign Up for Munch Munch" />
     <FormContainer>

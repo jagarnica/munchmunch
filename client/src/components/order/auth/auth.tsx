@@ -1,9 +1,9 @@
 import React from 'react';
 import { useAppContext } from 'libs/contextLib';
-import { DefaultPageProps } from 'types';
+import { MainRouteComponent } from 'types';
 import { Redirect } from '@reach/router';
 
-export const AuthPage: React.FC<DefaultPageProps> = props => {
+export const AuthPage: React.FC<MainRouteComponent> = props => {
   const { state } = useAppContext();
   const user = state?.user;
   if (user) {

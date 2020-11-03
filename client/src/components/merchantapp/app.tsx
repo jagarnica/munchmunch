@@ -1,14 +1,14 @@
 import React from 'react';
 import { Layout } from 'components/shared/layout';
 import { Redirect, Router } from '@reach/router';
-import { DefaultPageProps } from 'types';
+import { MainRouteComponent } from 'types';
 import { MerchantHome } from './home';
 /**
  * @name MerchantApp
  * @description Holds the app used by restuarant to manage their menu, food orders,
  * and manage their account.
  */
-export const MerchantApp: React.FC<DefaultPageProps> = () => {
+export const MerchantApp: React.FC<MainRouteComponent> = () => {
   return (
     <Layout>
       <Router basepath="/merchant">
