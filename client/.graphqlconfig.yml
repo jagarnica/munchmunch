@@ -1,6 +1,6 @@
 projects:
-  munchmunchmvp:
-    schemaPath: amplify/backend/api/munchmunchmvp/build/schema.graphql
+  mmnicksapi:
+    schemaPath: amplify/backend/api/mmnicksapi/build/schema.graphql
     includes:
       - src/graphql/**/*.ts
     excludes:
@@ -13,3 +13,6 @@ projects:
         region: us-west-2
         apiId: null
         maxDepth: 2
+extensions:
+  amplify:
+    version: 3

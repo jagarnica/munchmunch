@@ -2,16 +2,22 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBlogInput = {
+export type CreateRestaurantInput = {
   id?: string | null,
   name: string,
+  location: string,
+  description?: string | null,
+  phoneNumber?: string | null,
 };
 
-export type ModelBlogConditionInput = {
+export type ModelRestaurantConditionInput = {
   name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
+  location?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
+  and?: Array< ModelRestaurantConditionInput | null > | null,
+  or?: Array< ModelRestaurantConditionInput | null > | null,
+  not?: ModelRestaurantConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -54,27 +60,32 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type UpdateBlogInput = {
+export type UpdateRestaurantInput = {
   id: string,
   name?: string | null,
+  location?: string | null,
+  description?: string | null,
+  phoneNumber?: string | null,
 };
 
-export type DeleteBlogInput = {
+export type DeleteRestaurantInput = {
   id?: string | null,
 };
 
-export type CreatePostInput = {
+export type CreateMenuInput = {
   id?: string | null,
-  title: string,
-  blogID: string,
+  restuarantID: string,
+  name: string,
+  description?: string | null,
 };
 
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  blogID?: ModelIDInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
+export type ModelMenuConditionInput = {
+  restuarantID?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelMenuConditionInput | null > | null,
+  or?: Array< ModelMenuConditionInput | null > | null,
+  not?: ModelMenuConditionInput | null,
 };
 
 export type ModelIDInput = {
@@ -93,312 +104,108 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type UpdatePostInput = {
+export type UpdateMenuInput = {
   id: string,
-  title?: string | null,
-  blogID?: string | null,
-};
-
-export type DeletePostInput = {
-  id?: string | null,
-};
-
-export type CreateCommentInput = {
-  id?: string | null,
-  postID: string,
-  content: string,
-};
-
-export type ModelCommentConditionInput = {
-  postID?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentInput = {
-  id: string,
-  postID?: string | null,
-  content?: string | null,
-};
-
-export type DeleteCommentInput = {
-  id?: string | null,
-};
-
-export type CreateRestaurantInput = {
-  id?: string | null,
-  restuarntID: string,
-  name: string,
-  location: string,
-};
-
-export type ModelRestaurantConditionInput = {
-  restuarntID?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  location?: ModelStringInput | null,
-  and?: Array< ModelRestaurantConditionInput | null > | null,
-  or?: Array< ModelRestaurantConditionInput | null > | null,
-  not?: ModelRestaurantConditionInput | null,
-};
-
-export type UpdateRestaurantInput = {
-  id: string,
-  restuarntID?: string | null,
+  restuarantID?: string | null,
   name?: string | null,
-  location?: string | null,
+  description?: string | null,
 };
 
-export type DeleteRestaurantInput = {
+export type DeleteMenuInput = {
   id?: string | null,
-};
-
-export type ModelBlogFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogFilterInput | null > | null,
-  or?: Array< ModelBlogFilterInput | null > | null,
-  not?: ModelBlogFilterInput | null,
-};
-
-export type ModelPostFilterInput = {
-  id?: ModelIDInput | null,
-  title?: ModelStringInput | null,
-  blogID?: ModelIDInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
-};
-
-export type ModelCommentFilterInput = {
-  id?: ModelIDInput | null,
-  postID?: ModelIDInput | null,
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
 };
 
 export type ModelRestaurantFilterInput = {
   id?: ModelIDInput | null,
-  restuarntID?: ModelIDInput | null,
   name?: ModelStringInput | null,
   location?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
   and?: Array< ModelRestaurantFilterInput | null > | null,
   or?: Array< ModelRestaurantFilterInput | null > | null,
   not?: ModelRestaurantFilterInput | null,
 };
 
-export type CreateBlogMutationVariables = {
-  input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type ModelMenuFilterInput = {
+  id?: ModelIDInput | null,
+  restuarantID?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelMenuFilterInput | null > | null,
+  or?: Array< ModelMenuFilterInput | null > | null,
+  not?: ModelMenuFilterInput | null,
 };
 
-export type CreateBlogMutation = {
-  createBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
+export type SearchableRestaurantFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  name?: SearchableStringFilterInput | null,
+  location?: SearchableStringFilterInput | null,
+  description?: SearchableStringFilterInput | null,
+  phoneNumber?: SearchableStringFilterInput | null,
+  and?: Array< SearchableRestaurantFilterInput | null > | null,
+  or?: Array< SearchableRestaurantFilterInput | null > | null,
+  not?: SearchableRestaurantFilterInput | null,
 };
 
-export type UpdateBlogMutationVariables = {
-  input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type SearchableIDFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
 };
 
-export type UpdateBlogMutation = {
-  updateBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
+export type SearchableStringFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
 };
 
-export type DeleteBlogMutationVariables = {
-  input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type SearchableRestaurantSortInput = {
+  field?: SearchableRestaurantSortableFields | null,
+  direction?: SearchableSortDirection | null,
 };
 
-export type DeleteBlogMutation = {
-  deleteBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
+export enum SearchableRestaurantSortableFields {
+  id = "id",
+  name = "name",
+  location = "location",
+  description = "description",
+  phoneNumber = "phoneNumber",
+}
 
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
 
-export type CreatePostMutation = {
-  createPost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc",
+}
 
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type UpdatePostMutation = {
-  updatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type DeletePostMutation = {
-  deletePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type CreateCommentMutation = {
-  createComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type UpdateCommentMutation = {
-  updateComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
-};
-
-export type DeleteCommentMutation = {
-  deleteComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
 
 export type CreateRestaurantMutationVariables = {
   input: CreateRestaurantInput,
@@ -409,9 +216,14 @@ export type CreateRestaurantMutation = {
   createRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -426,9 +238,14 @@ export type UpdateRestaurantMutation = {
   updateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -443,140 +260,67 @@ export type DeleteRestaurantMutation = {
   deleteRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type GetBlogQueryVariables = {
-  id: string,
+export type CreateMenuMutationVariables = {
+  input: CreateMenuInput,
+  condition?: ModelMenuConditionInput | null,
 };
 
-export type GetBlogQuery = {
-  getBlog:  {
-    __typename: "Blog",
+export type CreateMenuMutation = {
+  createMenu:  {
+    __typename: "Menu",
     id: string,
+    restuarantID: string,
     name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
+    description: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListBlogsQueryVariables = {
-  filter?: ModelBlogFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type UpdateMenuMutationVariables = {
+  input: UpdateMenuInput,
+  condition?: ModelMenuConditionInput | null,
 };
 
-export type ListBlogsQuery = {
-  listBlogs:  {
-    __typename: "ModelBlogConnection",
-    items:  Array< {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetPostQueryVariables = {
-  id: string,
-};
-
-export type GetPostQuery = {
-  getPost:  {
-    __typename: "Post",
+export type UpdateMenuMutation = {
+  updateMenu:  {
+    __typename: "Menu",
     id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
+    restuarantID: string,
+    name: string,
+    description: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
+export type DeleteMenuMutationVariables = {
+  input: DeleteMenuInput,
+  condition?: ModelMenuConditionInput | null,
 };
 
-export type ListPostsQuery = {
-  listPosts:  {
-    __typename: "ModelPostConnection",
-    items:  Array< {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
-  } | null,
-};
-
-export type GetCommentQueryVariables = {
-  id: string,
-};
-
-export type GetCommentQuery = {
-  getComment:  {
-    __typename: "Comment",
+export type DeleteMenuMutation = {
+  deleteMenu:  {
+    __typename: "Menu",
     id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
+    restuarantID: string,
+    name: string,
+    description: string | null,
     createdAt: string,
     updatedAt: string,
-  } | null,
-};
-
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListCommentsQuery = {
-  listComments:  {
-    __typename: "ModelCommentConnection",
-    items:  Array< {
-      __typename: "Comment",
-      id: string,
-      postID: string,
-      content: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null > | null,
-    nextToken: string | null,
   } | null,
 };
 
@@ -588,9 +332,14 @@ export type GetRestaurantQuery = {
   getRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -608,9 +357,10 @@ export type ListRestaurantsQuery = {
     items:  Array< {
       __typename: "Restaurant",
       id: string,
-      restuarntID: string,
       name: string,
       location: string,
+      description: string | null,
+      phoneNumber: string | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -618,168 +368,92 @@ export type ListRestaurantsQuery = {
   } | null,
 };
 
-export type OnCreateBlogSubscription = {
-  onCreateBlog:  {
-    __typename: "Blog",
+export type GetMenuQueryVariables = {
+  id: string,
+};
+
+export type GetMenuQuery = {
+  getMenu:  {
+    __typename: "Menu",
     id: string,
+    restuarantID: string,
     name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
+    description: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateBlogSubscription = {
-  onUpdateBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
+export type ListMenusQueryVariables = {
+  filter?: ModelMenuFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListMenusQuery = {
+  listMenus:  {
+    __typename: "ModelMenuConnection",
+    items:  Array< {
+      __typename: "Menu",
+      id: string,
+      restuarantID: string,
+      name: string,
+      description: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
-export type OnDeleteBlogSubscription = {
-  onDeleteBlog:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts:  {
-      __typename: "ModelPostConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
+export type RestuarantsByNameQueryVariables = {
+  name?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelRestaurantFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type OnCreatePostSubscription = {
-  onCreatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
+export type RestuarantsByNameQuery = {
+  restuarantsByName:  {
+    __typename: "ModelRestaurantConnection",
+    items:  Array< {
+      __typename: "Restaurant",
       id: string,
       name: string,
+      location: string,
+      description: string | null,
+      phoneNumber: string | null,
       createdAt: string,
       updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
   } | null,
 };
 
-export type OnUpdatePostSubscription = {
-  onUpdatePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
+export type SearchRestaurantsQueryVariables = {
+  filter?: SearchableRestaurantFilterInput | null,
+  sort?: SearchableRestaurantSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  from?: number | null,
+};
+
+export type SearchRestaurantsQuery = {
+  searchRestaurants:  {
+    __typename: "SearchableRestaurantConnection",
+    items:  Array< {
+      __typename: "Restaurant",
       id: string,
       name: string,
+      location: string,
+      description: string | null,
+      phoneNumber: string | null,
       createdAt: string,
       updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeletePostSubscription = {
-  onDeletePost:  {
-    __typename: "Post",
-    id: string,
-    title: string,
-    blogID: string,
-    blog:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments:  {
-      __typename: "ModelCommentConnection",
-      nextToken: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreateCommentSubscription = {
-  onCreateComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateCommentSubscription = {
-  onUpdateComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteCommentSubscription = {
-  onDeleteComment:  {
-    __typename: "Comment",
-    id: string,
-    postID: string,
-    post:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blogID: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    content: string,
-    createdAt: string,
-    updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
   } | null,
 };
 
@@ -787,9 +461,14 @@ export type OnCreateRestaurantSubscription = {
   onCreateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -799,9 +478,14 @@ export type OnUpdateRestaurantSubscription = {
   onUpdateRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -811,9 +495,50 @@ export type OnDeleteRestaurantSubscription = {
   onDeleteRestaurant:  {
     __typename: "Restaurant",
     id: string,
-    restuarntID: string,
     name: string,
     location: string,
+    description: string | null,
+    phoneNumber: string | null,
+    menus:  {
+      __typename: "ModelMenuConnection",
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateMenuSubscription = {
+  onCreateMenu:  {
+    __typename: "Menu",
+    id: string,
+    restuarantID: string,
+    name: string,
+    description: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateMenuSubscription = {
+  onUpdateMenu:  {
+    __typename: "Menu",
+    id: string,
+    restuarantID: string,
+    name: string,
+    description: string | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteMenuSubscription = {
+  onDeleteMenu:  {
+    __typename: "Menu",
+    id: string,
+    restuarantID: string,
+    name: string,
+    description: string | null,
     createdAt: string,
     updatedAt: string,
   } | null,

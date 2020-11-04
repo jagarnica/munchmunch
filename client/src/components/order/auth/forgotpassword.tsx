@@ -2,9 +2,9 @@ import React from 'react';
 import { Flex } from '@chakra-ui/core';
 import { SEO } from 'components/shared/layout';
 import { ForgotPasswordForm } from 'components/auth/';
-import { DefaultPageProps } from 'types';
+import { MainRouteComponent } from 'types';
 
-export const ForgotPasswordPage: React.FC<DefaultPageProps> = (): React.ReactElement => {
+export const ForgotPasswordPage: React.FC<MainRouteComponent> = (): React.ReactElement => {
   return (
     <>
       <SEO title="Recover your password" />
