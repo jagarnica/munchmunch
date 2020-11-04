@@ -1,10 +1,7 @@
 type Restaurant
   @model
-  @key(
-    name: "restaurantsByName"
-    fields: ["name"]
-    queryField: "restaurantsByName"
-  ) {
+  @searchable
+  @key(name: "byName", fields: ["name"], queryField: "restuarantsByName") {
   id: ID!
   name: String!
   location: String!

@@ -80,15 +80,15 @@ export const listMenus = /* GraphQL */ `
     }
   }
 `;
-export const restaurantsByName = /* GraphQL */ `
-  query RestaurantsByName(
+export const restuarantsByName = /* GraphQL */ `
+  query RestuarantsByName(
     $name: String
     $sortDirection: ModelSortDirection
     $filter: ModelRestaurantFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    restaurantsByName(
+    restuarantsByName(
       name: $name
       sortDirection: $sortDirection
       filter: $filter
@@ -108,6 +108,38 @@ export const restaurantsByName = /* GraphQL */ `
         updatedAt
       }
       nextToken
+    }
+  }
+`;
+export const searchRestaurants = /* GraphQL */ `
+  query SearchRestaurants(
+    $filter: SearchableRestaurantFilterInput
+    $sort: SearchableRestaurantSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchRestaurants(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        name
+        location
+        description
+        phoneNumber
+        menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
     }
   }
 `;

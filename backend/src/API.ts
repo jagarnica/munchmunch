@@ -142,6 +142,71 @@ export enum ModelSortDirection {
 }
 
 
+export type SearchableRestaurantFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  name?: SearchableStringFilterInput | null,
+  location?: SearchableStringFilterInput | null,
+  description?: SearchableStringFilterInput | null,
+  phoneNumber?: SearchableStringFilterInput | null,
+  and?: Array< SearchableRestaurantFilterInput | null > | null,
+  or?: Array< SearchableRestaurantFilterInput | null > | null,
+  not?: SearchableRestaurantFilterInput | null,
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
+};
+
+export type SearchableRestaurantSortInput = {
+  field?: SearchableRestaurantSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableRestaurantSortableFields {
+  id = "id",
+  name = "name",
+  location = "location",
+  description = "description",
+  phoneNumber = "phoneNumber",
+}
+
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc",
+}
+
+
 export type CreateRestaurantMutationVariables = {
   input: CreateRestaurantInput,
   condition?: ModelRestaurantConditionInput | null,
@@ -381,7 +446,7 @@ export type ListMenusQuery = {
   } | null,
 };
 
-export type RestaurantsByNameQueryVariables = {
+export type RestuarantsByNameQueryVariables = {
   name?: string | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelRestaurantFilterInput | null,
@@ -389,8 +454,8 @@ export type RestaurantsByNameQueryVariables = {
   nextToken?: string | null,
 };
 
-export type RestaurantsByNameQuery = {
-  restaurantsByName:  {
+export type RestuarantsByNameQuery = {
+  restuarantsByName:  {
     __typename: "ModelRestaurantConnection",
     items:  Array< {
       __typename: "Restaurant",
@@ -407,6 +472,36 @@ export type RestaurantsByNameQuery = {
       updatedAt: string,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type SearchRestaurantsQueryVariables = {
+  filter?: SearchableRestaurantFilterInput | null,
+  sort?: SearchableRestaurantSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  from?: number | null,
+};
+
+export type SearchRestaurantsQuery = {
+  searchRestaurants:  {
+    __typename: "SearchableRestaurantConnection",
+    items:  Array< {
+      __typename: "Restaurant",
+      id: string,
+      name: string,
+      location: string,
+      description: string | null,
+      phoneNumber: string | null,
+      menus:  {
+        __typename: "ModelMenuConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
   } | null,
 };
 

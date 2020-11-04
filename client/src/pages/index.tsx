@@ -33,13 +33,9 @@ const client = new ApolloClient({
     }),
     split(
       op => {
-        const { operation } = op.query.definitions[0] as any;
-
-        if (operation === 'subscription') {
-          return false;
-        }
-
-        return true;
+        const definition = op.query.definitions[0];
+        const operation = definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+        return operation;
       },
       httpLink,
       createSubscriptionHandshakeLink(

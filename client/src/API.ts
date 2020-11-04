@@ -7,12 +7,14 @@ export type CreateRestaurantInput = {
   name: string,
   location: string,
   description?: string | null,
+  phoneNumber?: string | null,
 };
 
 export type ModelRestaurantConditionInput = {
   name?: ModelStringInput | null,
   location?: ModelStringInput | null,
   description?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
   and?: Array< ModelRestaurantConditionInput | null > | null,
   or?: Array< ModelRestaurantConditionInput | null > | null,
   not?: ModelRestaurantConditionInput | null,
@@ -63,6 +65,7 @@ export type UpdateRestaurantInput = {
   name?: string | null,
   location?: string | null,
   description?: string | null,
+  phoneNumber?: string | null,
 };
 
 export type DeleteRestaurantInput = {
@@ -117,6 +120,7 @@ export type ModelRestaurantFilterInput = {
   name?: ModelStringInput | null,
   location?: ModelStringInput | null,
   description?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
   and?: Array< ModelRestaurantFilterInput | null > | null,
   or?: Array< ModelRestaurantFilterInput | null > | null,
   not?: ModelRestaurantFilterInput | null,
@@ -138,6 +142,71 @@ export enum ModelSortDirection {
 }
 
 
+export type SearchableRestaurantFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  name?: SearchableStringFilterInput | null,
+  location?: SearchableStringFilterInput | null,
+  description?: SearchableStringFilterInput | null,
+  phoneNumber?: SearchableStringFilterInput | null,
+  and?: Array< SearchableRestaurantFilterInput | null > | null,
+  or?: Array< SearchableRestaurantFilterInput | null > | null,
+  not?: SearchableRestaurantFilterInput | null,
+};
+
+export type SearchableIDFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
+};
+
+export type SearchableStringFilterInput = {
+  ne?: string | null,
+  gt?: string | null,
+  lt?: string | null,
+  gte?: string | null,
+  lte?: string | null,
+  eq?: string | null,
+  match?: string | null,
+  matchPhrase?: string | null,
+  matchPhrasePrefix?: string | null,
+  multiMatch?: string | null,
+  exists?: boolean | null,
+  wildcard?: string | null,
+  regexp?: string | null,
+  range?: Array< string | null > | null,
+};
+
+export type SearchableRestaurantSortInput = {
+  field?: SearchableRestaurantSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableRestaurantSortableFields {
+  id = "id",
+  name = "name",
+  location = "location",
+  description = "description",
+  phoneNumber = "phoneNumber",
+}
+
+
+export enum SearchableSortDirection {
+  asc = "asc",
+  desc = "desc",
+}
+
+
 export type CreateRestaurantMutationVariables = {
   input: CreateRestaurantInput,
   condition?: ModelRestaurantConditionInput | null,
@@ -150,6 +219,7 @@ export type CreateRestaurantMutation = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -171,6 +241,7 @@ export type UpdateRestaurantMutation = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -192,6 +263,7 @@ export type DeleteRestaurantMutation = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -263,6 +335,7 @@ export type GetRestaurantQuery = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -287,6 +360,7 @@ export type ListRestaurantsQuery = {
       name: string,
       location: string,
       description: string | null,
+      phoneNumber: string | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -332,7 +406,7 @@ export type ListMenusQuery = {
   } | null,
 };
 
-export type RestaurantsByNameQueryVariables = {
+export type RestuarantsByNameQueryVariables = {
   name?: string | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelRestaurantFilterInput | null,
@@ -340,8 +414,8 @@ export type RestaurantsByNameQueryVariables = {
   nextToken?: string | null,
 };
 
-export type RestaurantsByNameQuery = {
-  restaurantsByName:  {
+export type RestuarantsByNameQuery = {
+  restuarantsByName:  {
     __typename: "ModelRestaurantConnection",
     items:  Array< {
       __typename: "Restaurant",
@@ -349,10 +423,37 @@ export type RestaurantsByNameQuery = {
       name: string,
       location: string,
       description: string | null,
+      phoneNumber: string | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
     nextToken: string | null,
+  } | null,
+};
+
+export type SearchRestaurantsQueryVariables = {
+  filter?: SearchableRestaurantFilterInput | null,
+  sort?: SearchableRestaurantSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  from?: number | null,
+};
+
+export type SearchRestaurantsQuery = {
+  searchRestaurants:  {
+    __typename: "SearchableRestaurantConnection",
+    items:  Array< {
+      __typename: "Restaurant",
+      id: string,
+      name: string,
+      location: string,
+      description: string | null,
+      phoneNumber: string | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
   } | null,
 };
 
@@ -363,6 +464,7 @@ export type OnCreateRestaurantSubscription = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -379,6 +481,7 @@ export type OnUpdateRestaurantSubscription = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
@@ -395,6 +498,7 @@ export type OnDeleteRestaurantSubscription = {
     name: string,
     location: string,
     description: string | null,
+    phoneNumber: string | null,
     menus:  {
       __typename: "ModelMenuConnection",
       nextToken: string | null,
