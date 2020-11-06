@@ -1,10 +1,10 @@
 import { redirectTo } from '@reach/router';
-import { Spinner, Text } from '@chakra-ui/core';
+import { Spinner, Text, SimpleGrid } from '@chakra-ui/core';
 import * as awsQueryTypes from 'API';
 import { useQuery, gql } from '@apollo/client';
 import React from 'react';
 import { MainRouteComponent } from 'types';
-import { Card } from 'components/shared/card/';
+import { RestaurantCard } from 'components/shared/card/';
 import * as awsQuery from '../../../graphql/queries';
 
 export interface RestaurantPageProps extends MainRouteComponent {
@@ -35,14 +35,21 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
         <Text fontSize="3xl" color="grey.700">
           {`Results for "${query}"`}
         </Text>
-        {results.map(resturant => {
-          return (
-            <Card key={resturant?.id}>
-              <Text>{resturant?.name}</Text>
-              <Text>{resturant?.location}</Text>
-            </Card>
-          );
-        })}
+        <SimpleGrid minChildWidth={'330px'} spacing="4em">
+          {results.map(resturant => {
+            if (!resturant) return null; // this will never happen really...
+            return (
+              <RestaurantCard
+                isOpen={true}
+                image={'http://placekitten.com/1600/1600'}
+                key={resturant.id}
+                title={resturant?.name}
+                location={resturant?.location}
+                tags={['Japanese', 'Local']}
+              />
+            );
+          })}
+        </SimpleGrid>
       </>
     );
   }
