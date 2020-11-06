@@ -6,7 +6,7 @@ In the client folder, you should just have to run:
 ```shell
 yarn install
 ```
-once Yarn is installed the aws amplify client packages
+once Yarn is installed the AWS Amplify CLI
 ```shell
 npm install -g @aws-amplify/cli
 ```
@@ -20,7 +20,9 @@ Setup new user: Y, Follow the next step in your browser.
 After signing into your AWS account enter a user name in your shell and proceed to finish user creation in your browser.
 Enter your access key and secret access key in your shell to finish your AWS User.
 
-Additonal instructions to come for the security token issue when creating AWS USers. 
+Additonal instructions to come for the security token issue when creating AWS Users. 
+
+If successful, you should have a new "aws-exports.js" file created. 
 
 # Additional Package requirements
 In order to fetch all the needed packages. You will need [gatsbyJs](https://www.npmjs.com/package/gatsby#-get-up-and-running-in-5-minutes) installed globally in order to use the CLI and run the app locally. 
