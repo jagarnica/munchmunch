@@ -6,7 +6,7 @@ In the client folder, you should just have to run:
 ```shell
 yarn install
 ```
-once Yarn is installed running the aws amplify client packages
+once Yarn is installed the aws amplify client packages
 ```shell
 npm install -g @aws-amplify/cli
 ```
@@ -22,15 +22,17 @@ Enter your access key and secret access key in your shell to finish your AWS Use
 
 Additonal instructions to come for the security token issue when creating AWS USers. 
 
-
+# Additional Package requirements
 In order to fetch all the needed packages. You will need [gatsbyJs](https://www.npmjs.com/package/gatsby#-get-up-and-running-in-5-minutes) installed globally in order to use the CLI and run the app locally. 
 If you don't have it installed running: 
 ```shell
 yarn global add gatsby
 ```
-should have you up and running. After doing that, in the "client" folder run: 
+
+# Running a live server of application
+in the "client" folder run: 
 
 ```shell 
 gatsby develop
 ```
-and you will have a hot reloading test version of the app.
+
