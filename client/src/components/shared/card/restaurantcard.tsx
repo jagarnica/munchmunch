@@ -34,6 +34,7 @@ export const RestaurantCard = ({
       borderWidth="1px"
       maxWidth="100%"
       padding="0px"
+      boxShadow="0px 6px 8px -6px rgba(24, 39, 75, 0.12), 0px 8px 16px -6px rgba(24, 39, 75, 0.08);"
       justifyContent="flex-start"
       overflow="hidden"
     >
