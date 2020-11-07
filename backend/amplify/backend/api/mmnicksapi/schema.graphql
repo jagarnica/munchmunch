@@ -7,6 +7,7 @@ type Restaurant
   location: String!
   description: String
   phoneNumber: String
+  categories: [String]
   menus: [Menu] @connection(keyName: "byRestuarant", fields: ["id"])
 }
 

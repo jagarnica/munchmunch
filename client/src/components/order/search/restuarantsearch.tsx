@@ -26,15 +26,34 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
   );
 
   if (loading) return <Spinner />;
-  if (error) return <Text>Error! {error}</Text>;
+  if (error)
+    return (
+      <Text fontSize="3xl" fontWeight="bold" color="blue.800">
+        Sorry there was en error getting your results!
+      </Text>
+    );
   const results = data?.searchRestaurants?.items;
+  const total = data?.searchRestaurants?.total;
+  let resultsSummary: string | undefined;
+
+  // Sets up the summary depending if there is just one result or not
+  if (total && total === 1) {
+    resultsSummary = `1 Restaurant`;
+  } else if (total) {
+    resultsSummary = `${total} Restaurants`;
+  }
 
   if (results && results.length > 0) {
     return (
       <>
-        <Text fontSize="3xl" color="grey.700">
-          {`Results for "${query}"`}
+        <Text fontSize="3xl" fontWeight="bold" color="blue.800">
+          {`"${query}"`}
         </Text>
+        {resultsSummary && (
+          <Text fontSize="large" color="blue.800">
+            {resultsSummary}
+          </Text>
+        )}
         <SimpleGrid minChildWidth={'330px'} spacing="4em">
           {results.map(resturant => {
             if (!resturant) return null; // this will never happen really...
@@ -45,7 +64,7 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
                 key={resturant.id}
                 title={resturant?.name}
                 location={resturant?.location}
-                tags={['Japanese', 'Local']}
+                categories={['Japanese', 'Local']}
               />
             );
           })}
@@ -53,5 +72,9 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
       </>
     );
   }
-  return <span>No Results Found</span>;
+  return (
+    <Text fontWeight="bold" color="blue.800" fontSize="3xl">
+      No Results Found
+    </Text>
+  );
 };
