@@ -78,7 +78,7 @@ export const RestaurantCard = ({
 export const PlaceHolderImage = (): JSX.Element => (
   <AspectRatioBox ratio={16 / 9}>
     <Box bg="gray.200" userSelect="none" d="flex" width="100%" justifyContent="center" alignItems="center">
-      <SiteLogo as="span" color="gray.400" clickable={false} />
+      <SiteLogo as="span" fontSize="4xl" color="gray.400" clickable={false} />
     </Box>
   </AspectRatioBox>
 );
