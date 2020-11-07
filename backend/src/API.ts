@@ -8,7 +8,7 @@ export type CreateRestaurantInput = {
   location: string,
   description?: string | null,
   phoneNumber?: string | null,
-  categories?: Array< string | null > | null,
+  categories: Array< string | null >,
 };
 
 export type ModelRestaurantConditionInput = {
@@ -226,7 +226,7 @@ export type CreateRestaurantMutation = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -258,7 +258,7 @@ export type UpdateRestaurantMutation = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -290,7 +290,7 @@ export type DeleteRestaurantMutation = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -372,7 +372,7 @@ export type GetRestaurantQuery = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -407,7 +407,7 @@ export type ListRestaurantsQuery = {
       location: string,
       description: string | null,
       phoneNumber: string | null,
-      categories: Array< string | null > | null,
+      categories: Array< string | null >,
       menus:  {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
@@ -475,7 +475,7 @@ export type RestuarantsByNameQuery = {
       location: string,
       description: string | null,
       phoneNumber: string | null,
-      categories: Array< string | null > | null,
+      categories: Array< string | null >,
       menus:  {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
@@ -505,7 +505,7 @@ export type SearchRestaurantsQuery = {
       location: string,
       description: string | null,
       phoneNumber: string | null,
-      categories: Array< string | null > | null,
+      categories: Array< string | null >,
       menus:  {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
@@ -526,7 +526,7 @@ export type OnCreateRestaurantSubscription = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -553,7 +553,7 @@ export type OnUpdateRestaurantSubscription = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {
@@ -580,7 +580,7 @@ export type OnDeleteRestaurantSubscription = {
     location: string,
     description: string | null,
     phoneNumber: string | null,
-    categories: Array< string | null > | null,
+    categories: Array< string | null >,
     menus:  {
       __typename: "ModelMenuConnection",
       items:  Array< {

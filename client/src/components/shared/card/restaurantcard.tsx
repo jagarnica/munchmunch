@@ -8,7 +8,7 @@ export interface RestaurantCardProps {
   location: string;
   image: string;
   isOpen?: boolean;
-  categories?: string[];
+  categories?: Array<string | null>;
 }
 /**
  * @name RestaurantCard

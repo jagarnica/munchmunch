@@ -1,4 +1,18 @@
-projects: {}
+projects:
+  mmnicksapi-dev:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: src/graphql
+        region: us-west-2
+        apiId: hie576ehf5b3tcihxd2ppkq7tu
+        maxDepth: 2
 extensions:
   amplify:
     version: 3

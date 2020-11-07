@@ -64,7 +64,7 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
                 key={resturant.id}
                 title={resturant?.name}
                 location={resturant?.location}
-                categories={['Japanese', 'Local']}
+                categories={resturant?.categories}
               />
             );
           })}
