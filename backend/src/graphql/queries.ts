@@ -10,6 +10,7 @@ export const getRestaurant = /* GraphQL */ `
       location
       description
       phoneNumber
+      categories
       menus {
         items {
           id
@@ -39,6 +40,7 @@ export const listRestaurants = /* GraphQL */ `
         location
         description
         phoneNumber
+        categories
         menus {
           nextToken
         }
@@ -101,6 +103,7 @@ export const restuarantsByName = /* GraphQL */ `
         location
         description
         phoneNumber
+        categories
         menus {
           nextToken
         }
@@ -132,6 +135,7 @@ export const searchRestaurants = /* GraphQL */ `
         location
         description
         phoneNumber
+        categories
         menus {
           nextToken
         }
