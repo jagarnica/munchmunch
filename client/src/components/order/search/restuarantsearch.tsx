@@ -26,12 +26,14 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
   );
 
   if (loading) return <Spinner />;
-  if (error)
+  if (error) {
     return (
       <Text fontSize="3xl" fontWeight="bold" color="blue.800">
         Sorry there was en error getting your results!
       </Text>
     );
+  }
+
   const results = data?.searchRestaurants?.items;
   const total = data?.searchRestaurants?.total;
   let resultsSummary: string | undefined;
@@ -60,7 +62,6 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
             return (
               <RestaurantCard
                 isOpen={true}
-                image={'http://placekitten.com/1600/1600'}
                 key={resturant.id}
                 title={resturant?.name}
                 location={resturant?.location}
