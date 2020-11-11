@@ -32,8 +32,8 @@ export const OrderApp: React.FC<MainRouteComponent> = () => {
       <PrivateRoute path="orders" component={OrderHistory} />
       <PrivateRoute path="payment" component={UserPayments} />
       <Redirect noThrow from="*" to="/404" default />
-      <Redirect noThrow from="login" to="/auth/login" />
-      <Redirect noThrow from="signup" to="/auth/signup" />
+      <Redirect noThrow path="login" to="/auth/login" />
+      <Redirect noThrow path="signup" to="/auth/signup" />
     </Router>
   );
 };
