@@ -1,62 +1,30 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
-import { theme, ThemeProvider, CSSReset, ITheme } from '@chakra-ui/core';
-import * as customIcons from 'images/tsxicons';
+import { Box } from '@chakra-ui/core';
+import { useSiteMetadata } from 'utils/hooks/queries';
 import { Header } from './navbar/header';
 
-interface customTheme extends ITheme {
-  header: {
-    borderColor: string;
-    zIndex: number;
-  };
-  toastDefaults: {
-    duration: number;
-    isClosable: boolean;
-  };
+export interface LayoutProps {
+  fullWidth?: boolean;
 }
-const baseSiteTheme: customTheme = {
-  ...theme,
-  icons: {
-    ...theme.icons,
-    ...customIcons,
-  },
-  header: {
-    borderColor: theme.colors.gray[100],
-    zIndex: 10,
-  },
-  toastDefaults: {
-    duration: 1000,
-    isClosable: true,
-  },
-};
 
-export const Layout: React.FC = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) => {
+  const { title } = useSiteMetadata();
 
   return (
     <>
-      <ThemeProvider theme={baseSiteTheme}>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <CSSReset />
-        <div
-          style={{
-            margin: `0 auto`,
-            maxWidth: 960,
-            padding: `0 1.0875rem 1.45rem`,
-          }}
-        >
-          <main>{children}</main>
-          <footer>© {new Date().getFullYear()} Munch Munch</footer>
-        </div>
-      </ThemeProvider>
+      <Header siteTitle={title} />
+      <Box
+        margin="0 auto"
+        maxW={fullWidth ? 1920 : 960}
+        padding={
+          fullWidth
+            ? { base: `0 1.0875rem 1.45rem`, sm: '0 1.0875rem 1.45rem', lg: `0 2.4rem 1.45rem` }
+            : { base: `0 1.0875rem 1.45rem` }
+        }
+      >
+        <main>{children}</main>
+        <footer>© {new Date().getFullYear()} Munch Munch</footer>
+      </Box>
     </>
   );
 };

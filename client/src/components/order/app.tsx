@@ -1,5 +1,4 @@
 import React from 'react';
-import { Layout } from 'components/shared/layout';
 import { Redirect, Router } from '@reach/router';
 import { MainRouteComponent } from 'types';
 import { PrivateRoute } from 'components/shared/privateroute';
@@ -16,27 +15,25 @@ import { UserSearch, RestuarantSearchPage } from './search';
  */
 export const OrderApp: React.FC<MainRouteComponent> = () => {
   return (
-    <Layout>
-      <Router basepath="/">
-        <AuthPage path="auth/">
-          <SignUpPage path="signup" />
-          <LoginPage path="login" />
-          <ForgotPasswordPage path="forgotpassword" />
-          <Redirect noThrow from="*" to="/404" default />
-        </AuthPage>
-        <OrderHome path="/" />
-        <UserSearch path="/search">
-          <RestuarantSearchPage path="resturants/:query" />
-          <RestuarantSearchPage path="resturants/" />
-          <Redirect noThrow from="*" to="/404" default />
-        </UserSearch>
-        <PrivateRoute path="account" component={Account} />
-        <PrivateRoute path="orders" component={OrderHistory} />
-        <PrivateRoute path="payment" component={UserPayments} />
+    <Router basepath="/">
+      <AuthPage path="auth/">
+        <SignUpPage path="signup" />
+        <LoginPage path="login" />
+        <ForgotPasswordPage path="forgotpassword" />
         <Redirect noThrow from="*" to="/404" default />
-        <Redirect noThrow path="login" to="/auth/login" />
-        <Redirect noThrow path="signup" to="/auth/signup" />
-      </Router>
-    </Layout>
+      </AuthPage>
+      <OrderHome path="/" />
+      <UserSearch path="/search">
+        <RestuarantSearchPage path="resturants/:query" />
+        <RestuarantSearchPage path="resturants/" />
+        <Redirect noThrow from="*" to="/404" default />
+      </UserSearch>
+      <PrivateRoute path="account" component={Account} />
+      <PrivateRoute path="orders" component={OrderHistory} />
+      <PrivateRoute path="payment" component={UserPayments} />
+      <Redirect noThrow from="*" to="/404" default />
+      <Redirect noThrow from="login" path="login" to="/auth/login" />
+      <Redirect noThrow from="signup" path="signup" to="/auth/signup" />
+    </Router>
   );
 };

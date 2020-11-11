@@ -1,5 +1,5 @@
 import React from 'react';
-import { SEO } from 'components/shared/layout';
+import { SEO, Layout } from 'components/shared/layout';
 import { useAppContext } from 'libs/contextLib';
 import { useNavigate } from '@reach/router';
 import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
@@ -29,25 +29,25 @@ export const OrderHome: React.FC<MainRouteComponent> = () => {
   // ];
   if (isAuthenticated) {
     return (
-      <>
+      <Layout>
         <SEO title="Home" />
         <SimpleGrid maxW="100%" spacing="2.45rem">
           <SearchRestuarants />
           <UserFavorites />
           <UserPastOrders />
         </SimpleGrid>
-      </>
+      </Layout>
     );
   }
   return (
-    <>
+    <Layout>
       <SEO title="Home" />
       <SimpleGrid maxW="100%" spacing="2.45rem">
         <SearchRestuarants />
         <WhyMunchMunch />
         <OneStopShop />
       </SimpleGrid>
-    </>
+    </Layout>
   );
 };
 export type restaurantQuery = {

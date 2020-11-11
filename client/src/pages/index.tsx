@@ -5,6 +5,7 @@ import { AppContext, AppContextInterface } from 'libs/contextLib';
 import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
 import { User, AWSCurrentUserInfo } from 'types/';
 import { authReducer } from 'libs/reducers';
+import { baseSiteTheme } from 'utils/themes';
 import { ApolloClient, from, HttpLink, InMemoryCache, split, ApolloProvider } from '@apollo/client';
 import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
 import { createAuthLink } from 'aws-appsync-auth-link';
@@ -92,7 +93,10 @@ const IndexPage = (): React.ReactNode => {
   return (
     <ApolloProvider client={client}>
       <AppContext.Provider value={{ state, dispatch }}>
-        <App />
+        <ThemeProvider theme={baseSiteTheme}>
+          <CSSReset></CSSReset>
+          <App />
+        </ThemeProvider>
       </AppContext.Provider>
     </ApolloProvider>
   );

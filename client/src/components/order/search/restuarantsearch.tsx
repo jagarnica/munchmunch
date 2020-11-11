@@ -56,7 +56,7 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
             {resultsSummary}
           </Text>
         )}
-        <SimpleGrid minChildWidth={'330px'} spacing="4em">
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing="1em">
           {results.map(resturant => {
             if (!resturant) return null; // this will never happen really...
             return (
