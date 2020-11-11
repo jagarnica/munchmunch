@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, Stack, Tag, TagLabel, Box, AspectRatioBox } from '@chakra-ui/core';
+import { Text, Stack, Tag, TagLabel, Box, AspectRatioBox, BoxProps } from '@chakra-ui/core';
 import { SmartImage } from 'components/shared/smartimage';
 import { SiteLogo } from 'components/shared/logos';
 import { Card } from './card';
 
-export interface RestaurantCardProps {
+export interface RestaurantCardProps extends BoxProps {
   title: string;
   location: string;
   image?: string;
@@ -22,6 +22,7 @@ export const RestaurantCard = ({
   location,
   isOpen,
   categories = [],
+  ...rest
 }: RestaurantCardProps): JSX.Element => {
   const showOpen = typeof isOpen === 'boolean';
   return (
@@ -37,6 +38,7 @@ export const RestaurantCard = ({
       boxShadow="0px 6px 8px -6px rgba(24, 39, 75, 0.12), 0px 8px 16px -6px rgba(24, 39, 75, 0.08);"
       justifyContent="flex-start"
       overflow="hidden"
+      {...rest}
     >
       {image ? <SmartImage ratio={16 / 9} src={image} /> : <PlaceHolderImage />}
 
