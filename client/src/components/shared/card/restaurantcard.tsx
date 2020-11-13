@@ -49,19 +49,19 @@ export const RestaurantCard = ({
       </Skeleton>
 
       <Stack padding="0.8rem" spacing={1}>
-        <Skeleton isLoaded={showSkeleton} width={showSkeleton ? '60%' : ``}>
+        <Skeleton isLoaded={showSkeleton} width={showSkeleton ? '' : `60%`}>
           <Text as="p" fontWeight="bold" fontSize="xl" color="blue.800">
             {title}
           </Text>
         </Skeleton>
-        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '30%' : ``}>
+        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '' : `30%`}>
           {showOpen && (
             <Tag variantColor={isOpen ? `green` : `red`} alignSelf="flex-start">
               <TagLabel>{isOpen ? `Open` : `Closed`}</TagLabel>
             </Tag>
           )}
         </Skeleton>
-        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '80%' : ``}>
+        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '' : `80%`}>
           <Text as="span" color="gray.600">
             {location}
           </Text>
