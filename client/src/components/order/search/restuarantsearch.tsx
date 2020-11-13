@@ -1,18 +1,56 @@
-import { redirectTo } from '@reach/router';
-import { Spinner, Text, SimpleGrid } from '@chakra-ui/core';
+import * as React from 'react';
+import { navigate, redirectTo } from '@reach/router';
+import { Text, SimpleGrid, Skeleton } from '@chakra-ui/core';
 import * as awsQueryTypes from 'API';
 import { useQuery, gql } from '@apollo/client';
-import React from 'react';
 import { MainRouteComponent } from 'types';
 import { RestaurantCard } from 'components/shared/card/';
+import { SEO } from 'components/shared/layout';
+import { RestuarantSearchBar } from 'components/shared/forms';
 import * as awsQuery from '../../../graphql/queries';
 
-export interface RestaurantPageProps extends MainRouteComponent {
+export interface RestuarantSearchPage extends MainRouteComponent {
   query?: string;
 }
-export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Element => {
+/**
+ * @name ResturantSearchPage
+ * @description This holds the main layout for the results displayed. It picks up the query
+ * from the params in the url.
+ * @returns JSX.Element
+ */
+export const RestuarantSearchPage = ({ query }: RestuarantSearchPage): JSX.Element => {
   // Throws an error to redirect the user to the home page
   if (!query) redirectTo('/');
+  function handleNewSearch(newQuery: string) {
+    const encodedString = encodeURIComponent(newQuery);
+    navigate(`/search/resturants/${encodedString}`, { replace: true });
+  }
+  if (query && query?.length >= 25) {
+    const sanitizedQuery = query?.substring(0, 25); // Set a limit
+    handleNewSearch(sanitizedQuery);
+  }
+
+  return (
+    <>
+      <SEO title={`Search: ${query}`} />
+      <SimpleGrid maxW="100%" spacing="1em">
+        <RestuarantSearchBar maxW="100%" autoFocus size="lg" onSubmit={handleNewSearch} defaultValue={query} />
+        <Text fontSize="3xl" isTruncated as="div" maxW="100%" fontWeight="bold" color="blue.800">
+          {`${query}`}
+        </Text>
+        <RestuarantSearchResults queryString={query || ''} />
+      </SimpleGrid>
+    </>
+  );
+};
+/**
+ * @name ResturantSearchResults
+ * @description This component returns the results from searching the query passed
+ * in.
+ * @prop {string} queryString Sets the query that will be searched
+ * @returns JSX.Element
+ */
+export const RestuarantSearchResults = ({ queryString }: { queryString: string }): JSX.Element => {
   const { loading, error, data } = useQuery<
     awsQueryTypes.SearchRestaurantsQuery,
     awsQueryTypes.SearchRestaurantsQueryVariables
@@ -21,18 +59,9 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
       ${awsQuery.searchRestaurants}
     `,
     {
-      variables: { filter: { name: { match: query } } },
+      variables: { filter: { name: { match: queryString } } },
     }
   );
-
-  if (loading) return <Spinner />;
-  if (error) {
-    return (
-      <Text fontSize="3xl" fontWeight="bold" color="blue.800">
-        Sorry there was en error getting your results!
-      </Text>
-    );
-  }
 
   const results = data?.searchRestaurants?.items;
   const total = data?.searchRestaurants?.total;
@@ -45,12 +74,28 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
     resultsSummary = `${total} Restaurants`;
   }
 
-  if (results && results.length > 0) {
+  if (error)
+    return (
+      <Text fontSize="3xl" fontWeight="bold" color="blue.800">
+        Sorry there was en error getting your results!
+      </Text>
+    );
+  if (loading)
     return (
       <>
-        <Text fontSize="3xl" fontWeight="bold" color="blue.800">
-          {`"${query}"`}
-        </Text>
+        <Skeleton maxW="150px">
+          <Text fontSize="large">Loading...</Text>
+        </Skeleton>
+
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing="1em">
+          <RestaurantCard isLoading title="Loading..." location="Loading..." />
+          <RestaurantCard isLoading title="Loading..." location="Loading..." />
+        </SimpleGrid>
+      </>
+    );
+  if (results && results.length > 0)
+    return (
+      <>
         {resultsSummary && (
           <Text fontSize="large" color="blue.800">
             {resultsSummary}
@@ -72,10 +117,16 @@ export const RestuarantSearchPage = ({ query }: RestaurantPageProps): JSX.Elemen
         </SimpleGrid>
       </>
     );
-  }
+
   return (
-    <Text fontWeight="bold" color="blue.800" fontSize="3xl">
-      No Results Found
-    </Text>
+    <>
+      <Text fontSize="large" color="blue.800">
+        0 Restaurants
+      </Text>
+
+      <Text fontWeight="bold" color="blue.800" fontSize="3xl">
+        No Results Found
+      </Text>
+    </>
   );
 };

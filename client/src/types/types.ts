@@ -50,6 +50,9 @@ export type AWSCurrentUserInfo = {
     email: string;
   };
 };
+export type restaurantQuery = {
+  [key: string]: string;
+};
 
 export type AWSignInResponse = {
   attributes: {
