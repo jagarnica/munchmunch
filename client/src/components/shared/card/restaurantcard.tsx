@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Stack, Tag, TagLabel, Box, AspectRatioBox, BoxProps } from '@chakra-ui/core';
+import { Text, Stack, Tag, TagLabel, Box, AspectRatioBox, BoxProps, Skeleton } from '@chakra-ui/core';
 import { SmartImage } from 'components/shared/smartimage';
 import { SiteLogo } from 'components/shared/logos';
 import { Card } from './card';
@@ -8,12 +8,14 @@ export interface RestaurantCardProps extends BoxProps {
   title: string;
   location: string;
   image?: string;
+  isLoading?: boolean;
   isOpen?: boolean;
   categories?: Array<string | null>;
 }
 /**
  * @name RestaurantCard
- * @description Displays a card with the date, image, and name of the restaurant
+ * @description Displays a card with the date, image, and name of the restaurant.
+ * Also it has a builtin skeleton, useful to show something is loading
  *
  */
 export const RestaurantCard = ({
@@ -21,10 +23,12 @@ export const RestaurantCard = ({
   image,
   location,
   isOpen,
+  isLoading = false,
   categories = [],
   ...rest
 }: RestaurantCardProps): JSX.Element => {
   const showOpen = typeof isOpen === 'boolean';
+  const showSkeleton = !isLoading;
   return (
     <Card
       style={{ cursor: `pointer` }}
@@ -40,39 +44,47 @@ export const RestaurantCard = ({
       overflow="hidden"
       {...rest}
     >
-      {image ? <SmartImage ratio={16 / 9} src={image} /> : <PlaceHolderImage />}
+      <Skeleton isLoaded={showSkeleton}>
+        {image ? <SmartImage ratio={16 / 9} src={image} /> : <PlaceHolderImage />}
+      </Skeleton>
 
       <Stack padding="0.8rem" spacing={1}>
-        <Text as="p" fontWeight="bold" fontSize="xl" color="blue.800">
-          {title}
-        </Text>
-        {showOpen && (
-          <Tag variantColor={isOpen ? `green` : `red`} alignSelf="flex-start">
-            <TagLabel>{isOpen ? `Open` : `Closed`}</TagLabel>
-          </Tag>
-        )}
-
-        <Text as="span" color="gray.600">
-          {location}
-        </Text>
-
-        {categories ? (
-          <Text color="gray.600">
-            {categories.map((category, index) => {
-              if (index + 1 === categories.length)
+        <Skeleton isLoaded={showSkeleton} width={showSkeleton ? '60%' : ``}>
+          <Text as="p" fontWeight="bold" fontSize="xl" color="blue.800">
+            {title}
+          </Text>
+        </Skeleton>
+        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '30%' : ``}>
+          {showOpen && (
+            <Tag variantColor={isOpen ? `green` : `red`} alignSelf="flex-start">
+              <TagLabel>{isOpen ? `Open` : `Closed`}</TagLabel>
+            </Tag>
+          )}
+        </Skeleton>
+        <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '80%' : ``}>
+          <Text as="span" color="gray.600">
+            {location}
+          </Text>
+        </Skeleton>
+        <Skeleton isLoaded={showSkeleton}>
+          {categories ? (
+            <Text color="gray.600">
+              {categories.map((category, index) => {
+                if (index + 1 === categories.length)
+                  return (
+                    <Text as="span" key={category + title}>
+                      {`${category}`}
+                    </Text>
+                  );
                 return (
                   <Text as="span" key={category + title}>
-                    {`${category}`}
+                    {`${category} • `}
                   </Text>
                 );
-              return (
-                <Text as="span" key={category + title}>
-                  {`${category} • `}
-                </Text>
-              );
-            })}
-          </Text>
-        ) : null}
+              })}
+            </Text>
+          ) : null}
+        </Skeleton>
       </Stack>
     </Card>
   );

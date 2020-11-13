@@ -9,7 +9,7 @@ import {
   IconButtonProps,
 } from '@chakra-ui/core';
 
-export interface SearchBarProps extends InputProps {
+export interface LargeSearchBarProps extends InputProps {
   buttonProps?: IconButtonProps;
 }
 /**
@@ -20,7 +20,7 @@ export interface SearchBarProps extends InputProps {
  * @prop {IconButtonProps} buttonProps These when destructured go to the button
  * @returns JSX.Element
  */
-export const LargeSearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
+export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarProps>(
   ({ buttonProps, ...rest }, ref): JSX.Element => {
     return (
       <PseudoBox>
