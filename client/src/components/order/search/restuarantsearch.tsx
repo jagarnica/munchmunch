@@ -93,7 +93,7 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
         </SimpleGrid>
       </>
     );
-  if (results && results.length > 0)
+  if (results && results.length > 0) {
     return (
       <>
         {resultsSummary && (
@@ -117,7 +117,7 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
         </SimpleGrid>
       </>
     );
-
+  }
   return (
     <>
       <Text fontSize="large" color="blue.800">

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text, Stack, Tag, TagLabel, Box, AspectRatioBox, BoxProps, Skeleton } from '@chakra-ui/core';
+import { Text, Stack, Tag, TagLabel, BoxProps, Skeleton } from '@chakra-ui/core';
 import { SmartImage } from 'components/shared/smartimage';
-import { SiteLogo } from 'components/shared/logos';
+import { PlaceHolderImage } from 'components/shared/placeholders';
 import { Card } from './card';
 
 export interface RestaurantCardProps extends BoxProps {
@@ -45,7 +45,7 @@ export const RestaurantCard = ({
       {...rest}
     >
       <Skeleton isLoaded={showSkeleton}>
-        {image ? <SmartImage ratio={16 / 9} src={image} /> : <PlaceHolderImage />}
+        {image ? <SmartImage ratio={16 / 9} src={image} /> : <PlaceHolderImage ratio={16 / 9} />}
       </Skeleton>
 
       <Stack padding="0.8rem" spacing={1}>
@@ -89,11 +89,3 @@ export const RestaurantCard = ({
     </Card>
   );
 };
-
-export const PlaceHolderImage = (): JSX.Element => (
-  <AspectRatioBox ratio={16 / 9}>
-    <Box bg="gray.200" userSelect="none" d="flex" width="100%" justifyContent="center" alignItems="center">
-      <SiteLogo as="span" fontSize="4xl" color="gray.400" clickable={false} />
-    </Box>
-  </AspectRatioBox>
-);
