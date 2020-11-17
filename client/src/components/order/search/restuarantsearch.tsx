@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { navigate, redirectTo } from '@reach/router';
+import { Link, navigate, redirectTo } from '@reach/router';
 import { Text, SimpleGrid, Skeleton } from '@chakra-ui/core';
 import * as awsQueryTypes from 'API';
 import { useQuery, gql } from '@apollo/client';
@@ -93,6 +93,7 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
         </SimpleGrid>
       </>
     );
+
   if (results && results.length > 0) {
     return (
       <>
@@ -102,16 +103,17 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
           </Text>
         )}
         <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 4 }} spacing="1em">
-          {results.map(resturant => {
-            if (!resturant) return null; // this will never happen really...
+          {results.map(restaurant => {
+            if (!restaurant) return null; // this will never happen really...
             return (
-              <RestaurantCard
-                isOpen={true}
-                key={resturant.id}
-                title={resturant?.name}
-                location={resturant?.location}
-                categories={resturant?.categories}
-              />
+              <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                <RestaurantCard
+                  isOpen={true}
+                  title={restaurant?.name}
+                  location={restaurant?.location}
+                  categories={restaurant?.categories}
+                />
+              </Link>
             );
           })}
         </SimpleGrid>

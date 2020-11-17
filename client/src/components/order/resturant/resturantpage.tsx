@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { Box, Spinner, Stack, Text } from '@chakra-ui/core';
+import { Box, Button, Divider, Spinner, Stack, Text } from '@chakra-ui/core';
 import { Layout, SEO } from 'components/shared/layout';
 import { MainRouteComponent } from 'types';
-import { GetRestaurantQuery, GetRestaurantQueryVariables } from 'API';
 import { useQuery, gql } from '@apollo/client';
 import { Redirect } from '@reach/router';
 import { SmartImage } from 'components/shared/smartimage';
 import { PlaceHolderImage } from 'components/shared/placeholders';
-import { getRestaurant } from '../../../graphql/queries';
+import { getRestaurant, GetRestaurantQuery, GetRestaurantQueryVariables } from './queries';
 /**
  * @name RestaurantPageLayout
  * @description Holds the main content for a restuarants page
@@ -38,6 +37,8 @@ export const RestuarantOrder = ({ id }: RestuarantOrderProps): JSX.Element => {
         Loading...
       </>
     );
+  // This means the restuarant does not exist
+  if (data?.getRestaurant === null) return <Redirect noThrow to="/404" />;
   if (data && data.getRestaurant) {
     const { name, location, categories, menus } = data.getRestaurant;
     return (
@@ -69,7 +70,10 @@ export const RestuarantOrder = ({ id }: RestuarantOrderProps): JSX.Element => {
             })}
           </Text>
         </Stack>
-        <DisplayMenus />
+        <Stack mt="1.3rem">
+          <RestaurantMenuNav menus={menus?.items || [null]} />
+          <Divider />
+        </Stack>
       </>
     );
   }
@@ -92,10 +96,24 @@ export const ResturantHeader = ({ imageUrl }: { imageUrl?: string }): JSX.Elemen
   );
 };
 
-export const DisplayMenus = (): JSX.Element => {
+export interface DisplayMenuProps {
+  menus: Array<{
+    __typename: 'Menu';
+    id: string;
+    name: string;
+    description: string | null;
+  } | null>;
+}
+export const RestaurantMenuNav = ({ menus }: DisplayMenuProps): JSX.Element => {
   return (
-    <Box minHeight="80vh" width="100%" bg="#FAFAFA">
-      menus
-    </Box>
+    <Stack isInline>
+      {menus?.map(menu => {
+        return (
+          <Button variantColor="gray" borderRadius="32px" key={menu?.name}>
+            {menu?.name}
+          </Button>
+        );
+      })}
+    </Stack>
   );
 };
