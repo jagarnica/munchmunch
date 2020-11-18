@@ -22,6 +22,18 @@ export const getRestaurant = /* GraphQL */ `
         }
         nextToken
       }
+      menuItems {
+        items {
+          id
+          name
+          description
+          price
+          restaurantID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -42,6 +54,9 @@ export const listRestaurants = /* GraphQL */ `
         phoneNumber
         categories
         menus {
+          nextToken
+        }
+        menuItems {
           nextToken
         }
         createdAt
@@ -82,6 +97,39 @@ export const listMenus = /* GraphQL */ `
     }
   }
 `;
+export const getMenuItem = /* GraphQL */ `
+  query GetMenuItem($id: ID!) {
+    getMenuItem(id: $id) {
+      id
+      name
+      description
+      price
+      restaurantID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listMenuItems = /* GraphQL */ `
+  query ListMenuItems(
+    $filter: ModelMenuItemFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMenuItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        price
+        restaurantID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const restaurantByName = /* GraphQL */ `
   query RestaurantByName(
     $name: String
@@ -105,6 +153,9 @@ export const restaurantByName = /* GraphQL */ `
         phoneNumber
         categories
         menus {
+          nextToken
+        }
+        menuItems {
           nextToken
         }
         createdAt
@@ -137,6 +188,9 @@ export const searchRestaurants = /* GraphQL */ `
         phoneNumber
         categories
         menus {
+          nextToken
+        }
+        menuItems {
           nextToken
         }
         createdAt

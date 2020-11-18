@@ -25,6 +25,18 @@ export const createRestaurant = /* GraphQL */ `
         }
         nextToken
       }
+      menuItems {
+        items {
+          id
+          name
+          description
+          price
+          restaurantID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -53,6 +65,18 @@ export const updateRestaurant = /* GraphQL */ `
         }
         nextToken
       }
+      menuItems {
+        items {
+          id
+          name
+          description
+          price
+          restaurantID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -76,6 +100,18 @@ export const deleteRestaurant = /* GraphQL */ `
           restaurantID
           name
           description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      menuItems {
+        items {
+          id
+          name
+          description
+          price
+          restaurantID
           createdAt
           updatedAt
         }
@@ -126,6 +162,54 @@ export const deleteMenu = /* GraphQL */ `
       restaurantID
       name
       description
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createMenuItem = /* GraphQL */ `
+  mutation CreateMenuItem(
+    $input: CreateMenuItemInput!
+    $condition: ModelMenuItemConditionInput
+  ) {
+    createMenuItem(input: $input, condition: $condition) {
+      id
+      name
+      description
+      price
+      restaurantID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMenuItem = /* GraphQL */ `
+  mutation UpdateMenuItem(
+    $input: UpdateMenuItemInput!
+    $condition: ModelMenuItemConditionInput
+  ) {
+    updateMenuItem(input: $input, condition: $condition) {
+      id
+      name
+      description
+      price
+      restaurantID
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMenuItem = /* GraphQL */ `
+  mutation DeleteMenuItem(
+    $input: DeleteMenuItemInput!
+    $condition: ModelMenuItemConditionInput
+  ) {
+    deleteMenuItem(input: $input, condition: $condition) {
+      id
+      name
+      description
+      price
+      restaurantID
       createdAt
       updatedAt
     }
