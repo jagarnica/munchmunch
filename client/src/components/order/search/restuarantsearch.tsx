@@ -59,7 +59,7 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
       ${awsQuery.searchRestaurants}
     `,
     {
-      variables: { filter: { name: { match: queryString } } },
+      variables: { filter: { or: [{ name: { match: queryString } }, { categories: { match: queryString } }] } },
     }
   );
 
@@ -72,6 +72,8 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
     resultsSummary = `1 Restaurant`;
   } else if (total) {
     resultsSummary = `${total} Restaurants`;
+  } else {
+    resultsSummary = `0 Resturants`; // total can actually be null
   }
 
   if (error)
