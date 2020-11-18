@@ -77,13 +77,13 @@ export type DeleteRestaurantInput = {
 
 export type CreateMenuInput = {
   id?: string | null,
-  restuarantID: string,
+  restaurantID: string,
   name: string,
   description?: string | null,
 };
 
 export type ModelMenuConditionInput = {
-  restuarantID?: ModelIDInput | null,
+  restaurantID?: ModelIDInput | null,
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
   and?: Array< ModelMenuConditionInput | null > | null,
@@ -109,7 +109,7 @@ export type ModelIDInput = {
 
 export type UpdateMenuInput = {
   id: string,
-  restuarantID?: string | null,
+  restaurantID?: string | null,
   name?: string | null,
   description?: string | null,
 };
@@ -132,7 +132,7 @@ export type ModelRestaurantFilterInput = {
 
 export type ModelMenuFilterInput = {
   id?: ModelIDInput | null,
-  restuarantID?: ModelIDInput | null,
+  restaurantID?: ModelIDInput | null,
   name?: ModelStringInput | null,
   description?: ModelStringInput | null,
   and?: Array< ModelMenuFilterInput | null > | null,
@@ -232,7 +232,7 @@ export type CreateRestaurantMutation = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -264,7 +264,7 @@ export type UpdateRestaurantMutation = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -296,7 +296,7 @@ export type DeleteRestaurantMutation = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -318,7 +318,7 @@ export type CreateMenuMutation = {
   createMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -335,7 +335,7 @@ export type UpdateMenuMutation = {
   updateMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -352,7 +352,7 @@ export type DeleteMenuMutation = {
   deleteMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -378,7 +378,7 @@ export type GetRestaurantQuery = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -427,7 +427,7 @@ export type GetMenuQuery = {
   getMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -447,7 +447,7 @@ export type ListMenusQuery = {
     items:  Array< {
       __typename: "Menu",
       id: string,
-      restuarantID: string,
+      restaurantID: string,
       name: string,
       description: string | null,
       createdAt: string,
@@ -532,7 +532,7 @@ export type OnCreateRestaurantSubscription = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -559,7 +559,7 @@ export type OnUpdateRestaurantSubscription = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -586,7 +586,7 @@ export type OnDeleteRestaurantSubscription = {
       items:  Array< {
         __typename: "Menu",
         id: string,
-        restuarantID: string,
+        restaurantID: string,
         name: string,
         description: string | null,
         createdAt: string,
@@ -603,7 +603,7 @@ export type OnCreateMenuSubscription = {
   onCreateMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -615,7 +615,7 @@ export type OnUpdateMenuSubscription = {
   onUpdateMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,
@@ -627,7 +627,7 @@ export type OnDeleteMenuSubscription = {
   onDeleteMenu:  {
     __typename: "Menu",
     id: string,
-    restuarantID: string,
+    restaurantID: string,
     name: string,
     description: string | null,
     createdAt: string,

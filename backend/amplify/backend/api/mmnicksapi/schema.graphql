@@ -8,11 +8,11 @@ type Restaurant
   description: String
   phoneNumber: String
   categories: [String]!
-  menus: [Menu] @connection(keyName: "byRestuarant", fields: ["id"])
+  menus: [Menu] @connection(keyName: "byRestaurant", fields: ["id"])
 }
-type Menu @model @key(name: "byRestuarant", fields: ["restuarantID"]) {
+type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   id: ID!
-  restuarantID: ID!
+  restaurantID: ID!
   name: String!
   description: String
 }

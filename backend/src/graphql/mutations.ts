@@ -17,7 +17,7 @@ export const createRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -45,7 +45,7 @@ export const updateRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -73,7 +73,7 @@ export const deleteRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -93,7 +93,7 @@ export const createMenu = /* GraphQL */ `
   ) {
     createMenu(input: $input, condition: $condition) {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt
@@ -108,7 +108,7 @@ export const updateMenu = /* GraphQL */ `
   ) {
     updateMenu(input: $input, condition: $condition) {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt
@@ -123,7 +123,7 @@ export const deleteMenu = /* GraphQL */ `
   ) {
     deleteMenu(input: $input, condition: $condition) {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt

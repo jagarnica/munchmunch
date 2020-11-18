@@ -14,7 +14,7 @@ export const onCreateRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -39,7 +39,7 @@ export const onUpdateRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -64,7 +64,7 @@ export const onDeleteRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -81,7 +81,7 @@ export const onCreateMenu = /* GraphQL */ `
   subscription OnCreateMenu {
     onCreateMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt
@@ -93,7 +93,7 @@ export const onUpdateMenu = /* GraphQL */ `
   subscription OnUpdateMenu {
     onUpdateMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt
@@ -105,7 +105,7 @@ export const onDeleteMenu = /* GraphQL */ `
   subscription OnDeleteMenu {
     onDeleteMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt

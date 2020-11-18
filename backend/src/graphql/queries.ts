@@ -14,7 +14,7 @@ export const getRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
           createdAt
@@ -55,7 +55,7 @@ export const getMenu = /* GraphQL */ `
   query GetMenu($id: ID!) {
     getMenu(id: $id) {
       id
-      restuarantID
+      restaurantID
       name
       description
       createdAt
@@ -72,7 +72,7 @@ export const listMenus = /* GraphQL */ `
     listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        restuarantID
+        restaurantID
         name
         description
         createdAt
