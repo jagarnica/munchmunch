@@ -1,7 +1,7 @@
 type Restaurant
   @model
   @searchable
-  @key(name: "byName", fields: ["name"], queryField: "restuarantsByName") {
+  @key(name: "byName", fields: ["name"], queryField: "restaurantByName") {
   id: ID!
   name: String!
   location: String!
@@ -10,7 +10,6 @@ type Restaurant
   categories: [String]!
   menus: [Menu] @connection(keyName: "byRestuarant", fields: ["id"])
 }
-
 type Menu @model @key(name: "byRestuarant", fields: ["restuarantID"]) {
   id: ID!
   restuarantID: ID!

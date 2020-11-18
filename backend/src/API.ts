@@ -457,7 +457,7 @@ export type ListMenusQuery = {
   } | null,
 };
 
-export type RestuarantsByNameQueryVariables = {
+export type RestaurantByNameQueryVariables = {
   name?: string | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelRestaurantFilterInput | null,
@@ -465,8 +465,8 @@ export type RestuarantsByNameQueryVariables = {
   nextToken?: string | null,
 };
 
-export type RestuarantsByNameQuery = {
-  restuarantsByName:  {
+export type RestaurantByNameQuery = {
+  restaurantByName:  {
     __typename: "ModelRestaurantConnection",
     items:  Array< {
       __typename: "Restaurant",

@@ -82,15 +82,15 @@ export const listMenus = /* GraphQL */ `
     }
   }
 `;
-export const restuarantsByName = /* GraphQL */ `
-  query RestuarantsByName(
+export const restaurantByName = /* GraphQL */ `
+  query RestaurantByName(
     $name: String
     $sortDirection: ModelSortDirection
     $filter: ModelRestaurantFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    restuarantsByName(
+    restaurantByName(
       name: $name
       sortDirection: $sortDirection
       filter: $filter
