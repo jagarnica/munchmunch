@@ -38,5 +38,6 @@ type FoodItem @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   description: String
   price: Int!
   restaurantID: ID!
+  restaurant: Restaurant @connection(fields: ["restaurantID"])
   menus: [MenuItems] @connection(keyName: "byFoodItem", fields: ["id"])
 }

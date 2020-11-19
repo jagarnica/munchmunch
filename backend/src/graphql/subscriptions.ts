@@ -191,6 +191,16 @@ export const onCreateMenuItems = /* GraphQL */ `
         description
         price
         restaurantID
+        restaurant {
+          id
+          name
+          location
+          description
+          phoneNumber
+          categories
+          createdAt
+          updatedAt
+        }
         menus {
           nextToken
         }
@@ -225,6 +235,16 @@ export const onUpdateMenuItems = /* GraphQL */ `
         description
         price
         restaurantID
+        restaurant {
+          id
+          name
+          location
+          description
+          phoneNumber
+          categories
+          createdAt
+          updatedAt
+        }
         menus {
           nextToken
         }
@@ -259,6 +279,16 @@ export const onDeleteMenuItems = /* GraphQL */ `
         description
         price
         restaurantID
+        restaurant {
+          id
+          name
+          location
+          description
+          phoneNumber
+          categories
+          createdAt
+          updatedAt
+        }
         menus {
           nextToken
         }
@@ -289,6 +319,22 @@ export const onCreateFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      restaurant {
+        id
+        name
+        location
+        description
+        phoneNumber
+        categories
+        menus {
+          nextToken
+        }
+        FoodItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       menus {
         items {
           id
@@ -312,6 +358,22 @@ export const onUpdateFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      restaurant {
+        id
+        name
+        location
+        description
+        phoneNumber
+        categories
+        menus {
+          nextToken
+        }
+        FoodItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       menus {
         items {
           id
@@ -335,6 +397,22 @@ export const onDeleteFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      restaurant {
+        id
+        name
+        location
+        description
+        phoneNumber
+        categories
+        menus {
+          nextToken
+        }
+        FoodItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       menus {
         items {
           id
