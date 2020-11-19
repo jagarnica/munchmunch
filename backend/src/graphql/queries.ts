@@ -97,9 +97,9 @@ export const listMenus = /* GraphQL */ `
     }
   }
 `;
-export const getMenuItem = /* GraphQL */ `
-  query GetMenuItem($id: ID!) {
-    getMenuItem(id: $id) {
+export const getFoodItem = /* GraphQL */ `
+  query GetFoodItem($id: ID!) {
+    getFoodItem(id: $id) {
       id
       name
       description
@@ -110,13 +110,13 @@ export const getMenuItem = /* GraphQL */ `
     }
   }
 `;
-export const listMenuItems = /* GraphQL */ `
-  query ListMenuItems(
-    $filter: ModelMenuItemFilterInput
+export const listFoodItems = /* GraphQL */ `
+  query ListFoodItems(
+    $filter: ModelFoodItemFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listMenuItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listFoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         name

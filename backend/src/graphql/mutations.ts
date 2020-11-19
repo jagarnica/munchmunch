@@ -167,12 +167,12 @@ export const deleteMenu = /* GraphQL */ `
     }
   }
 `;
-export const createMenuItem = /* GraphQL */ `
-  mutation CreateMenuItem(
-    $input: CreateMenuItemInput!
-    $condition: ModelMenuItemConditionInput
+export const createFoodItem = /* GraphQL */ `
+  mutation CreateFoodItem(
+    $input: CreateFoodItemInput!
+    $condition: ModelFoodItemConditionInput
   ) {
-    createMenuItem(input: $input, condition: $condition) {
+    createFoodItem(input: $input, condition: $condition) {
       id
       name
       description
@@ -183,12 +183,12 @@ export const createMenuItem = /* GraphQL */ `
     }
   }
 `;
-export const updateMenuItem = /* GraphQL */ `
-  mutation UpdateMenuItem(
-    $input: UpdateMenuItemInput!
-    $condition: ModelMenuItemConditionInput
+export const updateFoodItem = /* GraphQL */ `
+  mutation UpdateFoodItem(
+    $input: UpdateFoodItemInput!
+    $condition: ModelFoodItemConditionInput
   ) {
-    updateMenuItem(input: $input, condition: $condition) {
+    updateFoodItem(input: $input, condition: $condition) {
       id
       name
       description
@@ -199,12 +199,12 @@ export const updateMenuItem = /* GraphQL */ `
     }
   }
 `;
-export const deleteMenuItem = /* GraphQL */ `
-  mutation DeleteMenuItem(
-    $input: DeleteMenuItemInput!
-    $condition: ModelMenuItemConditionInput
+export const deleteFoodItem = /* GraphQL */ `
+  mutation DeleteFoodItem(
+    $input: DeleteFoodItemInput!
+    $condition: ModelFoodItemConditionInput
   ) {
-    deleteMenuItem(input: $input, condition: $condition) {
+    deleteFoodItem(input: $input, condition: $condition) {
       id
       name
       description

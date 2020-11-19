@@ -139,7 +139,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getMenuItem",
+          "name" : "getFoodItem",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -157,20 +157,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listMenuItems",
+          "name" : "listFoodItems",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemFilterInput",
+              "name" : "ModelFoodItemFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -195,7 +195,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMenuItemConnection",
+            "name" : "ModelFoodItemConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -462,7 +462,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemFilterInput",
+              "name" : "ModelFoodItemFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -496,7 +496,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMenuItemConnection",
+            "name" : "ModelFoodItemConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1207,7 +1207,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelMenuItemConnection",
+        "name" : "ModelFoodItemConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -1218,7 +1218,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "MenuItem",
+              "name" : "FoodItem",
               "ofType" : null
             }
           },
@@ -1242,7 +1242,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "MenuItem",
+        "name" : "FoodItem",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -1352,7 +1352,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMenuItemFilterInput",
+        "name" : "ModelFoodItemFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1408,7 +1408,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemFilterInput",
+              "name" : "ModelFoodItemFilterInput",
               "ofType" : null
             }
           },
@@ -1421,7 +1421,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemFilterInput",
+              "name" : "ModelFoodItemFilterInput",
               "ofType" : null
             }
           },
@@ -1431,7 +1431,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMenuItemFilterInput",
+            "name" : "ModelFoodItemFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2376,7 +2376,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createMenuItem",
+          "name" : "createFoodItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2386,7 +2386,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateMenuItemInput",
+                "name" : "CreateFoodItemInput",
                 "ofType" : null
               }
             },
@@ -2396,20 +2396,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemConditionInput",
+              "name" : "ModelFoodItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateMenuItem",
+          "name" : "updateFoodItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2419,7 +2419,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMenuItemInput",
+                "name" : "UpdateFoodItemInput",
                 "ofType" : null
               }
             },
@@ -2429,20 +2429,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemConditionInput",
+              "name" : "ModelFoodItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteMenuItem",
+          "name" : "deleteFoodItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -2452,7 +2452,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMenuItemInput",
+                "name" : "DeleteFoodItemInput",
                 "ofType" : null
               }
             },
@@ -2462,14 +2462,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemConditionInput",
+              "name" : "ModelFoodItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2929,7 +2929,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateMenuItemInput",
+        "name" : "CreateFoodItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2995,7 +2995,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMenuItemConditionInput",
+        "name" : "ModelFoodItemConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3042,7 +3042,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemConditionInput",
+              "name" : "ModelFoodItemConditionInput",
               "ofType" : null
             }
           },
@@ -3055,7 +3055,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemConditionInput",
+              "name" : "ModelFoodItemConditionInput",
               "ofType" : null
             }
           },
@@ -3065,7 +3065,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMenuItemConditionInput",
+            "name" : "ModelFoodItemConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3075,7 +3075,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMenuItemInput",
+        "name" : "UpdateFoodItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3133,7 +3133,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMenuItemInput",
+        "name" : "DeleteFoodItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3220,34 +3220,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateMenuItem",
+          "name" : "onCreateFoodItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateMenuItem",
+          "name" : "onUpdateFoodItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteMenuItem",
+          "name" : "onDeleteFoodItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItem",
+            "name" : "FoodItem",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3295,33 +3295,6 @@
           "type" : {
             "kind" : "ENUM",
             "name" : "ModelAttributeTypes",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "SearchableBooleanFilterInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3429,6 +3402,33 @@
         "description" : "Built-in Float",
         "fields" : null,
         "inputFields" : null,
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "SearchableBooleanFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
         "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
@@ -4368,22 +4368,6 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "aws_oidc",
-        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_api_key",
-        "description" : "Tells the service this field/object has access authorized by an API key.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "deprecated",
         "description" : null,
         "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
@@ -4397,6 +4381,22 @@
           },
           "defaultValue" : "\"No longer supported\""
         } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_oidc",
+        "description" : "Tells the service this field/object has access authorized by an OIDC token.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "aws_api_key",
+        "description" : "Tells the service this field/object has access authorized by an API key.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
