@@ -17,6 +17,19 @@ type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   restaurantID: ID!
   name: String!
   description: String
+  menuItems: [MenuItems] @connection(keyName: "byMenu", fields: ["id"])
+}
+# Menu to Food Items joining model
+type MenuItems
+  @model(queries: null)
+  @searchable
+  @key(name: "byFoodItem", fields: ["foodItemID", "menuID"])
+  @key(name: "byMenu", fields: ["menuID", "foodItemID"]) {
+  id: ID!
+  foodItemID: ID!
+  menuID: ID!
+  foodItem: FoodItem! @connection(fields: ["foodItemID"])
+  menu: Menu! @connection(fields: ["menuID"])
 }
 
 type FoodItem @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
@@ -25,4 +38,5 @@ type FoodItem @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   description: String
   price: Int!
   restaurantID: ID!
+  menus: [MenuItems] @connection(keyName: "byFoodItem", fields: ["id"])
 }

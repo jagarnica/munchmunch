@@ -118,6 +118,30 @@ export type DeleteMenuInput = {
   id?: string | null,
 };
 
+export type CreateMenuItemsInput = {
+  id?: string | null,
+  foodItemID: string,
+  menuID: string,
+};
+
+export type ModelMenuItemsConditionInput = {
+  foodItemID?: ModelIDInput | null,
+  menuID?: ModelIDInput | null,
+  and?: Array< ModelMenuItemsConditionInput | null > | null,
+  or?: Array< ModelMenuItemsConditionInput | null > | null,
+  not?: ModelMenuItemsConditionInput | null,
+};
+
+export type UpdateMenuItemsInput = {
+  id: string,
+  foodItemID?: string | null,
+  menuID?: string | null,
+};
+
+export type DeleteMenuItemsInput = {
+  id?: string | null,
+};
+
 export type CreateFoodItemInput = {
   id?: string | null,
   name: string,
@@ -263,6 +287,27 @@ export enum SearchableRestaurantSortableFields {
 export enum SearchableSortDirection {
   asc = "asc",
   desc = "desc",
+}
+
+
+export type SearchableMenuItemsFilterInput = {
+  id?: SearchableIDFilterInput | null,
+  foodItemID?: SearchableIDFilterInput | null,
+  menuID?: SearchableIDFilterInput | null,
+  and?: Array< SearchableMenuItemsFilterInput | null > | null,
+  or?: Array< SearchableMenuItemsFilterInput | null > | null,
+  not?: SearchableMenuItemsFilterInput | null,
+};
+
+export type SearchableMenuItemsSortInput = {
+  field?: SearchableMenuItemsSortableFields | null,
+  direction?: SearchableSortDirection | null,
+};
+
+export enum SearchableMenuItemsSortableFields {
+  id = "id",
+  foodItemID = "foodItemID",
+  menuID = "menuID",
 }
 
 
@@ -416,6 +461,18 @@ export type CreateMenuMutation = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -433,6 +490,18 @@ export type UpdateMenuMutation = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -450,6 +519,147 @@ export type DeleteMenuMutation = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type CreateMenuItemsMutationVariables = {
+  input: CreateMenuItemsInput,
+  condition?: ModelMenuItemsConditionInput | null,
+};
+
+export type CreateMenuItemsMutation = {
+  createMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateMenuItemsMutationVariables = {
+  input: UpdateMenuItemsInput,
+  condition?: ModelMenuItemsConditionInput | null,
+};
+
+export type UpdateMenuItemsMutation = {
+  updateMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteMenuItemsMutationVariables = {
+  input: DeleteMenuItemsInput,
+  condition?: ModelMenuItemsConditionInput | null,
+};
+
+export type DeleteMenuItemsMutation = {
+  deleteMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -468,6 +678,18 @@ export type CreateFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -486,6 +708,18 @@ export type UpdateFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -504,6 +738,18 @@ export type DeleteFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -597,6 +843,18 @@ export type GetMenuQuery = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -617,6 +875,10 @@ export type ListMenusQuery = {
       restaurantID: string,
       name: string,
       description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -636,6 +898,18 @@ export type GetFoodItemQuery = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -657,6 +931,10 @@ export type ListFoodItemsQuery = {
       description: string | null,
       price: number,
       restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -725,6 +1003,49 @@ export type SearchRestaurantsQuery = {
         __typename: "ModelFoodItemConnection",
         nextToken: string | null,
       } | null,
+      createdAt: string,
+      updatedAt: string,
+    } | null > | null,
+    nextToken: string | null,
+    total: number | null,
+  } | null,
+};
+
+export type SearchMenuItemssQueryVariables = {
+  filter?: SearchableMenuItemsFilterInput | null,
+  sort?: SearchableMenuItemsSortInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+  from?: number | null,
+};
+
+export type SearchMenuItemssQuery = {
+  searchMenuItemss:  {
+    __typename: "SearchableMenuItemsConnection",
+    items:  Array< {
+      __typename: "MenuItems",
+      id: string,
+      foodItemID: string,
+      menuID: string,
+      foodItem:  {
+        __typename: "FoodItem",
+        id: string,
+        name: string,
+        description: string | null,
+        price: number,
+        restaurantID: string,
+        createdAt: string,
+        updatedAt: string,
+      },
+      menu:  {
+        __typename: "Menu",
+        id: string,
+        restaurantID: string,
+        name: string,
+        description: string | null,
+        createdAt: string,
+        updatedAt: string,
+      },
       createdAt: string,
       updatedAt: string,
     } | null > | null,
@@ -863,6 +1184,18 @@ export type OnCreateMenuSubscription = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -875,6 +1208,18 @@ export type OnUpdateMenuSubscription = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -887,6 +1232,132 @@ export type OnDeleteMenuSubscription = {
     restaurantID: string,
     name: string,
     description: string | null,
+    menuItems:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateMenuItemsSubscription = {
+  onCreateMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateMenuItemsSubscription = {
+  onUpdateMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteMenuItemsSubscription = {
+  onDeleteMenuItems:  {
+    __typename: "MenuItems",
+    id: string,
+    foodItemID: string,
+    menuID: string,
+    foodItem:  {
+      __typename: "FoodItem",
+      id: string,
+      name: string,
+      description: string | null,
+      price: number,
+      restaurantID: string,
+      menus:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
+    menu:  {
+      __typename: "Menu",
+      id: string,
+      restaurantID: string,
+      name: string,
+      description: string | null,
+      menuItems:  {
+        __typename: "ModelMenuItemsConnection",
+        nextToken: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+    },
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -900,6 +1371,18 @@ export type OnCreateFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -913,6 +1396,18 @@ export type OnUpdateFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,
@@ -926,6 +1421,18 @@ export type OnDeleteFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
+    menus:  {
+      __typename: "ModelMenuItemsConnection",
+      items:  Array< {
+        __typename: "MenuItems",
+        id: string,
+        foodItemID: string,
+        menuID: string,
+        createdAt: string,
+        updatedAt: string,
+      } | null > | null,
+      nextToken: string | null,
+    } | null,
     createdAt: string,
     updatedAt: string,
   } | null,

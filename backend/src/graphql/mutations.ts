@@ -132,6 +132,16 @@ export const createMenu = /* GraphQL */ `
       restaurantID
       name
       description
+      menuItems {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -147,6 +157,16 @@ export const updateMenu = /* GraphQL */ `
       restaurantID
       name
       description
+      menuItems {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -162,6 +182,127 @@ export const deleteMenu = /* GraphQL */ `
       restaurantID
       name
       description
+      menuItems {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createMenuItems = /* GraphQL */ `
+  mutation CreateMenuItems(
+    $input: CreateMenuItemsInput!
+    $condition: ModelMenuItemsConditionInput
+  ) {
+    createMenuItems(input: $input, condition: $condition) {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        name
+        description
+        price
+        restaurantID
+        menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        menuItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateMenuItems = /* GraphQL */ `
+  mutation UpdateMenuItems(
+    $input: UpdateMenuItemsInput!
+    $condition: ModelMenuItemsConditionInput
+  ) {
+    updateMenuItems(input: $input, condition: $condition) {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        name
+        description
+        price
+        restaurantID
+        menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        menuItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteMenuItems = /* GraphQL */ `
+  mutation DeleteMenuItems(
+    $input: DeleteMenuItemsInput!
+    $condition: ModelMenuItemsConditionInput
+  ) {
+    deleteMenuItems(input: $input, condition: $condition) {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        name
+        description
+        price
+        restaurantID
+        menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        menuItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       createdAt
       updatedAt
     }
@@ -178,6 +319,16 @@ export const createFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      menus {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -194,6 +345,16 @@ export const updateFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      menus {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -210,6 +371,16 @@ export const deleteFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      menus {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }

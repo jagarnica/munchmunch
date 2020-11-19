@@ -73,6 +73,16 @@ export const getMenu = /* GraphQL */ `
       restaurantID
       name
       description
+      menuItems {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -90,6 +100,9 @@ export const listMenus = /* GraphQL */ `
         restaurantID
         name
         description
+        menuItems {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -105,6 +118,16 @@ export const getFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
+      menus {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -123,6 +146,9 @@ export const listFoodItems = /* GraphQL */ `
         description
         price
         restaurantID
+        menus {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -192,6 +218,50 @@ export const searchRestaurants = /* GraphQL */ `
         }
         menuItems {
           nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchMenuItemss = /* GraphQL */ `
+  query SearchMenuItemss(
+    $filter: SearchableMenuItemsFilterInput
+    $sort: SearchableMenuItemsSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchMenuItemss(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        foodItemID
+        menuID
+        foodItem {
+          id
+          name
+          description
+          price
+          restaurantID
+          createdAt
+          updatedAt
+        }
+        menu {
+          id
+          restaurantID
+          name
+          description
+          createdAt
+          updatedAt
         }
         createdAt
         updatedAt
