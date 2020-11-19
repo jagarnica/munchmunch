@@ -212,16 +212,6 @@ export const createMenuItem = /* GraphQL */ `
         description
         price
         restaurantID
-        restaurant {
-          id
-          name
-          location
-          description
-          phoneNumber
-          categories
-          createdAt
-          updatedAt
-        }
         menus {
           nextToken
         }
@@ -259,16 +249,6 @@ export const updateMenuItem = /* GraphQL */ `
         description
         price
         restaurantID
-        restaurant {
-          id
-          name
-          location
-          description
-          phoneNumber
-          categories
-          createdAt
-          updatedAt
-        }
         menus {
           nextToken
         }
@@ -306,16 +286,6 @@ export const deleteMenuItem = /* GraphQL */ `
         description
         price
         restaurantID
-        restaurant {
-          id
-          name
-          location
-          description
-          phoneNumber
-          categories
-          createdAt
-          updatedAt
-        }
         menus {
           nextToken
         }
@@ -349,22 +319,6 @@ export const createFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
-      restaurant {
-        id
-        name
-        location
-        description
-        phoneNumber
-        categories
-        menus {
-          nextToken
-        }
-        FoodItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       menus {
         items {
           id
@@ -391,22 +345,6 @@ export const updateFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
-      restaurant {
-        id
-        name
-        location
-        description
-        phoneNumber
-        categories
-        menus {
-          nextToken
-        }
-        FoodItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       menus {
         items {
           id
@@ -433,22 +371,6 @@ export const deleteFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
-      restaurant {
-        id
-        name
-        location
-        description
-        phoneNumber
-        categories
-        menus {
-          nextToken
-        }
-        FoodItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       menus {
         items {
           id

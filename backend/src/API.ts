@@ -554,17 +554,6 @@ export type CreateMenuItemMutation = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -608,17 +597,6 @@ export type UpdateMenuItemMutation = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -662,17 +640,6 @@ export type DeleteMenuItemMutation = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -711,25 +678,6 @@ export type CreateFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -760,25 +708,6 @@ export type UpdateFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -809,25 +738,6 @@ export type DeleteFoodItemMutation = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -988,25 +898,6 @@ export type GetFoodItemQuery = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -1040,17 +931,6 @@ export type ListFoodItemsQuery = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -1382,17 +1262,6 @@ export type OnCreateMenuItemSubscription = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -1431,17 +1300,6 @@ export type OnUpdateMenuItemSubscription = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -1480,17 +1338,6 @@ export type OnDeleteMenuItemSubscription = {
       description: string | null,
       price: number,
       restaurantID: string,
-      restaurant:  {
-        __typename: "Restaurant",
-        id: string,
-        name: string,
-        location: string,
-        description: string | null,
-        phoneNumber: string | null,
-        categories: Array< string | null >,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
       menus:  {
         __typename: "ModelMenuItemConnection",
         nextToken: string | null,
@@ -1524,25 +1371,6 @@ export type OnCreateFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -1568,25 +1396,6 @@ export type OnUpdateFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {
@@ -1612,25 +1421,6 @@ export type OnDeleteFoodItemSubscription = {
     description: string | null,
     price: number,
     restaurantID: string,
-    restaurant:  {
-      __typename: "Restaurant",
-      id: string,
-      name: string,
-      location: string,
-      description: string | null,
-      phoneNumber: string | null,
-      categories: Array< string | null >,
-      menus:  {
-        __typename: "ModelMenuConnection",
-        nextToken: string | null,
-      } | null,
-      FoodItems:  {
-        __typename: "ModelFoodItemConnection",
-        nextToken: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
     menus:  {
       __typename: "ModelMenuItemConnection",
       items:  Array< {

@@ -118,22 +118,6 @@ export const getFoodItem = /* GraphQL */ `
       description
       price
       restaurantID
-      restaurant {
-        id
-        name
-        location
-        description
-        phoneNumber
-        categories
-        menus {
-          nextToken
-        }
-        FoodItems {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
       menus {
         items {
           id
@@ -162,16 +146,6 @@ export const listFoodItems = /* GraphQL */ `
         description
         price
         restaurantID
-        restaurant {
-          id
-          name
-          location
-          description
-          phoneNumber
-          categories
-          createdAt
-          updatedAt
-        }
         menus {
           nextToken
         }
