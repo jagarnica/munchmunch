@@ -313,14 +313,14 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "searchMenuItemss",
+          "name" : "searchMenuItems",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "SearchableMenuItemsFilterInput",
+              "name" : "SearchableMenuItemFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -329,7 +329,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "SearchableMenuItemsSortInput",
+              "name" : "SearchableMenuItemSortInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -363,7 +363,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SearchableMenuItemsConnection",
+            "name" : "SearchableMenuItemConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -722,7 +722,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsFilterInput",
+              "name" : "ModelMenuItemFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -756,7 +756,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMenuItemsConnection",
+            "name" : "ModelMenuItemConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -798,7 +798,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelMenuItemsConnection",
+        "name" : "ModelMenuItemConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -809,7 +809,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "MenuItems",
+              "name" : "MenuItem",
               "ofType" : null
             }
           },
@@ -833,7 +833,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "MenuItems",
+        "name" : "MenuItem",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -1048,7 +1048,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsFilterInput",
+              "name" : "ModelMenuItemFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -1082,7 +1082,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelMenuItemsConnection",
+            "name" : "ModelMenuItemConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1209,7 +1209,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMenuItemsFilterInput",
+        "name" : "ModelMenuItemFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1247,7 +1247,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsFilterInput",
+              "name" : "ModelMenuItemFilterInput",
               "ofType" : null
             }
           },
@@ -1260,7 +1260,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsFilterInput",
+              "name" : "ModelMenuItemFilterInput",
               "ofType" : null
             }
           },
@@ -1270,7 +1270,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMenuItemsFilterInput",
+            "name" : "ModelMenuItemFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2650,7 +2650,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "SearchableMenuItemsConnection",
+        "name" : "SearchableMenuItemConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -2661,7 +2661,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "MenuItems",
+              "name" : "MenuItem",
               "ofType" : null
             }
           },
@@ -2696,7 +2696,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "SearchableMenuItemsFilterInput",
+        "name" : "SearchableMenuItemFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2734,7 +2734,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "SearchableMenuItemsFilterInput",
+              "name" : "SearchableMenuItemFilterInput",
               "ofType" : null
             }
           },
@@ -2747,7 +2747,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "SearchableMenuItemsFilterInput",
+              "name" : "SearchableMenuItemFilterInput",
               "ofType" : null
             }
           },
@@ -2757,7 +2757,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "SearchableMenuItemsFilterInput",
+            "name" : "SearchableMenuItemFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2767,7 +2767,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "SearchableMenuItemsSortInput",
+        "name" : "SearchableMenuItemSortInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2775,7 +2775,7 @@
           "description" : null,
           "type" : {
             "kind" : "ENUM",
-            "name" : "SearchableMenuItemsSortableFields",
+            "name" : "SearchableMenuItemSortableFields",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2794,7 +2794,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "ENUM",
-        "name" : "SearchableMenuItemsSortableFields",
+        "name" : "SearchableMenuItemSortableFields",
         "description" : null,
         "fields" : null,
         "inputFields" : null,
@@ -3019,7 +3019,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createMenuItems",
+          "name" : "createMenuItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3029,7 +3029,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateMenuItemsInput",
+                "name" : "CreateMenuItemInput",
                 "ofType" : null
               }
             },
@@ -3039,20 +3039,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsConditionInput",
+              "name" : "ModelMenuItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateMenuItems",
+          "name" : "updateMenuItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3062,7 +3062,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateMenuItemsInput",
+                "name" : "UpdateMenuItemInput",
                 "ofType" : null
               }
             },
@@ -3072,20 +3072,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsConditionInput",
+              "name" : "ModelMenuItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteMenuItems",
+          "name" : "deleteMenuItem",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -3095,7 +3095,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteMenuItemsInput",
+                "name" : "DeleteMenuItemInput",
                 "ofType" : null
               }
             },
@@ -3105,14 +3105,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsConditionInput",
+              "name" : "ModelMenuItemConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -3671,7 +3671,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateMenuItemsInput",
+        "name" : "CreateMenuItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3715,7 +3715,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelMenuItemsConditionInput",
+        "name" : "ModelMenuItemConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3744,7 +3744,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsConditionInput",
+              "name" : "ModelMenuItemConditionInput",
               "ofType" : null
             }
           },
@@ -3757,7 +3757,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelMenuItemsConditionInput",
+              "name" : "ModelMenuItemConditionInput",
               "ofType" : null
             }
           },
@@ -3767,7 +3767,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelMenuItemsConditionInput",
+            "name" : "ModelMenuItemConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -3777,7 +3777,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateMenuItemsInput",
+        "name" : "UpdateMenuItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3817,7 +3817,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteMenuItemsInput",
+        "name" : "DeleteMenuItemInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -4126,34 +4126,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateMenuItems",
+          "name" : "onCreateMenuItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateMenuItems",
+          "name" : "onUpdateMenuItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteMenuItems",
+          "name" : "onDeleteMenuItem",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "MenuItems",
+            "name" : "MenuItem",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4198,25 +4198,74 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "SearchableBooleanFilterInput",
+        "name" : "SearchableFloatFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
           "name" : "ne",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Boolean",
+            "name" : "Float",
             "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gte",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lte",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Float",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "range",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Float",
+              "ofType" : null
+            }
           },
           "defaultValue" : null
         } ],
@@ -4224,47 +4273,11 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelBooleanInput",
-        "description" : null,
+        "kind" : "SCALAR",
+        "name" : "Float",
+        "description" : "Built-in Float",
         "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeExists",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeType",
-          "description" : null,
-          "type" : {
-            "kind" : "ENUM",
-            "name" : "ModelAttributeTypes",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
+        "inputFields" : null,
         "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
@@ -4338,6 +4351,33 @@
               "name" : "Int",
               "ofType" : null
             }
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "SearchableBooleanFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],
@@ -4439,17 +4479,8 @@
         "enumValues" : null,
         "possibleTypes" : null
       }, {
-        "kind" : "SCALAR",
-        "name" : "Float",
-        "description" : "Built-in Float",
-        "fields" : null,
-        "inputFields" : null,
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "SearchableFloatFilterInput",
+        "name" : "ModelBooleanInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -4457,43 +4488,7 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gte",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lte",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -4502,21 +4497,26 @@
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
-            "name" : "Float",
+            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
         }, {
-          "name" : "range",
+          "name" : "attributeExists",
           "description" : null,
           "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Float",
-              "ofType" : null
-            }
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeType",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "ModelAttributeTypes",
+            "ofType" : null
           },
           "defaultValue" : null
         } ],

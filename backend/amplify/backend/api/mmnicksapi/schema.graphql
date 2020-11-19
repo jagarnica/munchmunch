@@ -9,7 +9,8 @@ type Restaurant
   phoneNumber: String
   categories: [String]!
   menus: [Menu] @connection(keyName: "byRestaurant", fields: ["id"])
-  FoodItems: [FoodItem] @connection(name: "byRestaurant", fields: ["id"])
+  FoodItems: [FoodItem]
+    @connection(name: "foodItemByRestaurant", fields: ["id"])
 }
 
 type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
@@ -17,10 +18,10 @@ type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   restaurantID: ID!
   name: String!
   description: String
-  menuItems: [MenuItems] @connection(keyName: "byMenu", fields: ["id"])
+  menuItems: [MenuItem] @connection(keyName: "byMenu", fields: ["id"])
 }
 # Menu to Food Items joining model
-type MenuItems
+type MenuItem
   @model(queries: null)
   @searchable
   @key(name: "byFoodItem", fields: ["foodItemID", "menuID"])
@@ -32,12 +33,14 @@ type MenuItems
   menu: Menu! @connection(fields: ["menuID"])
 }
 
-type FoodItem @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
+type FoodItem
+  @model
+  @key(name: "foodItemByRestaurant", fields: ["restaurantID"]) {
   id: ID!
   name: String!
   description: String
   price: Int!
   restaurantID: ID!
   restaurant: Restaurant @connection(fields: ["restaurantID"])
-  menus: [MenuItems] @connection(keyName: "byFoodItem", fields: ["id"])
+  menus: [MenuItem] @connection(keyName: "byFoodItem", fields: ["id"])
 }

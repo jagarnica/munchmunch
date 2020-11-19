@@ -253,15 +253,15 @@ export const searchRestaurants = /* GraphQL */ `
     }
   }
 `;
-export const searchMenuItemss = /* GraphQL */ `
-  query SearchMenuItemss(
-    $filter: SearchableMenuItemsFilterInput
-    $sort: SearchableMenuItemsSortInput
+export const searchMenuItems = /* GraphQL */ `
+  query SearchMenuItems(
+    $filter: SearchableMenuItemFilterInput
+    $sort: SearchableMenuItemSortInput
     $limit: Int
     $nextToken: String
     $from: Int
   ) {
-    searchMenuItemss(
+    searchMenuItems(
       filter: $filter
       sort: $sort
       limit: $limit

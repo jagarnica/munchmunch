@@ -179,9 +179,9 @@ export const onDeleteMenu = /* GraphQL */ `
     }
   }
 `;
-export const onCreateMenuItems = /* GraphQL */ `
-  subscription OnCreateMenuItems {
-    onCreateMenuItems {
+export const onCreateMenuItem = /* GraphQL */ `
+  subscription OnCreateMenuItem {
+    onCreateMenuItem {
       id
       foodItemID
       menuID
@@ -223,9 +223,9 @@ export const onCreateMenuItems = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateMenuItems = /* GraphQL */ `
-  subscription OnUpdateMenuItems {
-    onUpdateMenuItems {
+export const onUpdateMenuItem = /* GraphQL */ `
+  subscription OnUpdateMenuItem {
+    onUpdateMenuItem {
       id
       foodItemID
       menuID
@@ -267,9 +267,9 @@ export const onUpdateMenuItems = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteMenuItems = /* GraphQL */ `
-  subscription OnDeleteMenuItems {
-    onDeleteMenuItems {
+export const onDeleteMenuItem = /* GraphQL */ `
+  subscription OnDeleteMenuItem {
+    onDeleteMenuItem {
       id
       foodItemID
       menuID
