@@ -9,7 +9,7 @@ type Restaurant
   phoneNumber: String
   categories: [String]!
   menus: [Menu] @connection(keyName: "byRestaurant", fields: ["id"])
-  menuItems: [FoodItem] @connection(name: "byRestaurant", fields: ["id"])
+  FoodItems: [FoodItem] @connection(name: "byRestaurant", fields: ["id"])
 }
 
 type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {

@@ -25,7 +25,7 @@ export const createRestaurant = /* GraphQL */ `
         }
         nextToken
       }
-      menuItems {
+      FoodItems {
         items {
           id
           name
@@ -65,7 +65,7 @@ export const updateRestaurant = /* GraphQL */ `
         }
         nextToken
       }
-      menuItems {
+      FoodItems {
         items {
           id
           name
@@ -105,7 +105,7 @@ export const deleteRestaurant = /* GraphQL */ `
         }
         nextToken
       }
-      menuItems {
+      FoodItems {
         items {
           id
           name
