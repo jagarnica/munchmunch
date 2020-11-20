@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@chakra-ui/core';
+import { Box, Link, Stack, Text } from '@chakra-ui/core';
 import { useSiteMetadata } from 'utils/hooks/queries';
 import { Header } from './navbar/header';
 
@@ -23,7 +23,29 @@ export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) =
         }
       >
         <main>{children}</main>
-        <footer>© {new Date().getFullYear()} Munch Munch</footer>
+        <Stack spacing="24px">
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link href="/rewardslandingpage">Want to Join Munch Munch?</Link>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Text>© {new Date().getFullYear()} Munch Munch</Text>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link>Munch Munch Rewards</Link>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link href="/termsofuse">Terms Of Use</Link>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link href="/legalpolicy">Privacy Policy</Link>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link href="/caprivacynotice">CA Privacy Notice</Link>
+          </Box>
+          <Box w="225px" h="40px" bg="orange.400">
+            <Link href="/donotsellmydata">DO NOT SELL MY INFO</Link>
+          </Box>
+        </Stack>
       </Box>
     </>
   );
