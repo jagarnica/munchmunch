@@ -22,6 +22,18 @@ export const onCreateRestaurant = /* GraphQL */ `
         }
         nextToken
       }
+      foodItems {
+        items {
+          id
+          restaurantID
+          name
+          description
+          price
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -47,6 +59,18 @@ export const onUpdateRestaurant = /* GraphQL */ `
         }
         nextToken
       }
+      foodItems {
+        items {
+          id
+          restaurantID
+          name
+          description
+          price
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -67,6 +91,18 @@ export const onDeleteRestaurant = /* GraphQL */ `
           restaurantID
           name
           description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      foodItems {
+        items {
+          id
+          restaurantID
+          name
+          description
+          price
           createdAt
           updatedAt
         }
