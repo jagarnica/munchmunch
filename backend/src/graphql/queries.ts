@@ -22,7 +22,7 @@ export const getRestaurant = /* GraphQL */ `
         }
         nextToken
       }
-      FoodItems {
+      foodItems {
         items {
           id
           restaurantID
@@ -56,7 +56,7 @@ export const listRestaurants = /* GraphQL */ `
         menus {
           nextToken
         }
-        FoodItems {
+        foodItems {
           nextToken
         }
         createdAt
@@ -181,7 +181,7 @@ export const restaurantByName = /* GraphQL */ `
         menus {
           nextToken
         }
-        FoodItems {
+        foodItems {
           nextToken
         }
         createdAt
@@ -216,7 +216,7 @@ export const searchRestaurants = /* GraphQL */ `
         menus {
           nextToken
         }
-        FoodItems {
+        foodItems {
           nextToken
         }
         createdAt

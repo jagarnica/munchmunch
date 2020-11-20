@@ -338,7 +338,7 @@ export type CreateRestaurantMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -384,7 +384,7 @@ export type UpdateRestaurantMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -430,7 +430,7 @@ export type DeleteRestaurantMutation = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -781,7 +781,7 @@ export type GetRestaurantQuery = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -821,7 +821,7 @@ export type ListRestaurantsQuery = {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
       } | null,
-      FoodItems:  {
+      foodItems:  {
         __typename: "ModelFoodItemConnection",
         nextToken: string | null,
       } | null,
@@ -965,7 +965,7 @@ export type RestaurantByNameQuery = {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
       } | null,
-      FoodItems:  {
+      foodItems:  {
         __typename: "ModelFoodItemConnection",
         nextToken: string | null,
       } | null,
@@ -999,7 +999,7 @@ export type SearchRestaurantsQuery = {
         __typename: "ModelMenuConnection",
         nextToken: string | null,
       } | null,
-      FoodItems:  {
+      foodItems:  {
         __typename: "ModelFoodItemConnection",
         nextToken: string | null,
       } | null,
@@ -1076,7 +1076,7 @@ export type OnCreateRestaurantSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -1117,7 +1117,7 @@ export type OnUpdateRestaurantSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
@@ -1158,7 +1158,7 @@ export type OnDeleteRestaurantSubscription = {
       } | null > | null,
       nextToken: string | null,
     } | null,
-    FoodItems:  {
+    foodItems:  {
       __typename: "ModelFoodItemConnection",
       items:  Array< {
         __typename: "FoodItem",
