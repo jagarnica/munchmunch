@@ -10,7 +10,7 @@ import { UserPayments } from './payment';
 import { UserSearch, RestuarantSearchPage } from './search';
 import { TermsOfUsePage, CAPrivacyNotice, LegalPolicy, DoNotSellMyData } from './legal';
 import { MunchMunchRewards } from './rewards';
-
+import { RestaurantPageLayout, RestuarantOrder } from './resturant';
 /**
  * @name OrderApp
  * @description Holds the app used by customers to order food,
@@ -25,6 +25,10 @@ export const OrderApp: React.FC<MainRouteComponent> = () => {
         <ForgotPasswordPage path="forgotpassword" />
         <Redirect noThrow from="*" to="/404" default />
       </AuthPage>
+      <RestaurantPageLayout path="/restaurant">
+        <RestuarantOrder path=":id" />
+        <Redirect noThrow from="*" to="/404" default />
+      </RestaurantPageLayout>
       <OrderHome path="/" />
       <UserSearch path="/search">
         <RestuarantSearchPage path="resturants/:query" />
