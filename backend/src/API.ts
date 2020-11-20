@@ -148,6 +148,7 @@ export type CreateFoodItemInput = {
   name: string,
   description?: string | null,
   price: number,
+  restaurantFoodItemsId?: string | null,
 };
 
 export type ModelFoodItemConditionInput = {
@@ -178,6 +179,7 @@ export type UpdateFoodItemInput = {
   name?: string | null,
   description?: string | null,
   price?: number | null,
+  restaurantFoodItemsId?: string | null,
 };
 
 export type DeleteFoodItemInput = {

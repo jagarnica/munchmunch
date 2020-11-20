@@ -9,8 +9,6 @@ type Restaurant
   phoneNumber: String
   categories: [String]!
   menus: [Menu] @connection(keyName: "byRestaurant", fields: ["id"])
-  foodItems: [FoodItem]
-    @connection(name: "foodItemByRestaurant", fields: ["id"])
 }
 
 type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
@@ -33,9 +31,7 @@ type MenuItem
   menu: Menu! @connection(fields: ["menuID"])
 }
 
-type FoodItem
-  @model
-  @key(name: "foodItemByRestaurant", fields: ["restaurantID"]) {
+type FoodItem @model {
   id: ID!
   restaurantID: ID!
   name: String!
