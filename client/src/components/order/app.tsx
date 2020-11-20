@@ -8,7 +8,7 @@ import { Account } from './account';
 import { OrderHistory } from './orders';
 import { UserPayments } from './payment';
 import { UserSearch, RestuarantSearchPage } from './search';
-import { RestaurantPageLayout, RestuarantOrder } from './resturant';
+import { RestaurantPageLayout, RestuarantOrder } from './restaurant';
 /**
  * @name OrderApp
  * @description Holds the app used by customers to order food,
