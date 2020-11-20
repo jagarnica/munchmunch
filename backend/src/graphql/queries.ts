@@ -22,18 +22,6 @@ export const getRestaurant = /* GraphQL */ `
         }
         nextToken
       }
-      foodItems {
-        items {
-          id
-          restaurantID
-          name
-          description
-          price
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
       createdAt
       updatedAt
     }
@@ -54,9 +42,6 @@ export const listRestaurants = /* GraphQL */ `
         phoneNumber
         categories
         menus {
-          nextToken
-        }
-        foodItems {
           nextToken
         }
         createdAt
@@ -181,9 +166,6 @@ export const restaurantByName = /* GraphQL */ `
         menus {
           nextToken
         }
-        foodItems {
-          nextToken
-        }
         createdAt
         updatedAt
       }
@@ -214,9 +196,6 @@ export const searchRestaurants = /* GraphQL */ `
         phoneNumber
         categories
         menus {
-          nextToken
-        }
-        foodItems {
           nextToken
         }
         createdAt
