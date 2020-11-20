@@ -16,10 +16,10 @@ export const RestaurantPageLayout: React.FC<MainRouteComponent> = ({ children })
   return <Layout fullWidth>{children}</Layout>;
 };
 
-export interface RestuarantOrderProps extends MainRouteComponent {
+export interface RestaurantOrderProps extends MainRouteComponent {
   id?: string;
 }
-export const RestuarantOrder = ({ id }: RestuarantOrderProps): JSX.Element => {
+export const RestaurantOrder = ({ id }: RestaurantOrderProps): JSX.Element => {
   if (!id) return <Redirect noThrow to="/404" />;
   const { error, loading, data } = useQuery<GetRestaurantQuery, GetRestaurantQueryVariables>(
     gql`
@@ -45,7 +45,7 @@ export const RestuarantOrder = ({ id }: RestuarantOrderProps): JSX.Element => {
       <>
         <SEO title={`Order ${name}`} />
 
-        <ResturantHeader />
+        <RestaurantHeader />
         <Stack spacing={0}>
           <Text as="span" fontWeight="bold" color="gray.700" fontSize="3xl">
             {name}
@@ -80,7 +80,7 @@ export const RestuarantOrder = ({ id }: RestuarantOrderProps): JSX.Element => {
   return <Spinner />;
 };
 
-export const ResturantHeader = ({ imageUrl }: { imageUrl?: string }): JSX.Element => {
+export const RestaurantHeader = ({ imageUrl }: { imageUrl?: string }): JSX.Element => {
   return (
     <Box
       mb="0.6rem"

@@ -6,24 +6,24 @@ import { useQuery, gql } from '@apollo/client';
 import { MainRouteComponent } from 'types';
 import { RestaurantCard } from 'components/shared/card/';
 import { SEO } from 'components/shared/layout';
-import { RestuarantSearchBar } from 'components/shared/forms';
+import { RestaurantSearchBar } from 'components/shared/forms';
 import * as awsQuery from '../../../graphql/queries';
 
-export interface RestuarantSearchPage extends MainRouteComponent {
+export interface RestaurantSearchPage extends MainRouteComponent {
   query?: string;
 }
 /**
- * @name ResturantSearchPage
+ * @name RestaurantSearchPage
  * @description This holds the main layout for the results displayed. It picks up the query
  * from the params in the url.
  * @returns JSX.Element
  */
-export const RestuarantSearchPage = ({ query }: RestuarantSearchPage): JSX.Element => {
+export const RestaurantSearchPage = ({ query }: RestaurantSearchPage): JSX.Element => {
   // Throws an error to redirect the user to the home page
   if (!query) redirectTo('/');
   function handleNewSearch(newQuery: string) {
     const encodedString = encodeURIComponent(newQuery);
-    navigate(`/search/resturants/${encodedString}`, { replace: true });
+    navigate(`/search/restaurants/${encodedString}`, { replace: true });
   }
   if (query && query?.length >= 25) {
     const sanitizedQuery = query?.substring(0, 25); // Set a limit
@@ -34,23 +34,23 @@ export const RestuarantSearchPage = ({ query }: RestuarantSearchPage): JSX.Eleme
     <>
       <SEO title={`Search: ${query}`} />
       <SimpleGrid maxW="100%" spacing="1em">
-        <RestuarantSearchBar maxW="100%" autoFocus size="lg" onSubmit={handleNewSearch} defaultValue={query} />
+        <RestaurantSearchBar maxW="100%" autoFocus size="lg" onSubmit={handleNewSearch} defaultValue={query} />
         <Text fontSize="3xl" isTruncated as="div" maxW="100%" fontWeight="bold" color="blue.800">
           {`${query}`}
         </Text>
-        <RestuarantSearchResults queryString={query || ''} />
+        <RestaurantSearchResults queryString={query || ''} />
       </SimpleGrid>
     </>
   );
 };
 /**
- * @name ResturantSearchResults
+ * @name RestaurantSearchResults
  * @description This component returns the results from searching the query passed
  * in.
  * @prop {string} queryString Sets the query that will be searched
  * @returns JSX.Element
  */
-export const RestuarantSearchResults = ({ queryString }: { queryString: string }): JSX.Element => {
+export const RestaurantSearchResults = ({ queryString }: { queryString: string }): JSX.Element => {
   const { loading, error, data } = useQuery<
     awsQueryTypes.SearchRestaurantsQuery,
     awsQueryTypes.SearchRestaurantsQueryVariables
@@ -73,7 +73,7 @@ export const RestuarantSearchResults = ({ queryString }: { queryString: string }
   } else if (total) {
     resultsSummary = `${total} Restaurants`;
   } else {
-    resultsSummary = `0 Resturants`; // total can actually be null
+    resultsSummary = `0 Restaurants`; // total can actually be null
   }
 
   if (error)

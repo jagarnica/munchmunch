@@ -1,14 +1,14 @@
 import { FormRulesType } from 'types/';
 
-const restuarantSearchRules = {
+const restaurantSearchRules = {
   required: true,
   maxLength: 50,
 };
-export const restuarantSearch: FormRulesType = {
-  id: `resstuarantquery`,
+export const restaurantSearch: FormRulesType = {
+  id: `restaurantQuery`,
   placeholder: 'Search Here...',
   label: 'Find Food',
   type: 'text',
   maxLength: '100',
-  rules: restuarantSearchRules,
+  rules: restaurantSearchRules,
 };
