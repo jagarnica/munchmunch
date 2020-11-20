@@ -1,6 +1,6 @@
 projects:
-  mmnicksapi-dev:
-    schemaPath: src/graphql/schema.json
+  mmnicksapi:
+    schemaPath: amplify/backend/api/mmnicksapi/build/schema.graphql
     includes:
       - src/graphql/**/*.ts
     excludes:
@@ -11,7 +11,7 @@ projects:
         generatedFileName: src/API.ts
         docsFilePath: src/graphql
         region: us-west-2
-        apiId: hie576ehf5b3tcihxd2ppkq7tu
+        apiId: null
         maxDepth: 2
 extensions:
   amplify:
