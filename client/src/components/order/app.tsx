@@ -8,6 +8,9 @@ import { Account } from './account';
 import { OrderHistory } from './orders';
 import { UserPayments } from './payment';
 import { UserSearch, RestuarantSearchPage } from './search';
+import { TermsOfUsePage, CAPrivacyNotice, LegalPolicy, DoNotSellMyData } from './legal';
+import { MunchMunchRewards } from './rewards';
+
 /**
  * @name OrderApp
  * @description Holds the app used by customers to order food,
@@ -28,6 +31,11 @@ export const OrderApp: React.FC<MainRouteComponent> = () => {
         <RestuarantSearchPage path="resturants/" />
         <Redirect noThrow from="*" to="/404" default />
       </UserSearch>
+      <MunchMunchRewards path="/rewardslandingpage" />
+      <TermsOfUsePage path="/termsofuse" />
+      <CAPrivacyNotice path="/caprivacynotice" />
+      <LegalPolicy path="/legalpolicy" />
+      <DoNotSellMyData path="/donotsellmydata" />
       <PrivateRoute path="account" component={Account} />
       <PrivateRoute path="orders" component={OrderHistory} />
       <PrivateRoute path="payment" component={UserPayments} />
