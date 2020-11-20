@@ -32,9 +32,7 @@ type MenuItem
   menu: Menu! @connection(fields: ["menuID"])
 }
 
-type FoodItem
-  @model
-  @key(name: "foodItemByRestaurant", fields: ["restaurantID"]) {
+type FoodItem @model {
   id: ID!
   restaurantID: ID!
   name: String!
