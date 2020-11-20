@@ -25,10 +25,10 @@ export const onCreateRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -62,10 +62,10 @@ export const onUpdateRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -99,10 +99,10 @@ export const onDeleteRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -187,10 +187,10 @@ export const onCreateMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -221,10 +221,10 @@ export const onUpdateMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -255,10 +255,10 @@ export const onDeleteMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -285,10 +285,10 @@ export const onCreateFoodItem = /* GraphQL */ `
   subscription OnCreateFoodItem {
     onCreateFoodItem {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id
@@ -308,10 +308,10 @@ export const onUpdateFoodItem = /* GraphQL */ `
   subscription OnUpdateFoodItem {
     onUpdateFoodItem {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id
@@ -331,10 +331,10 @@ export const onDeleteFoodItem = /* GraphQL */ `
   subscription OnDeleteFoodItem {
     onDeleteFoodItem {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id

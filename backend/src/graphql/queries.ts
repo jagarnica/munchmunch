@@ -25,10 +25,10 @@ export const getRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -114,10 +114,10 @@ export const getFoodItem = /* GraphQL */ `
   query GetFoodItem($id: ID!) {
     getFoodItem(id: $id) {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id
@@ -142,10 +142,10 @@ export const listFoodItems = /* GraphQL */ `
     listFoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -248,10 +248,10 @@ export const searchMenuItems = /* GraphQL */ `
         menuID
         foodItem {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }

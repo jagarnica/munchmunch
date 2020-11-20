@@ -28,10 +28,10 @@ export const createRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -68,10 +68,10 @@ export const updateRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -108,10 +108,10 @@ export const deleteRestaurant = /* GraphQL */ `
       FoodItems {
         items {
           id
+          restaurantID
           name
           description
           price
-          restaurantID
           createdAt
           updatedAt
         }
@@ -208,10 +208,10 @@ export const createMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -245,10 +245,10 @@ export const updateMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -282,10 +282,10 @@ export const deleteMenuItem = /* GraphQL */ `
       menuID
       foodItem {
         id
+        restaurantID
         name
         description
         price
-        restaurantID
         menus {
           nextToken
         }
@@ -315,10 +315,10 @@ export const createFoodItem = /* GraphQL */ `
   ) {
     createFoodItem(input: $input, condition: $condition) {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id
@@ -341,10 +341,10 @@ export const updateFoodItem = /* GraphQL */ `
   ) {
     updateFoodItem(input: $input, condition: $condition) {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id
@@ -367,10 +367,10 @@ export const deleteFoodItem = /* GraphQL */ `
   ) {
     deleteFoodItem(input: $input, condition: $condition) {
       id
+      restaurantID
       name
       description
       price
-      restaurantID
       menus {
         items {
           id

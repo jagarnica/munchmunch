@@ -37,9 +37,9 @@ type FoodItem
   @model
   @key(name: "foodItemByRestaurant", fields: ["restaurantID"]) {
   id: ID!
+  restaurantID: ID!
   name: String!
   description: String
   price: Int!
-  restaurantID: ID!
   menus: [MenuItem] @connection(keyName: "byFoodItem", fields: ["id"])
 }
