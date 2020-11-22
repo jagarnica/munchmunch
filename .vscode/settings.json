@@ -28,6 +28,10 @@
     "source.fixAll.eslint": true
   },
   "cSpell.words": [
-    "chakra"
+    "chakra",
+    "formrules",
+    "rerender",
+    "restaurantpage",
+    "smartimage"
   ]
 }

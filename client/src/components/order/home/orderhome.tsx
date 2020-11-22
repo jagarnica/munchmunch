@@ -13,20 +13,7 @@ import { WhyMunchMunch, OneStopShop } from './landingpage';
 export const OrderHome: React.FC<MainRouteComponent> = () => {
   const { state } = useAppContext();
   const isAuthenticated = state?.isAuthenticated;
-  // const testOrders = [
-  //   {
-  //     id: '23',
-  //     name: 'El grullense',
-  //     image: 'https://source.unsplash.com/1600x900/?taco',
-  //     location: 'Redwood City, CA',
-  //   },
-  //   {
-  //     id: '232',
-  //     name: 'Jeffreys',
-  //     image: 'https://source.unsplash.com/1600x900/?cheeseburger',
-  //     location: 'Menlo Park, CA',
-  //   },
-  // ];
+
   if (isAuthenticated) {
     return (
       <Layout>

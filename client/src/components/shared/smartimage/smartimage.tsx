@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { Image, ImageProps, Flex, Skeleton } from '@chakra-ui/core';
+import { Image, ImageProps, Flex, Skeleton, BoxProps } from '@chakra-ui/core';
 import { AspectRatioBox } from 'components/shared/aspectratiobox';
 
 export interface SmartImageProps extends ImageProps {
   ratio?: number;
   src: string;
+  boxProps?: BoxProps;
 }
 /**
  * @name LazyImage
@@ -14,7 +15,7 @@ export interface SmartImageProps extends ImageProps {
  * @prop {number} ratio Sets the aspect ratio for the image.
  * @prop {string} src This is the image src.
  */
-export function SmartImage({ src, ratio, onLoad, ...rest }: SmartImageProps): JSX.Element {
+export function SmartImage({ src, ratio, onLoad, boxProps, ...rest }: SmartImageProps): JSX.Element {
   const [isLoaded, setIsLoaded] = React.useState(false);
   useEffect(() => {
     setIsLoaded(false);
@@ -23,22 +24,24 @@ export function SmartImage({ src, ratio, onLoad, ...rest }: SmartImageProps): JS
     if (!isLoaded) setIsLoaded(true);
     onLoad?.(); // call the passed in onload function if it exists
   }
-
-  return (
-    <AspectRatioBox ratio={ratio}>
-      <Flex bg="#E2E8F0" alignItems="stretch" justifyContent="stretch" height="100%">
-        <Skeleton width="100%" height="100%" isLoaded={isLoaded}>
-          <Image
-            loading="lazy"
-            onLoad={handleIsLoaded}
-            src={src}
-            height="100%"
-            width="100%"
-            objectFit="cover"
-            {...rest}
-          />
-        </Skeleton>
-      </Flex>
-    </AspectRatioBox>
+  const ImageContents = (
+    <Flex bg="#E2E8F0" alignItems="stretch" justifyContent="stretch" height="100%" {...boxProps}>
+      <Skeleton width="100%" height="100%" isLoaded={isLoaded}>
+        <Image
+          loading="lazy"
+          onLoad={handleIsLoaded}
+          src={src}
+          height="100%"
+          width="100%"
+          objectFit="cover"
+          {...rest}
+        />
+      </Skeleton>
+    </Flex>
   );
+  if (!ratio)
+    // Remove the AspectRatioBox
+    return ImageContents;
+
+  return <AspectRatioBox ratio={ratio}>{ImageContents}</AspectRatioBox>;
 }
