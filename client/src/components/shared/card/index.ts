@@ -4,3 +4,4 @@ export * from './placeholdercards';
 export * from './restaurantcard';
 export * from './imgtitledesc';
 export * from './icontitledesc';
+export * from './menuitem';

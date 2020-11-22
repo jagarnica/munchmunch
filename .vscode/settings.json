@@ -26,5 +26,12 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "cSpell.words": [
+    "chakra",
+    "formrules",
+    "rerender",
+    "restaurantpage",
+    "smartimage"
+  ]
 }

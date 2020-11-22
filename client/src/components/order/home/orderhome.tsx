@@ -7,32 +7,19 @@ import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { MainRouteComponent, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
 import { useForm } from 'react-hook-form';
-import { restuarantSearch } from 'utils/formrules/';
+import { restaurantSearch } from 'utils/formrules/';
 import { WhyMunchMunch, OneStopShop } from './landingpage';
 
 export const OrderHome: React.FC<MainRouteComponent> = () => {
   const { state } = useAppContext();
   const isAuthenticated = state?.isAuthenticated;
-  // const testOrders = [
-  //   {
-  //     id: '23',
-  //     name: 'El grullense',
-  //     image: 'https://source.unsplash.com/1600x900/?taco',
-  //     location: 'Redwood City, CA',
-  //   },
-  //   {
-  //     id: '232',
-  //     name: 'Jeffreys',
-  //     image: 'https://source.unsplash.com/1600x900/?cheeseburger',
-  //     location: 'Menlo Park, CA',
-  //   },
-  // ];
+
   if (isAuthenticated) {
     return (
       <Layout>
         <SEO title="Home" />
         <SimpleGrid maxW="100%" spacing="2.45rem">
-          <SearchRestuarants />
+          <SearchRestaurants />
           <UserFavorites />
           <UserPastOrders />
         </SimpleGrid>
@@ -43,7 +30,7 @@ export const OrderHome: React.FC<MainRouteComponent> = () => {
     <Layout>
       <SEO title="Home" />
       <SimpleGrid maxW="100%" spacing="2.45rem">
-        <SearchRestuarants />
+        <SearchRestaurants />
         <WhyMunchMunch />
         <OneStopShop />
       </SimpleGrid>
@@ -53,17 +40,17 @@ export const OrderHome: React.FC<MainRouteComponent> = () => {
 export type restaurantQuery = {
   [key: string]: string;
 };
-export const SearchRestuarants = (): JSX.Element => {
+export const SearchRestaurants = (): JSX.Element => {
   const { handleSubmit, register } = useForm<restaurantQuery>();
   const navigate = useNavigate();
   const { state } = useAppContext();
   const user = state?.user;
   const introText = user?.name ? `Welcome Back, ` : `Welcome to `;
   function getSearchResults(data: restaurantQuery) {
-    const { id } = restuarantSearch;
+    const { id } = restaurantSearch;
     const query = data[id];
     const encodedString = encodeURIComponent(query);
-    navigate(`/search/resturants/${encodedString}`, { replace: false });
+    navigate(`/search/restaurants/${encodedString}`, { replace: false });
   }
   return (
     <SimpleGrid spacing={5}>
@@ -81,15 +68,15 @@ export const SearchRestuarants = (): JSX.Element => {
       </Text>
       <form onSubmit={handleSubmit(getSearchResults)}>
         <LargeSearchBar
-          placeholder={restuarantSearch.placeholder}
+          placeholder={restaurantSearch.placeholder}
           size="lg"
           autoComplete="off"
-          name={restuarantSearch.id}
+          name={restaurantSearch.id}
           ref={register({
-            ...restuarantSearch.rules,
+            ...restaurantSearch.rules,
           })}
           buttonProps={{
-            'aria-label': 'search restuarants',
+            'aria-label': 'search restaurants',
             type: 'submit',
           }}
         />

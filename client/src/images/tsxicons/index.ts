@@ -5,3 +5,4 @@ export * from './cutfee';
 export * from './orderbell';
 export * from './burningtire';
 export * from './shoppingcart';
+export * from './coffeemenusign';

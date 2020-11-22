@@ -14,9 +14,21 @@ export const getRestaurant = /* GraphQL */ `
       menus {
         items {
           id
-          restuarantID
+          restaurantID
           name
           description
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      foodItems {
+        items {
+          id
+          restaurantID
+          name
+          description
+          price
           createdAt
           updatedAt
         }
@@ -44,6 +56,9 @@ export const listRestaurants = /* GraphQL */ `
         menus {
           nextToken
         }
+        foodItems {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -55,9 +70,19 @@ export const getMenu = /* GraphQL */ `
   query GetMenu($id: ID!) {
     getMenu(id: $id) {
       id
-      restuarantID
+      restaurantID
       name
       description
+      menuItems {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -72,9 +97,12 @@ export const listMenus = /* GraphQL */ `
     listMenus(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        restuarantID
+        restaurantID
         name
         description
+        menuItems {
+          nextToken
+        }
         createdAt
         updatedAt
       }
@@ -82,15 +110,61 @@ export const listMenus = /* GraphQL */ `
     }
   }
 `;
-export const restuarantsByName = /* GraphQL */ `
-  query RestuarantsByName(
+export const getFoodItem = /* GraphQL */ `
+  query GetFoodItem($id: ID!) {
+    getFoodItem(id: $id) {
+      id
+      restaurantID
+      name
+      description
+      price
+      menus {
+        items {
+          id
+          foodItemID
+          menuID
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listFoodItems = /* GraphQL */ `
+  query ListFoodItems(
+    $filter: ModelFoodItemFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFoodItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        restaurantID
+        name
+        description
+        price
+        menus {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const restaurantByName = /* GraphQL */ `
+  query RestaurantByName(
     $name: String
     $sortDirection: ModelSortDirection
     $filter: ModelRestaurantFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    restuarantsByName(
+    restaurantByName(
       name: $name
       sortDirection: $sortDirection
       filter: $filter
@@ -105,6 +179,9 @@ export const restuarantsByName = /* GraphQL */ `
         phoneNumber
         categories
         menus {
+          nextToken
+        }
+        foodItems {
           nextToken
         }
         createdAt
@@ -138,6 +215,53 @@ export const searchRestaurants = /* GraphQL */ `
         categories
         menus {
           nextToken
+        }
+        foodItems {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
+    }
+  }
+`;
+export const searchMenuItems = /* GraphQL */ `
+  query SearchMenuItems(
+    $filter: SearchableMenuItemFilterInput
+    $sort: SearchableMenuItemSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchMenuItems(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        foodItemID
+        menuID
+        foodItem {
+          id
+          restaurantID
+          name
+          description
+          price
+          createdAt
+          updatedAt
+        }
+        menu {
+          id
+          restaurantID
+          name
+          description
+          createdAt
+          updatedAt
         }
         createdAt
         updatedAt

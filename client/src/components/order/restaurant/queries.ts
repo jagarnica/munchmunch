@@ -15,7 +15,38 @@ export const getRestaurant = /* GraphQL */ `
     }
   }
 `;
-
+export const getMenuItems = /* GraphQL */ `
+  query GetMenu($id: ID!) {
+    getMenu(id: $id) {
+      id
+      menuItems {
+        items {
+          foodItem {
+            name
+            id
+            description
+            price
+          }
+        }
+      }
+    }
+  }
+`;
+export type getMenuItemsQuery = {
+  getMenu: {
+    __typename: 'Menu';
+    id: string;
+    menuItems: {
+      __typename: 'ModelMenuItemConnection';
+      items: Array<{
+        foodItem: { __typename: 'FoodItem'; id: string; name: string; description: string | null; price: number };
+      }>;
+    };
+  };
+};
+export type getMenuItemsQueryVariables = {
+  id: string;
+};
 export type GetRestaurantQuery = {
   getRestaurant: {
     __typename: 'Restaurant';

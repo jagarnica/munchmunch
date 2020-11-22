@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { LargeSearchBar, LargeSearchBarProps } from 'components/shared/largesearchbar';
 import { useForm } from 'react-hook-form';
-import { restuarantSearch } from 'utils/formrules/';
+import { restaurantSearch } from 'utils/formrules/';
 import { restaurantQuery } from 'types';
 
-export interface RestuarantSearchBarProps extends Omit<LargeSearchBarProps, 'onSubmit'> {
+export interface RestaurantSearchBarProps extends Omit<LargeSearchBarProps, 'onSubmit'> {
   onSubmit: (query: string) => void;
   defaultValue?: string;
   autoFocus?: boolean;
 }
 /**
- * @name RestuarantSearchBar
+ * @name RestaurantSearchBar
  * @description This component is a search bar that is meant for searching up restaurants.
  * If the user enters a valid query the onSubmit function is called with query string
  * passed in.
  * @prop {boolean} autoFocus If set to true, the bar will focus itself automatically
  * after every rerender
- * @prop {string} defaultValue This sets the default value when the bar is initailly
+ * @prop {string} defaultValue This sets the default value when the bar is initially
  * displayed.
  * @returns JSX.Element
  */
-export const RestuarantSearchBar = ({
+export const RestaurantSearchBar = ({
   onSubmit,
   defaultValue,
   autoFocus,
   ...rest
-}: RestuarantSearchBarProps): JSX.Element => {
+}: RestaurantSearchBarProps): JSX.Element => {
   const { handleSubmit, register } = useForm<restaurantQuery>();
   const searchBarRef = React.useRef<HTMLInputElement | null>(null);
   React.useEffect(() => {
@@ -34,7 +34,7 @@ export const RestuarantSearchBar = ({
     }
   });
   function handleSearchSubmit(data: restaurantQuery) {
-    const { id } = restuarantSearch;
+    const { id } = restaurantSearch;
     const query = data[id];
     onSubmit?.(query);
   }
@@ -44,16 +44,16 @@ export const RestuarantSearchBar = ({
       <LargeSearchBar
         defaultValue={defaultValue}
         type="text"
-        name={restuarantSearch.id}
+        name={restaurantSearch.id}
         ref={e => {
           register(e, {
             required: true,
-            ...restuarantSearch.rules,
+            ...restaurantSearch.rules,
           });
           searchBarRef.current = e;
         }}
         buttonProps={{
-          'aria-label': 'search restuarants',
+          'aria-label': 'search restaurants',
           type: 'submit',
         }}
         {...rest}

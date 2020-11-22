@@ -14,6 +14,9 @@ export const onCreateRestaurant = /* GraphQL */ `
       menus {
         nextToken
       }
+      foodItems {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -29,6 +32,9 @@ export const onUpdateRestaurant = /* GraphQL */ `
       phoneNumber
       categories
       menus {
+        nextToken
+      }
+      foodItems {
         nextToken
       }
       createdAt
@@ -48,6 +54,9 @@ export const onDeleteRestaurant = /* GraphQL */ `
       menus {
         nextToken
       }
+      foodItems {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -57,9 +66,12 @@ export const onCreateMenu = /* GraphQL */ `
   subscription OnCreateMenu {
     onCreateMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
+      menuItems {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -69,9 +81,12 @@ export const onUpdateMenu = /* GraphQL */ `
   subscription OnUpdateMenu {
     onUpdateMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
+      menuItems {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -81,9 +96,144 @@ export const onDeleteMenu = /* GraphQL */ `
   subscription OnDeleteMenu {
     onDeleteMenu {
       id
-      restuarantID
+      restaurantID
       name
       description
+      menuItems {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateMenuItem = /* GraphQL */ `
+  subscription OnCreateMenuItem {
+    onCreateMenuItem {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        restaurantID
+        name
+        description
+        price
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateMenuItem = /* GraphQL */ `
+  subscription OnUpdateMenuItem {
+    onUpdateMenuItem {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        restaurantID
+        name
+        description
+        price
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteMenuItem = /* GraphQL */ `
+  subscription OnDeleteMenuItem {
+    onDeleteMenuItem {
+      id
+      foodItemID
+      menuID
+      foodItem {
+        id
+        restaurantID
+        name
+        description
+        price
+        createdAt
+        updatedAt
+      }
+      menu {
+        id
+        restaurantID
+        name
+        description
+        createdAt
+        updatedAt
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onCreateFoodItem = /* GraphQL */ `
+  subscription OnCreateFoodItem {
+    onCreateFoodItem {
+      id
+      restaurantID
+      name
+      description
+      price
+      menus {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateFoodItem = /* GraphQL */ `
+  subscription OnUpdateFoodItem {
+    onUpdateFoodItem {
+      id
+      restaurantID
+      name
+      description
+      price
+      menus {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteFoodItem = /* GraphQL */ `
+  subscription OnDeleteFoodItem {
+    onDeleteFoodItem {
+      id
+      restaurantID
+      name
+      description
+      price
+      menus {
+        nextToken
+      }
       createdAt
       updatedAt
     }

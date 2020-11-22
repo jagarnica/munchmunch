@@ -1,19 +1,45 @@
 type Restaurant
   @model
   @searchable
-  @key(name: "byName", fields: ["name"], queryField: "restuarantsByName") {
+  @key(name: "byName", fields: ["name"], queryField: "restaurantByName") {
   id: ID!
   name: String!
   location: String!
   description: String
   phoneNumber: String
   categories: [String]!
-  menus: [Menu] @connection(keyName: "byRestuarant", fields: ["id"])
+  menus: [Menu] @connection(keyName: "byRestaurant", fields: ["id"])
+  foodItems: [FoodItem]
+    @connection(keyName: "foodItemByRestaurant", fields: ["id"])
 }
-
-type Menu @model @key(name: "byRestuarant", fields: ["restuarantID"]) {
+# Removed menu items , you have to add them back in with the new key
+type Menu @model @key(name: "byRestaurant", fields: ["restaurantID"]) {
   id: ID!
-  restuarantID: ID!
+  restaurantID: ID!
   name: String!
   description: String
+  menuItems: [MenuItem] @connection(keyName: "byMenu", fields: ["id"])
+}
+# Menu to Food Items joining model
+type MenuItem
+  @model(queries: null)
+  @searchable
+  @key(name: "byFoodItem", fields: ["foodItemID", "menuID"])
+  @key(name: "byMenu", fields: ["menuID", "foodItemID"]) {
+  id: ID!
+  foodItemID: ID!
+  menuID: ID!
+  foodItem: FoodItem! @connection(fields: ["foodItemID"])
+  menu: Menu! @connection(fields: ["menuID"])
+}
+
+type FoodItem
+  @model
+  @key(name: "foodItemByRestaurant", fields: ["restaurantID", "id"]) {
+  id: ID!
+  restaurantID: ID!
+  name: String!
+  description: String
+  price: Int!
+  menus: [MenuItem] @connection(keyName: "byFoodItem", fields: ["id"])
 }
