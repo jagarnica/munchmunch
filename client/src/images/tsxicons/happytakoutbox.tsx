@@ -1,7 +1,8 @@
 import React from 'react';
-import { CustomChakraIcon } from 'types/';
+import { createIcon } from '@chakra-ui/react';
 
-export const happytakeoutbox: CustomChakraIcon = {
+export const HappyTakeOutBox = createIcon({
+  displayName: 'HappyTakeOutBoxIcon',
   path: (
     <g fill="none">
       <path
@@ -41,4 +42,4 @@ export const happytakeoutbox: CustomChakraIcon = {
     </g>
   ),
   viewBox: '0 0 58 57',
-};
+});

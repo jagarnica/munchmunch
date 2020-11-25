@@ -2,7 +2,7 @@ import React from 'react';
 import { Auth } from 'aws-amplify';
 import { debounce } from 'lodash';
 import { getSignUpErrorMessage } from 'utils/aws';
-import { Button, useToast } from '@chakra-ui/core';
+import { Button, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { customerEmail, confirmationCode as codeElement, customerPassword, confirmPassword } from 'utils/formrules';
@@ -186,7 +186,7 @@ export const EnterCodeForm = ({ username }: { username: string }): JSX.Element =
       <Button isLoading={verifyingCode} type="submit">
         Reset Password
       </Button>
-      <Button variantColor="blue" onClick={handleSendCode} isLoading={sendingCode} variant="ghost">
+      <Button colorScheme="blue" onClick={handleSendCode} isLoading={sendingCode} variant="ghost">
         Resend Code
       </Button>
     </FormContainer>

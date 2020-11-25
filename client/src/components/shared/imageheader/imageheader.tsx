@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, BoxProps } from '@chakra-ui/core';
+import { Box, BoxProps } from '@chakra-ui/react';
 import { PlaceHolderImage } from 'components/shared/placeholders/';
 import { SmartImage } from 'components/shared/smartimage';
 

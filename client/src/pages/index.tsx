@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { App } from 'components/pages/app';
 import { Amplify, Auth } from 'aws-amplify';
 import { AppContext, AppContextInterface } from 'libs/contextLib';
-import { ThemeProvider, Spinner, CSSReset, Box } from '@chakra-ui/core';
+import { ChakraProvider, Spinner, Box, extendTheme } from '@chakra-ui/react';
 import { User, AWSCurrentUserInfo } from 'types/';
 import { authReducer } from 'libs/reducers';
 import { baseSiteTheme } from 'utils/themes';
@@ -61,7 +61,7 @@ const client = new ApolloClient({
 const IndexPage = (): React.ReactNode => {
   const [state, dispatch] = useReducer(authReducer, InitialState);
   const [loadingUser, setLoadingUser] = useState(true);
-  // Configure AWS authentification
+  // Configure AWS authentication
   useEffect(() => {
     const authenticateSession = async () => {
       try {
@@ -90,13 +90,13 @@ const IndexPage = (): React.ReactNode => {
     return <FullPageSpinner />;
   }
   // Show the app when done loading
+  const theme = extendTheme({ baseSiteTheme });
   return (
     <ApolloProvider client={client}>
       <AppContext.Provider value={{ state, dispatch }}>
-        <ThemeProvider theme={baseSiteTheme}>
-          <CSSReset></CSSReset>
+        <ChakraProvider theme={theme}>
           <App />
-        </ThemeProvider>
+        </ChakraProvider>
       </AppContext.Provider>
     </ApolloProvider>
   );
@@ -104,10 +104,9 @@ const IndexPage = (): React.ReactNode => {
 export default IndexPage;
 
 const FullPageSpinner = (): JSX.Element => (
-  <ThemeProvider>
-    <CSSReset></CSSReset>
+  <ChakraProvider>
     <Box height="3rem" width="3rem" position="fixed" top="50%" left="50%" marginLeft="-1.5rem" marginTop="-1.5rem">
       <Spinner thickness="4px" textAlign="center" size="xl" color="orange.500" />
     </Box>
-  </ThemeProvider>
+  </ChakraProvider>
 );

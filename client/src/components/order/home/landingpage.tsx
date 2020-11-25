@@ -1,9 +1,11 @@
 import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Box, SimpleGrid, Stack, Text, Icon } from '@chakra-ui/core';
+import { Box, SimpleGrid, Stack, Text, Icon } from '@chakra-ui/react';
+import { CheckIcon } from '@chakra-ui/icons';
 import { useSiteTitle } from 'utils/hooks/queries/';
 import { IconTitleDesc } from 'components/shared/card/';
+import { BurningTire, CutFee, OrderBell } from 'images/tsxicons';
 import styled from 'styled-components';
 
 /**
@@ -21,27 +23,24 @@ export const WhyMunchMunch = (): JSX.Element => {
       <SimpleGrid minChildWidth={{ base: `100%`, md: `252px` }} alignSelf="stretch" spacing="20px">
         <HoverCard
           boxShadow="none"
-          iconSize="2.4em"
-          iconName="cutfee"
-          mainColor="red.400"
+          icon={<CutFee color="red.400" boxSize="2.4rem" />}
+          color="red.400"
           iconBgColor="red.100"
           title="Low Fee Diet"
-          description="We run lean and work closely with the restuarants listed to make sure most of the money goes to supporting them while keeping costs for you lower than the competition. We make the code but they provide the delicious goods."
+          description="We run lean and work closely with the restaurants listed to make sure most of the money goes to supporting them while keeping costs for you lower than the competition. We make the code but they provide the delicious goods."
         />
         <HoverCard
           boxShadow="none"
-          iconSize="2.4em"
-          iconName="orderbell"
-          mainColor="orange.400"
+          icon={<OrderBell color="orange.400" boxSize="2.4rem" />}
+          color="orange.400"
           iconBgColor="orange.100"
           title="Order Quickly"
           description="You can find many of your favorite spots here. We pride ourselves on being the fastest way to order food without hassle or a million logins. No more downloading an app for every single one of your favorite restaurants."
         />
         <HoverCard
           boxShadow="none"
-          iconSize="2.4em"
-          iconName="burningtire"
-          mainColor="blue.400"
+          color="blue.400"
+          icon={<BurningTire color="blue.400" boxSize="2.4rem" />}
           iconBgColor="blue.100"
           title="Built for Speed"
           description="Dealing with a buggy slow mess of a website is a massive headache. There are thousands of different websites built on old code to get online ordering done but not us."
@@ -102,14 +101,14 @@ export const OneStopShop = (): JSX.Element => {
           fontSize={{ base: '3xl', md: '5xl' }}
         >{`It's a one stop shop.`}</Text>
         <Stack isInline spacing={6}>
-          <Icon bg="orange.100" borderRadius="50%" padding="8px" name="check" color="orange.400" size="2.4em" />
+          <CheckIcon bg="orange.100" borderRadius="50%" padding="8px" color="orange.400" boxSize="2.4em" />
           <Text fontSize="lg" color="gray.600">
             No more remembering a million logins for a millions different apps. No more entering you credit card every
             time for every different restaurant. Just log in and you are ready to place an order.{' '}
           </Text>
         </Stack>
         <Stack isInline spacing={6}>
-          <Icon bg="orange.100" borderRadius="50%" padding="8px" name="check" color="orange.400" size="2.4em" />
+          <CheckIcon bg="orange.100" borderRadius="50%" padding="8px" color="orange.400" boxSize="2.4em" />
           <Text fontSize="lg" color="gray.600">
             Choose when you want to pick up your food at a time that works for you.
           </Text>

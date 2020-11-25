@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { navigate } from '@reach/router';
 import { Auth } from 'aws-amplify';
-import { Text, Button, Link, useToast } from '@chakra-ui/core';
+import { Text, Button, Link, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { useAppContext } from 'libs/contextLib';

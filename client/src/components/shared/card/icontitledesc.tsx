@@ -1,10 +1,9 @@
 import React from 'react';
-import { Box, Icon } from '@chakra-ui/core';
+import { Box } from '@chakra-ui/react';
 import { ImgTitleDesc, ImgTitleDescProps } from './imgtitledesc';
 
-export interface IconTitleDescProps extends Omit<ImgTitleDescProps, 'image'> {
-  iconName: string;
-  iconSize?: string;
+export interface IconTitleDescProps extends Omit<ImgTitleDescProps, 'image' | 'iconSize'> {
+  icon?: JSX.Element;
   iconBgColor?: string;
 }
 /**
@@ -12,19 +11,17 @@ export interface IconTitleDescProps extends Omit<ImgTitleDescProps, 'image'> {
  * @description Displays an icon with a round background followed by the title and
  * description. It is composed on top of the ImgTitleDesc component. Also accepts
  * all the standard props from the BoxProps
- * @prop {string} iconName Used to find which icon to use from chakra-ui
- * @prop {string} iconSize Optionally sets the icon size.
+ * @prop {CustomChakraIcon} icon Set the icon to the one passed in.
  * @prop {string} iconBgColor Sets the background color, is transparent otherwise.
  * @prop {string} title
  * @prop {string} description
  * @returns JSX.Element
  */
 export const IconTitleDesc = ({
-  iconName,
   title,
   description,
   mainColor,
-  iconSize,
+  icon,
   iconBgColor = 'transparent',
   ...rest
 }: IconTitleDescProps): JSX.Element => {
@@ -40,7 +37,7 @@ export const IconTitleDesc = ({
           bg={iconBgColor}
           borderRadius="50%"
         >
-          <Icon name={iconName} color={mainColor} size={iconSize} />
+          {icon || null}
         </Box>
       }
       title={title}

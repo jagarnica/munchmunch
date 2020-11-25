@@ -1,7 +1,8 @@
 import React from 'react';
-import { CustomChakraIcon } from 'types';
+import { createIcon } from '@chakra-ui/react';
 
-export const coffeemenusign: CustomChakraIcon = {
+export const CoffeeMenuSign = createIcon({
+  displayName: 'CoffeeMenuSignIcon',
   path: (
     <g fill="currentcolor" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px">
       <path d="M56.653,56H55V54h1.515L54.17,20H52V18h2.032l-.138-2H52V14h1.756l-.69-10H15.072l.961,13.945v0L17.554,40H12.481l1.552-21.983L13.066,4H10.934L7.623,52H10v2H7.485l-.138,2H9v2H7.209l-.138,2h4l1.271-18h5.353l1.242,18H22.92L19,9.077A1,1,0,0,1,20,8H48a1,1,0,0,1,1,.923L52.926,60h4Z"></path>
@@ -12,4 +13,4 @@ export const coffeemenusign: CustomChakraIcon = {
     </g>
   ),
   viewBox: '0 0 64 64',
-};
+});

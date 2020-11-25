@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
 import { ISignUpResult } from 'amazon-cognito-identity-js';
-import { Text, useToast, Link, Button } from '@chakra-ui/core';
+import { Text, useToast, Link, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { navigate } from '@reach/router';
 import { ConfirmPhoneForm } from 'components/auth/';

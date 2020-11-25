@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, theme } from '@chakra-ui/core';
+import { Text, theme } from '@chakra-ui/react';
 /**
  * @name FormError
  * @description This is the standard error displayed. Will only display something if the

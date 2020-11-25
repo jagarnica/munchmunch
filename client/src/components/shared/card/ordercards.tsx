@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Stack } from '@chakra-ui/core';
+import { Text, Stack } from '@chakra-ui/react';
 import { SmartImage } from 'components/shared/smartimage';
 import { Card } from './card';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { Box, Text, Flex, Button, useToast } from '@chakra-ui/core';
+import { Box, Text, Flex, Button, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
@@ -97,7 +97,7 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProp
                 }
                 handleResendText();
               }}
-              variantColor="blue"
+              colorScheme="blue"
             >
               Resend confirmation text
             </Button>

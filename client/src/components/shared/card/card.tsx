@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, BoxProps } from '@chakra-ui/core';
+import { Box, BoxProps } from '@chakra-ui/react';
 
 // Default Styles for the card
 export const CardDefaultStyles: BoxProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Heading } from '@chakra-ui/core';
+import { Box, Grid, Heading } from '@chakra-ui/react';
 
 export interface FormContainerProps {
   onSubmit?: (event: React.FormEvent) => void;

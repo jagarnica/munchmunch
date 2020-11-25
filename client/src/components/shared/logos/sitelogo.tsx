@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, BoxProps } from '@chakra-ui/core';
+import { Text, BoxProps } from '@chakra-ui/react';
 import { Link } from 'gatsby';
 import { useSiteMetadata } from 'utils/hooks/queries';
 

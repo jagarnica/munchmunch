@@ -1,7 +1,8 @@
 import React from 'react';
-import { CustomChakraIcon } from 'types/index';
+import { createIcon } from '@chakra-ui/react';
 
-export const shoppingcart: CustomChakraIcon = {
+export const ShoppingCart = createIcon({
+  displayName: 'ShoppingCartIcon',
   path: (
     <g fill="none" xmlns="http://www.w3.org/2000/g">
       <path
@@ -19,4 +20,4 @@ export const shoppingcart: CustomChakraIcon = {
     </g>
   ),
   viewBox: '0 0 19 18',
-};
+});

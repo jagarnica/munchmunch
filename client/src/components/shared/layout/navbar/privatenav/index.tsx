@@ -8,7 +8,7 @@ import {
   DrawerHeader,
   DrawerFooter,
   useToast,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import { Auth } from 'aws-amplify';
 import { NavItem } from 'components/shared/navitem';
 import { navigate } from 'gatsby';

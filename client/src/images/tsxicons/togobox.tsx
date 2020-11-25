@@ -1,7 +1,8 @@
 import React from 'react';
-import { CustomChakraIcon } from 'types/';
+import { createIcon } from '@chakra-ui/react';
 
-export const togobox: CustomChakraIcon = {
+export const TogoBox = createIcon({
+  displayName: 'TogoBoxIcon',
   path: (
     <g fill="none">
       <path
@@ -23,4 +24,4 @@ export const togobox: CustomChakraIcon = {
     </g>
   ),
   viewBox: '0 0 72 60',
-};
+});

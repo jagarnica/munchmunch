@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Stack, Tag, TagLabel, BoxProps, Skeleton } from '@chakra-ui/core';
+import { Text, Stack, Tag, TagLabel, BoxProps, Skeleton } from '@chakra-ui/react';
 import { SmartImage } from 'components/shared/smartimage';
 import { PlaceHolderImage } from 'components/shared/placeholders';
 import { Card } from './card';
@@ -56,7 +56,7 @@ export const RestaurantCard = ({
         </Skeleton>
         <Skeleton isLoaded={showSkeleton} maxWidth={showSkeleton ? '' : `30%`}>
           {showOpen && (
-            <Tag variantColor={isOpen ? `green` : `red`} alignSelf="flex-start">
+            <Tag colorScheme={isOpen ? `green` : `red`} alignSelf="flex-start">
               <TagLabel>{isOpen ? `Open` : `Closed`}</TagLabel>
             </Tag>
           )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormControl, FormLabel, Input, InputProps } from '@chakra-ui/core';
+import { FormControl, FormLabel, Input, InputProps } from '@chakra-ui/react';
 import { FormRulesType } from 'types/';
 import { FormError } from './formerror';
 

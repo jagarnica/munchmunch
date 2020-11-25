@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Divider, Spinner, Stack, Icon, Text, Skeleton, Button } from '@chakra-ui/core';
+import { Box, Divider, Spinner, Stack, Icon, Text, Skeleton, Button } from '@chakra-ui/react';
 import { Layout, SEO } from 'components/shared/layout';
 import { MainRouteComponent } from 'types';
 import { useQuery, gql } from '@apollo/client';

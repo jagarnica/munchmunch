@@ -11,7 +11,7 @@ import {
   DrawerBody,
   DrawerContent,
   Button,
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 
 export interface PublicSideMenuDrawerProps extends Omit<IDrawer, 'children'> {
   isOpen: boolean;

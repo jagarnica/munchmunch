@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMatch, navigate } from '@reach/router';
 import styled from 'styled-components';
-import { Box, Grid, Text } from '@chakra-ui/core';
+import { Box, Grid, Text } from '@chakra-ui/react';
 
 export interface NavItemProps {
   title: string;
