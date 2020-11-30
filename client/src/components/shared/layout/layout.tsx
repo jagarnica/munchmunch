@@ -23,26 +23,26 @@ export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) =
         }
       >
         <main>{children}</main>
-        <Stack spacing="24px">
-          <Box w="225px" h="40px" bg="orange.400">
-            <Link href="/rewardslandingpage">Want to Join Munch Munch?</Link>
+        <Stack spacing="14px">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px" shadow="lg">
+            <Link href="/newbusiness">Want to Join Munch Munch?</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Text>© {new Date().getFullYear()} Munch Munch</Text>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
-            <Link>Munch Munch Rewards</Link>
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
+            <Link href="/rewardslandingpage">Munch Munch Rewards</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/termsofuse">Terms Of Use</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/legalpolicy">Privacy Policy</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/caprivacynotice">CA Privacy Notice</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400">
+          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/donotsellmydata">DO NOT SELL MY INFO</Link>
           </Box>
         </Stack>
