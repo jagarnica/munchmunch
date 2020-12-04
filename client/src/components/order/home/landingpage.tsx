@@ -1,7 +1,7 @@
 import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
-import { Box, SimpleGrid, Stack, Text, Icon } from '@chakra-ui/react';
+import { Box, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
 import { useSiteTitle } from 'utils/hooks/queries/';
 import { IconTitleDesc } from 'components/shared/card/';
@@ -67,19 +67,6 @@ export const PhoneOrderScreenImage = (): FluidObject => {
   return data.file.childImageSharp.fluid;
 };
 
-export const CheckMark = (): JSX.Element => {
-  return (
-    <Icon
-      style={{ filter: 'drop-shadow(0px 10px 18px #DD6B20)' }}
-      bg="orange.500"
-      borderRadius="50%"
-      padding="8px"
-      name="check"
-      color="white"
-      size="2.2em"
-    />
-  );
-};
 export const OneStopShop = (): JSX.Element => {
   const image = PhoneOrderScreenImage();
 

@@ -4,6 +4,7 @@ import { HamburgerButton } from 'components/shared/buttons';
 import styled from 'styled-components';
 import { Button, Box, Flex, useDisclosure, Text, Icon, Stack } from '@chakra-ui/react';
 import { useAppContext } from 'libs/contextLib';
+import { ShoppingCart } from 'images/tsxicons';
 import { PublicSideMenuItems, PublicSideMenuDrawer } from './publicnav';
 import { CustomerOrderSideDrawer } from './privatenav';
 
@@ -51,7 +52,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
                     color="white"
                   >
                     <Stack direction="row">
-                      <Icon size="18px" name="shoppingcart" />
+                      <ShoppingCart boxSize="18px" alt="shopping cart" />
                       <Text>0</Text>
                     </Stack>
                   </Button>

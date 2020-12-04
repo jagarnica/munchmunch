@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Box, Divider, Spinner, Stack, Icon, Text, Skeleton, Button } from '@chakra-ui/react';
+import { Box, Divider, Spinner, Stack, Text, Skeleton, Button } from '@chakra-ui/react';
 import { Layout, SEO } from 'components/shared/layout';
 import { MainRouteComponent } from 'types';
 import { useQuery, gql } from '@apollo/client';
 import { Redirect } from '@reach/router';
 import { ImageHeader } from 'components/shared/imageheader';
+import { CoffeeMenuSign } from 'images/tsxicons';
 import { DisplayMenuItems } from './displaymenuitems';
 import { ButtonNavGroup } from '../../shared/buttonnavgroup';
 import { getRestaurant, GetRestaurantQuery, GetRestaurantQueryVariables } from './queries';
@@ -133,7 +134,7 @@ export const RestaurantMenuNav = ({ menus }: RestaurantMenuNavProps): JSX.Elemen
       ) : (
         <Box d="flex" alignItems="center" justifyContent="center" bg="#FAFAFA" minH="60vh">
           <Stack alignItems="center" spacing={2}>
-            <Icon name="coffeemenusign" color="gray.500" size="128px" />
+            <CoffeeMenuSign color="gray.500" boxSize="128px" />\{' '}
             <Text fontSize="2xl" fontWeight="bold" maxW="312px" textAlign="center" color="gray.500">
               Sorry, this restaurant currently has no menus. Check back later!
             </Text>

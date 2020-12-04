@@ -2,14 +2,14 @@ import React from 'react';
 import { SEO, Layout } from 'components/shared/layout';
 import { useAppContext } from 'libs/contextLib';
 import { useNavigate } from '@reach/router';
-import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/react';
+import { Text, SimpleGrid, Flex } from '@chakra-ui/react';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { MainRouteComponent, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
 import { useForm } from 'react-hook-form';
 import { restaurantSearch } from 'utils/formrules/';
 import { StarIcon } from '@chakra-ui/icons';
-import { ShoppingBag, HappyTakeOutBox } from 'images/tsxicons';
+import { ShoppingBag, HappyTakeOutBox, TogoBox } from 'images/tsxicons';
 import { WhyMunchMunch, OneStopShop } from './landingpage';
 
 export const OrderHome: React.FC<MainRouteComponent> = () => {
@@ -109,7 +109,7 @@ export const UserPastOrders = ({
             })}
           </>
         ) : (
-          <GeneralPlaceholderCard text="No orders yet!" icon={HappyTakeOutBox} />
+          <GeneralPlaceholderCard text="No orders yet!" icon={<HappyTakeOutBox color="gray.500" boxSize="57px" />} />
         )}
       </SimpleGrid>
     </SimpleGrid>
@@ -140,7 +140,10 @@ export const UserFavorites = ({ favorites = [] }: { favorites?: Array<Restaurant
             })}
           </>
         ) : (
-          <GeneralPlaceholderCard text="Your favorites will show up here." icon="togobox" />
+          <GeneralPlaceholderCard
+            text="Your favorites will show up here."
+            icon={<TogoBox boxSize="57px" color="gray.500" />}
+          />
         )}
       </SimpleGrid>
     </SimpleGrid>
