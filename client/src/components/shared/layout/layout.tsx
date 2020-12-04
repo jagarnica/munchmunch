@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Link, Stack, Text } from '@chakra-ui/react';
-import { useSiteMetadata } from 'utils/hooks/queries';
 import { Header } from './navbar/header';
 
 export interface LayoutProps {
@@ -8,11 +7,9 @@ export interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) => {
-  const { title } = useSiteMetadata();
-
   return (
     <>
-      <Header siteTitle={title} />
+      <Header />
       <Box
         margin="0 auto"
         maxW={fullWidth ? 1920 : 960}

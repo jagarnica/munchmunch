@@ -5,23 +5,27 @@ import styled from 'styled-components';
 import { Button, Box, Flex, useDisclosure, Text, Stack } from '@chakra-ui/react';
 import { useAppContext } from 'libs/contextLib';
 import { ShoppingCart } from 'images/tsxicons';
+import { useSiteTitle } from 'utils/hooks/queries';
 import { PublicSideMenuItems, PublicSideMenuDrawer } from './publicnav';
 import { CustomerOrderSideDrawer } from './privatenav';
 
-export const SiteLogo = ({ title }: { title?: string }): JSX.Element => (
-  <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>
-    <Link
-      to="/"
-      style={{
-        color: `black`,
-        textDecoration: `none`,
-      }}
-    >
-      {title}
-    </Link>
-  </Text>
-);
-export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElement {
+export const SiteLogo = (): JSX.Element => {
+  const title = useSiteTitle();
+  return (
+    <Text fontSize="2xl" style={{ margin: 0, fontFamily: `Lobster` }}>
+      <Link
+        to="/"
+        style={{
+          color: `black`,
+          textDecoration: `none`,
+        }}
+      >
+        {title}
+      </Link>
+    </Text>
+  );
+};
+export function Header(): React.ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { state } = useAppContext(); // we are only using it if it not null
   const isAuthenticated = !!state?.isAuthenticated;
@@ -41,7 +45,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
               <Flex>
                 <HamburgerButton onClick={onOpen} />
               </Flex>
-              <SiteLogo title={siteTitle} />
+              <SiteLogo />
               <Flex flexDirection="row" alignItems="center" justifyContent="center">
                 <ButtonsContainer>
                   <Button
@@ -61,7 +65,7 @@ export function Header({ siteTitle }: { siteTitle?: string }): React.ReactElemen
             </>
           ) : (
             <>
-              <SiteLogo title={siteTitle} />
+              <SiteLogo />
               <Flex
                 display={{ base: 'none', sm: 'flex' }}
                 flexDirection="row"
