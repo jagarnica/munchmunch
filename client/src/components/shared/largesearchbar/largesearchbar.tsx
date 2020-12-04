@@ -4,17 +4,19 @@ import { Search2Icon } from '@chakra-ui/icons';
 
 export interface LargeSearchBarProps extends InputProps {
   buttonProps?: IconButtonProps;
+  arialLabel: string;
 }
 /**
  * @name LargeSearchBar
- * @description It is a customized seach bar with a search icon as a search button.
+ * @description It is a customized search bar with a search icon as a search button.
  * Props for the button can be accessed through one of the props. The rest of the
  * props go straight to the input element
  * @prop {IconButtonProps} buttonProps These when destructed go to the button
+ * @prop {string} arialLabel Used for the label on the search bar
  * @returns JSX.Element
  */
 export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarProps>(
-  ({ buttonProps, ...rest }, ref): JSX.Element => {
+  ({ buttonProps, arialLabel, ...rest }, ref): JSX.Element => {
     return (
       <InputGroup>
         <Input
@@ -36,7 +38,7 @@ export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarP
             }}
             colorScheme="orange"
             variant="link"
-            aria-label="search for restaurants"
+            aria-label={arialLabel}
             icon={<Search2Icon />}
             color="orange.500"
             {...buttonProps}
