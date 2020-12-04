@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import { HamburgerButton } from 'components/shared/buttons';
 import styled from 'styled-components';
-import { Button, Box, Flex, useDisclosure, Text, Icon, Stack } from '@chakra-ui/react';
+import { Button, Box, Flex, useDisclosure, Text, Stack } from '@chakra-ui/react';
 import { useAppContext } from 'libs/contextLib';
 import { ShoppingCart } from 'images/tsxicons';
 import { PublicSideMenuItems, PublicSideMenuDrawer } from './publicnav';
