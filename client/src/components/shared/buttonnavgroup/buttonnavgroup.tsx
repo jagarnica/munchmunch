@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, ButtonGroup, ButtonProps } from '@chakra-ui/core';
+import { Button, ButtonGroup, ButtonProps } from '@chakra-ui/react';
 
 export interface ButtonNavGroupProps extends Omit<ButtonProps, 'children' | 'onClick'> {
   items: Array<{
@@ -30,7 +30,7 @@ export const ButtonNavGroup = ({ items, activeId, onClick, ...rest }: ButtonNavG
           return (
             <Button
               isActive={activeId === id}
-              variantColor="gray"
+              colorScheme="gray"
               variant="outline"
               rounded="full"
               _active={{

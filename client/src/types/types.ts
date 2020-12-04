@@ -15,11 +15,6 @@ export type FormRulesType = {
   type: string;
 };
 
-export type CustomChakraIcon = {
-  path: JSX.Element;
-  viewBox: string;
-};
-
 export type RestaurantOrder = {
   name: string;
   image: string;

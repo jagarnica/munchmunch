@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, SEO } from 'components/shared/layout';
 import { MainRouteComponent } from 'types/types';
-import { Text } from '@chakra-ui/core';
+import { Text } from '@chakra-ui/react';
 
 export const LegalPolicy: React.FC<MainRouteComponent> = () => (
   <Layout>

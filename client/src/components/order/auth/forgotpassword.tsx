@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex } from '@chakra-ui/core';
+import { Flex } from '@chakra-ui/react';
 import { SEO } from 'components/shared/layout';
 import { ForgotPasswordForm } from 'components/auth/';
 import { MainRouteComponent } from 'types';

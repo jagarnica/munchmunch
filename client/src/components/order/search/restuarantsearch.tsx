@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link, navigate, redirectTo } from '@reach/router';
-import { Text, SimpleGrid, Skeleton } from '@chakra-ui/core';
+import { Text, SimpleGrid, Skeleton } from '@chakra-ui/react';
 import * as awsQueryTypes from 'API';
 import { useQuery, gql } from '@apollo/client';
 import { MainRouteComponent } from 'types';

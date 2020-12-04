@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Stack, Box, BoxProps } from '@chakra-ui/core';
+import { Text, Stack, Box, BoxProps } from '@chakra-ui/react';
 import { Card, CardDefaultStyles } from '.';
 
 export const ImgTitleDescStyles: BoxProps = {

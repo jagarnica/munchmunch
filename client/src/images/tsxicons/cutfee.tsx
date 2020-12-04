@@ -1,7 +1,8 @@
 import React from 'react';
-import { CustomChakraIcon } from 'types/';
+import { createIcon } from '@chakra-ui/react';
 
-export const cutfee: CustomChakraIcon = {
+export const CutFee = createIcon({
+  displayName: 'CutFeeIcon',
   path: (
     <g fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -20,4 +21,4 @@ export const cutfee: CustomChakraIcon = {
     </g>
   ),
   viewBox: '0 0 43 43',
-};
+});

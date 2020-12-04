@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Link, Stack, Text } from '@chakra-ui/core';
+import { Box, Link, Stack, Text } from '@chakra-ui/react';
 import { useSiteMetadata } from 'utils/hooks/queries';
 import { Header } from './navbar/header';
 

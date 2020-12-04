@@ -2,12 +2,14 @@ import React from 'react';
 import { SEO, Layout } from 'components/shared/layout';
 import { useAppContext } from 'libs/contextLib';
 import { useNavigate } from '@reach/router';
-import { Text, SimpleGrid, Icon, Flex } from '@chakra-ui/core';
+import { Text, SimpleGrid, Flex } from '@chakra-ui/react';
 import { LargeSearchBar } from 'components/shared/largesearchbar';
 import { MainRouteComponent, RestaurantOrder, Restaurant } from 'types';
 import { GeneralPlaceholderCard, OrderHistoryCard, RestaurantCard } from 'components/shared/card';
 import { useForm } from 'react-hook-form';
 import { restaurantSearch } from 'utils/formrules/';
+import { StarIcon } from '@chakra-ui/icons';
+import { ShoppingBag, HappyTakeOutBox, TogoBox } from 'images/tsxicons';
 import { WhyMunchMunch, OneStopShop } from './landingpage';
 
 export const OrderHome: React.FC<MainRouteComponent> = () => {
@@ -93,8 +95,7 @@ export const UserPastOrders = ({
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Flex alignItems="center" justifyContent="flex-start">
-        <Icon name="shoppingbag" color="orange.500" size="2rem" marginRight="0.3rem" />
-
+        <ShoppingBag color="orange.500" boxSize="1.8rem" marginRight="0.3rem" />
         <Text as="span" fontSize="xl" transform="translateY(0.2rem)" fontWeight="bold" color="orange.500">
           My Orders
         </Text>
@@ -108,7 +109,7 @@ export const UserPastOrders = ({
             })}
           </>
         ) : (
-          <GeneralPlaceholderCard text="No orders yet!" icon="happytakeoutbox" />
+          <GeneralPlaceholderCard text="No orders yet!" icon={<HappyTakeOutBox color="gray.500" boxSize="57px" />} />
         )}
       </SimpleGrid>
     </SimpleGrid>
@@ -119,8 +120,7 @@ export const UserFavorites = ({ favorites = [] }: { favorites?: Array<Restaurant
   return (
     <SimpleGrid spacing="20px" maxWidth="100%">
       <Flex alignItems="center" justifyContent="flex-start">
-        <Icon name="star" color="orange.500" size="1.8rem" marginRight="0.3rem" />
-
+        <StarIcon color="orange.500" boxSize="1.4rem" marginRight="0.3rem" />
         <Text as="span" fontSize="xl" transform="translateY(0.2rem)" fontWeight="bold" color="orange.500">
           My Favorites
         </Text>
@@ -140,7 +140,10 @@ export const UserFavorites = ({ favorites = [] }: { favorites?: Array<Restaurant
             })}
           </>
         ) : (
-          <GeneralPlaceholderCard text="Your favorites will show up here." icon="togobox" />
+          <GeneralPlaceholderCard
+            text="Your favorites will show up here."
+            icon={<TogoBox boxSize="57px" color="gray.500" />}
+          />
         )}
       </SimpleGrid>
     </SimpleGrid>

@@ -1,22 +1,6 @@
-import { ITheme, theme } from '@chakra-ui/core';
-import * as customIcons from 'images/tsxicons';
+import { theme } from '@chakra-ui/react';
 
-export interface customTheme extends ITheme {
-  header: {
-    borderColor: string;
-    zIndex: number;
-  };
-  toastDefaults: {
-    duration: number;
-    isClosable: boolean;
-  };
-}
-export const baseSiteTheme: customTheme = {
-  ...theme,
-  icons: {
-    ...theme.icons,
-    ...customIcons,
-  },
+export const baseSiteTheme = {
   header: {
     borderColor: theme.colors.gray[100],
     zIndex: 10,

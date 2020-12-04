@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Image, ImageProps, Flex, Skeleton, BoxProps } from '@chakra-ui/core';
+import { Image, ImageProps, Flex, Skeleton, BoxProps } from '@chakra-ui/react';
 import { AspectRatioBox } from 'components/shared/aspectratiobox';
 
 export interface SmartImageProps extends ImageProps {

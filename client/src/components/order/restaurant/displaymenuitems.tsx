@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Box, SimpleGrid, Text, Icon, Stack } from '@chakra-ui/core';
+import { Box, SimpleGrid, Text, Stack } from '@chakra-ui/react';
 import { useQuery, gql } from '@apollo/client';
 import { MenuItem } from 'components/shared/card/';
+import { CoffeeMenuSign } from 'images/tsxicons';
 import { getMenuItems, getMenuItemsQueryVariables, getMenuItemsQuery } from './queries';
 
 export interface DisplayMenuItemsProps {
@@ -46,7 +47,8 @@ export const DisplayMenuItems = ({ menuID }: DisplayMenuItemsProps): JSX.Element
           padding="16px"
           alignItems="center"
         >
-          <Icon name="coffeemenusign" color="gray.500" size="128px" />
+          <CoffeeMenuSign color="gray.500" boxSize="128px" />
+
           <Text textAlign="center" fontSize="2xl" fontWeight="bold" color="gray.500">
             Sorry this menu has no items yet. <br />
             Check back again soon!
@@ -59,7 +61,7 @@ export const DisplayMenuItems = ({ menuID }: DisplayMenuItemsProps): JSX.Element
           const { id, name, description, price } = item.foodItem;
 
           return (
-            <MenuItem alignSelf="center" maxW="100%" key={id} name={name} description={description} price={price} />
+            <MenuItem alignSelf="stretch" maxW="100%" key={id} name={name} description={description} price={price} />
           );
         })}
       </SimpleGrid>

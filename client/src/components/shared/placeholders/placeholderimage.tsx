@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, BoxProps, AspectRatioBox } from '@chakra-ui/core';
+import { Box, BoxProps, AspectRatio } from '@chakra-ui/react';
 import { SiteLogo } from 'components/shared/logos';
 
 export interface PlaceHolderImageProps extends BoxProps {
@@ -18,10 +18,10 @@ export const PlaceHolderImage = ({ ratio, fontSize = '4xl', ...rest }: PlaceHold
       </Box>
     );
   return (
-    <AspectRatioBox ratio={ratio}>
+    <AspectRatio ratio={ratio}>
       <Box {...rest} bg="gray.200" userSelect="none" d="flex" width="100%" justifyContent="center" alignItems="center">
         <SiteLogo as="span" fontSize={fontSize} color="gray.400" clickable={false} />
       </Box>
-    </AspectRatioBox>
+    </AspectRatio>
   );
 };
