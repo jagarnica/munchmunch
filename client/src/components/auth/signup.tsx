@@ -125,6 +125,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       <Text>
         {`Already have an account? `}
         <Link
+          fontWeight="bold"
           onClick={() => {
             navigate('login');
           }}
