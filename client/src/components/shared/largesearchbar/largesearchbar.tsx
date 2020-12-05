@@ -1,10 +1,10 @@
 import React from 'react';
-import { InputGroup, InputRightElement, IconButton, Input, InputProps, IconButtonProps } from '@chakra-ui/react';
+import { InputGroup, IconButton, Input, InputProps, IconButtonProps, InputRightElement } from '@chakra-ui/react';
 import { Search2Icon } from '@chakra-ui/icons';
 
 export interface LargeSearchBarProps extends InputProps {
   buttonProps?: Omit<IconButtonProps, 'aria-label'>;
-  arialLabel: string;
+  ariaLabel: string;
 }
 /**
  * @name LargeSearchBar
@@ -16,16 +16,18 @@ export interface LargeSearchBarProps extends InputProps {
  * @returns JSX.Element
  */
 export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarProps>(
-  ({ buttonProps, arialLabel, ...rest }, ref): JSX.Element => {
+  ({ buttonProps, ariaLabel, ...rest }, ref): JSX.Element => {
     return (
-      <InputGroup>
+      <InputGroup alignItems="center" size="lg">
         <Input
           focusBorderColor="orange.400"
-          _placeholder={{ color: 'gray.600' }}
+          _placeholder={{ color: 'gray.700' }}
           _focusWithin={{ bg: 'white' }}
-          _hover={{ borderColor: 'orange.500' }}
-          borderRadius="32px"
-          borderColor="gray.500"
+          _hover={{ borderColor: 'gray.200', bg: 'gray.200' }}
+          color="gray.800"
+          bg="gray.100"
+          borderColor="gray.100"
+          borderWidth="2px"
           autoFocus
           fontWeight="500"
           ref={ref}
@@ -38,7 +40,7 @@ export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarP
             }}
             colorScheme="orange"
             variant="link"
-            aria-label={arialLabel}
+            aria-label={ariaLabel}
             icon={<Search2Icon />}
             color="orange.500"
             {...buttonProps}
