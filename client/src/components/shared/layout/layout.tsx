@@ -19,8 +19,8 @@ export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) =
             : { base: `0 1.0875rem 1.45rem` }
         }
       >
-        <main>{children}</main>
-        <Stack spacing="14px">
+        <main style={{ minHeight: 'calc(100vh - 73px)' }}>{children}</main>
+        <Stack spacing="14px" mt="1em">
           <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px" shadow="lg">
             <Link href="/newbusiness">Want to Join Munch Munch?</Link>
           </Box>
