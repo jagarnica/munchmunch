@@ -36,7 +36,7 @@ export function SignUpCustomerForm(): React.ReactElement {
           phone_number: userPhoneNumber,
         },
       });
-
+      // Save the user details in our component state only
       setUser(newUser);
       setIsLoading(true);
       setAccountCreated(true);
@@ -96,6 +96,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       <FormInput
         elementDetails={customerEmail}
         errorText={errors.email?.message}
+        autoComplete="username"
         ref={register({
           ...customerEmail.rules,
         })}
@@ -115,6 +116,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       <FormInput
         elementDetails={customerPassword}
         errorText={errors.password?.message}
+        autoComplete="password"
         ref={register({
           ...customerPassword.rules,
         })}
