@@ -5,12 +5,12 @@ import {
   Drawer,
   DrawerProps,
   DrawerOverlay,
+  Button,
   DrawerCloseButton,
   DrawerHeader,
   DrawerFooter,
   DrawerBody,
   DrawerContent,
-  Button,
 } from '@chakra-ui/react';
 
 export interface PublicSideMenuDrawerProps extends Omit<DrawerProps, 'children'> {
@@ -25,7 +25,7 @@ export const PublicSideMenuDrawer = ({ isOpen, onClose, ...rest }: PublicSideMen
         <DrawerCloseButton />
         <DrawerHeader>MunchMunch</DrawerHeader>
         <StyledDrawerBody display={{ base: 'flex' }} flexDirection="column" alignItems="stretch" alignContent="stretch">
-          <PublicSideMenuItems />
+          <PublicSideMenuItems onClick={onClose} />
         </StyledDrawerBody>
         <DrawerFooter />
       </DrawerContent>
@@ -33,13 +33,14 @@ export const PublicSideMenuDrawer = ({ isOpen, onClose, ...rest }: PublicSideMen
   );
 };
 
-export const PublicSideMenuItems = (): JSX.Element => {
+export const PublicSideMenuItems = ({ onClick }: { onClick?: () => void }): JSX.Element => {
   return (
     <>
       <Button
         className="loginButton"
         variant="outline"
         onClick={() => {
+          onClick?.();
           navigate('/auth/login');
         }}
       >
@@ -47,6 +48,7 @@ export const PublicSideMenuItems = (): JSX.Element => {
       </Button>
       <Button
         onClick={() => {
+          onClick?.();
           navigate('/auth/signup');
         }}
       >

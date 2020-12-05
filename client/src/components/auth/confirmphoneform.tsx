@@ -9,7 +9,7 @@ import { debounce } from 'lodash';
 
 interface ConfirmPhoneProps {
   userEmailAddress: string;
-  callback: (success: boolean) => void;
+  callback: (success: boolean) => void | Promise<void>;
 }
 export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhoneProps): JSX.Element {
   const { register, errors, handleSubmit } = useForm<{ confirmationCode: string }>();
@@ -22,8 +22,8 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
     try {
       setIsLoading(true);
       await Auth.confirmSignUp(userEmailAddress, data.confirmationCode);
+      await callback(true);
       setIsLoading(false);
-      callback(true);
     } catch (e) {
       callback(false);
       setIsLoading(false);
