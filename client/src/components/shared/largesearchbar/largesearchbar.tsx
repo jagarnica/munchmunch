@@ -21,9 +21,9 @@ export const LargeSearchBar = React.forwardRef<HTMLInputElement, LargeSearchBarP
       <InputGroup alignItems="center" size="lg">
         <Input
           focusBorderColor="orange.400"
-          _placeholder={{ color: 'gray.700' }}
+          _placeholder={{ color: 'gray.800' }}
           _focusWithin={{ bg: 'white' }}
-          _hover={{ borderColor: 'gray.200', bg: 'gray.200' }}
+          _hover={{ borderColor: 'gray.100' }}
           color="gray.800"
           bg="gray.100"
           borderColor="gray.100"
