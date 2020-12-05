@@ -34,7 +34,7 @@ export const ForgotPasswordForm = (): JSX.Element => {
 export const SendCodeForm = ({ onSentCode }: { onSentCode: (username: string) => void }): JSX.Element => {
   const toast = useToast();
   const [awaitingCode, setAwaitingCode] = React.useState(false);
-  const [attemptsExcedeed, setAttemptsExceeded] = React.useState(false);
+  const [attemptsExceeded, setAttemptsExceeded] = React.useState(false);
   const { handleSubmit, errors, register } = useForm<{ email: string }>();
 
   const handleCodeSendFail = debounce((errorCode?: string) => {
@@ -85,12 +85,12 @@ export const SendCodeForm = ({ onSentCode }: { onSentCode: (username: string) =>
     <>
       <FormContainer onSubmit={handleSubmit(handleUsername)} formTitle="Reset your password">
         <FormInput
-          isDisabled={attemptsExcedeed}
-          errorText={attemptsExcedeed ? `` : errors.email?.message}
+          isDisabled={attemptsExceeded}
+          errorText={attemptsExceeded ? `` : errors.email?.message}
           elementDetails={customerEmail}
           ref={register({ ...customerEmail.rules })}
         />
-        <Button isDisabled={attemptsExcedeed} isLoading={awaitingCode} type="submit">
+        <Button isDisabled={attemptsExceeded} isLoading={awaitingCode} type="submit">
           Send Code
         </Button>
       </FormContainer>
@@ -110,7 +110,7 @@ export const EnterCodeForm = ({ username }: { username: string }): JSX.Element =
   const [verifyingCode, setVerifyingCode] = React.useState(false);
   const [sendingCode, setSendingCode] = React.useState(false);
 
-  function handeResendStatus(success: boolean, userEmail: string, errorCode?: string) {
+  function handleResendStatus(success: boolean, userEmail: string, errorCode?: string) {
     const errorMessage = getSignUpErrorMessage(errorCode, 'There was an issue resending your code.');
     // debounce the following actions.
     debounce(() => {
@@ -130,7 +130,7 @@ export const EnterCodeForm = ({ username }: { username: string }): JSX.Element =
    */
   const handleSendCode = async (): Promise<void> => {
     setSendingCode(true);
-    await authForgotPassword(username, handeResendStatus); // The callback will handle the results for us
+    await authForgotPassword(username, handleResendStatus); // The callback will handle the results for us
   };
   async function handleCodeEntered({ confirmationCode, password }: EnterCodeFormTypes) {
     setVerifyingCode(true);

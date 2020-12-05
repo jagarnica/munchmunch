@@ -7,11 +7,11 @@ import { FormContainer, FormInput } from 'components/formelements/';
 import { confirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
 
-interface CofirmPhoneProps {
+interface ConfirmPhoneProps {
   userEmailAddress: string;
   callback: (success: boolean) => void;
 }
-export function ConfirmPhoneForm({ userEmailAddress, callback }: CofirmPhoneProps): JSX.Element {
+export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhoneProps): JSX.Element {
   const { register, errors, handleSubmit } = useForm<{ confirmationCode: string }>();
   const toast = useToast();
   // Logic for our buttons

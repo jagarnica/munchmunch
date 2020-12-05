@@ -56,18 +56,18 @@ export function SignUpCustomerForm(): React.ReactElement {
     if (!result) {
       toast({
         title: 'Oops!',
-        description: 'Check your cofirmation code for any typos!',
+        description: 'Check your confirmation code for any typos!',
         status: 'error',
         duration: 3000,
         isClosable: true,
       });
     } else {
-      navigate('/');
+      navigate('/login');
       toast({
         title: 'Account Created!',
         description: 'Welcome to Munch Munch!',
         status: 'success',
-        duration: 3000,
+        duration: 5000,
         isClosable: true,
       });
     }
