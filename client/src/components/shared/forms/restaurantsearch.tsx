@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { restaurantSearch } from 'utils/formrules/';
 import { restaurantQuery } from 'types';
 
-export interface RestaurantSearchBarProps extends Omit<LargeSearchBarProps, 'onSubmit'> {
+export interface RestaurantSearchBarProps extends Omit<LargeSearchBarProps, 'onSubmit' | 'ariaLabel'> {
   onSubmit: (query: string) => void;
   defaultValue?: string;
   autoFocus?: boolean;
@@ -44,6 +44,7 @@ export const RestaurantSearchBar = ({
       <LargeSearchBar
         defaultValue={defaultValue}
         type="text"
+        placeholder="I'm hungry for..."
         name={restaurantSearch.id}
         ref={e => {
           register(e, {
@@ -52,8 +53,8 @@ export const RestaurantSearchBar = ({
           });
           searchBarRef.current = e;
         }}
+        ariaLabel="Search Restaurants"
         buttonProps={{
-          'aria-label': 'search restaurants',
           type: 'submit',
         }}
         {...rest}

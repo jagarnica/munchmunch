@@ -73,7 +73,7 @@ export const SearchRestaurants = (): JSX.Element => {
           placeholder={restaurantSearch.placeholder}
           size="lg"
           autoComplete="off"
-          arialLabel="Search Restaurants"
+          ariaLabel="Search Restaurants"
           name={restaurantSearch.id}
           ref={register({
             ...restaurantSearch.rules,
