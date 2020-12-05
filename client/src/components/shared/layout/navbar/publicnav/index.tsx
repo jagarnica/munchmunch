@@ -3,7 +3,7 @@ import { navigate } from 'gatsby';
 import styled from 'styled-components';
 import {
   Drawer,
-  IDrawer,
+  DrawerProps,
   DrawerOverlay,
   DrawerCloseButton,
   DrawerHeader,
@@ -13,7 +13,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-export interface PublicSideMenuDrawerProps extends Omit<IDrawer, 'children'> {
+export interface PublicSideMenuDrawerProps extends Omit<DrawerProps, 'children'> {
   isOpen: boolean;
   onClose: () => void;
 }

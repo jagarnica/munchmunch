@@ -17,7 +17,7 @@ export const FormContainer: React.FC<FormContainerProps> = ({ children, onSubmit
   return (
     <Box width="100%" maxW="md" borderWidth="1px" rounded="lg" overflow="hidden">
       <form onSubmit={onSubmit}>
-        <Grid padding="1.45rem" gridAutoFlow="row" gridGap="1.5rem">
+        <Grid padding="1.45rem" gridAutoFlow="row" gridGap="1rem">
           <Heading>{formTitle}</Heading>
           {children}
         </Grid>

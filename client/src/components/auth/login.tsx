@@ -40,7 +40,7 @@ export function LoginCustomerForm(): React.ReactElement {
         duration: 2000,
         isClosable: true,
       });
-      navigate('/'); // Navigate to the home page
+      navigate('/', { replace: true }); // Navigate to the home page
     } catch (e) {
       toast({
         title: 'Whoops!',

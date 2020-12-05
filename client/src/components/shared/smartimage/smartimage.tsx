@@ -20,9 +20,9 @@ export function SmartImage({ src, ratio, onLoad, boxProps, ...rest }: SmartImage
   useEffect(() => {
     setIsLoaded(false);
   }, [src]);
-  function handleIsLoaded() {
+  function handleIsLoaded(event: React.SyntheticEvent<HTMLImageElement, Event>) {
     if (!isLoaded) setIsLoaded(true);
-    onLoad?.(); // call the passed in onload function if it exists
+    onLoad?.(event); // call the passed in onload function if it exists
   }
   const ImageContents = (
     <Flex bg="#E2E8F0" alignItems="stretch" justifyContent="stretch" height="100%" {...boxProps}>
