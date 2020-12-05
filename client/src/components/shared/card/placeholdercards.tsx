@@ -14,7 +14,7 @@ export const GeneralPlaceholderCard = ({
   text,
   icon,
   textColor = 'gray.500',
-  bgColor = '#F7FAFC',
+  bgColor = 'gray.100',
 }: GeneralPlaceholderCardProps): JSX.Element => {
   return (
     <Card

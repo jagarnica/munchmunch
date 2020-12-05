@@ -90,7 +90,8 @@ const IndexPage = (): React.ReactNode => {
     return <FullPageSpinner />;
   }
   // Show the app when done loading
-  const theme = extendTheme({ baseSiteTheme });
+  const theme = extendTheme({ ...baseSiteTheme });
+
   return (
     <ApolloProvider client={client}>
       <AppContext.Provider value={{ state, dispatch }}>
