@@ -19,7 +19,16 @@ const InitialState: AppContextInterface = {
 const httpLink = new HttpLink({
   uri: awsConfig.aws_appsync_graphqlEndpoint,
 });
-
+const getAuthToken = async (): Promise<string> => {
+  try {
+    const session = await Auth.currentSession();
+    return session.getIdToken().getJwtToken();
+  } catch (e) {
+    // there is currently no session
+    // this must be done in order for Apollo to be able to catch errors
+    return '';
+  }
+};
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: from([
@@ -28,7 +37,7 @@ const client = new ApolloClient({
       auth: {
         type: awsConfig.aws_appsync_authenticationType,
 
-        jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
+        jwtToken: async () => getAuthToken(),
       },
       region: awsConfig.aws_appsync_region,
     }),
@@ -44,7 +53,7 @@ const client = new ApolloClient({
           auth: {
             type: awsConfig.aws_appsync_authenticationType,
 
-            jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
+            jwtToken: async () => getAuthToken(),
           },
           region: awsConfig.aws_appsync_region,
           url: awsConfig.aws_appsync_graphqlEndpoint,
