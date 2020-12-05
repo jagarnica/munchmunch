@@ -3,7 +3,7 @@ import { InputGroup, InputRightElement, IconButton, Input, InputProps, IconButto
 import { Search2Icon } from '@chakra-ui/icons';
 
 export interface LargeSearchBarProps extends InputProps {
-  buttonProps?: IconButtonProps;
+  buttonProps?: Omit<IconButtonProps, 'aria-label'>;
   arialLabel: string;
 }
 /**
