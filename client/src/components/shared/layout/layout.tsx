@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, Link, Stack, Text } from '@chakra-ui/react';
+import { Box, BoxProps, Link, Stack, Text } from '@chakra-ui/react';
 import { Header } from './navbar/header';
 
-export interface LayoutProps {
+export interface LayoutProps extends BoxProps {
   fullWidth?: boolean;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false, ...rest }) => {
   return (
-    <>
+    <Box {...rest}>
       <Header />
       <Box
         margin="0 auto"
@@ -44,6 +44,6 @@ export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) =
           </Box>
         </Stack>
       </Box>
-    </>
+    </Box>
   );
 };
