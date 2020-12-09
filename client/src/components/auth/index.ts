@@ -1,4 +1,4 @@
-export * from './login';
-export * from './signup';
+export * from './loginform';
+export * from './signupform';
 export * from './confirmphoneform';
-export * from './forgotpassword';
+export * from './forgotpasswordform';

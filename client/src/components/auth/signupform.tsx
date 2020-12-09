@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { Auth } from 'aws-amplify';
 import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Text, useToast, Link, Button } from '@chakra-ui/react';
@@ -16,12 +16,16 @@ export type SignUpCustomerFormType = {
   phoneNumber: string;
   password: string;
 };
-
-export function SignUpCustomerForm(): React.ReactElement {
+export interface SignUpCustomerFormProps {
+  onSuccessfulSignUp: () => void;
+}
+export function SignUpCustomerForm({ onSuccessfulSignUp }: SignUpCustomerFormProps): React.ReactElement {
   const { register, handleSubmit, errors } = useForm<SignUpCustomerFormType>();
-  const [isLoading, setIsLoading] = useState(false);
-  const [user, setUser] = useState<null | ISignUpResult>(null);
-  const [accountCreated, setAccountCreated] = useState(false);
+
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [accountCreated, setAccountCreated] = React.useState(false);
+  const [user, setUser] = React.useState<null | ISignUpResult>(null);
+
   const toast = useToast();
   const onSubmit = async (data: SignUpCustomerFormType) => {
     try {
@@ -52,8 +56,10 @@ export function SignUpCustomerForm(): React.ReactElement {
       setIsLoading(false);
     }
   };
-  function handleConfirmationCodeSubmit(result: boolean) {
-    if (!result) {
+  const handleConfirmationCodeSubmit = (result: boolean) => {
+    if (result) {
+      onSuccessfulSignUp?.();
+    } else {
       toast({
         title: 'Oops!',
         description: 'Check your confirmation code for any typos!',
@@ -61,17 +67,8 @@ export function SignUpCustomerForm(): React.ReactElement {
         duration: 3000,
         isClosable: true,
       });
-    } else {
-      navigate('/login');
-      toast({
-        title: 'Account Created!',
-        description: 'Welcome to Munch Munch!',
-        status: 'success',
-        duration: 5000,
-        isClosable: true,
-      });
     }
-  }
+  };
   return accountCreated && user ? (
     <ConfirmPhoneForm callback={handleConfirmationCodeSubmit} userEmailAddress={user?.user?.getUsername()} />
   ) : (
@@ -94,6 +91,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       />
       {/** Email SECTION */}
       <FormInput
+        id="username"
         elementDetails={customerEmail}
         errorText={errors.email?.message}
         autoComplete="username"
@@ -114,6 +112,7 @@ export function SignUpCustomerForm(): React.ReactElement {
       />
       {/** Password SECTION */}
       <FormInput
+        id="password"
         elementDetails={customerPassword}
         errorText={errors.password?.message}
         autoComplete="password"
