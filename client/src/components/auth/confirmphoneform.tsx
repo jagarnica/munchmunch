@@ -22,11 +22,11 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
     try {
       setIsLoading(true);
       await Auth.confirmSignUp(userEmailAddress, data.confirmationCode);
+      // setIsLoading(false);
       await callback(true);
-      setIsLoading(false);
     } catch (e) {
-      callback(false);
       setIsLoading(false);
+      await callback(false);
     }
   };
   const handleResendFailure = debounce(e => {
@@ -69,12 +69,12 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
       trailing: false,
     }
   );
+
   return (
     <>
       <Box>
         <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
           <Text>We sent you a text to the number you entered.</Text>
-
           <FormInput
             elementDetails={confirmationCode}
             ref={register({
