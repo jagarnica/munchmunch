@@ -15,6 +15,16 @@ export const getRestaurant = /* GraphQL */ `
     }
   }
 `;
+export const getFoodItem = /* GraphQL */ `
+  query GetFoodItem($id: ID!) {
+    getFoodItem(id: $id) {
+      id
+      name
+      description
+      price
+    }
+  }
+`;
 export const getMenuItems = /* GraphQL */ `
   query GetMenu($id: ID!) {
     getMenu(id: $id) {
@@ -65,6 +75,17 @@ export type GetRestaurantQuery = {
     } | null;
   } | null;
 };
+export type GetFoodItemQuery = {
+  getFoodItem: {
+    id: string;
+    name: string;
+    description: string | null;
+    price: number;
+  };
+};
 export type GetRestaurantQueryVariables = {
+  id: string;
+};
+export type GetFoodItemQueryVariables = {
   id: string;
 };
