@@ -81,7 +81,7 @@ export type GetFoodItemQuery = {
     name: string;
     description: string | null;
     price: number;
-  };
+  } | null;
 };
 export type GetRestaurantQueryVariables = {
   id: string;
