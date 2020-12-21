@@ -21,6 +21,10 @@ export const FoodItemModal = ({ id, onClose, isOpen }: FoodItemModalProps): JSX.
 
   return (
     <TitleDescShopItem
+      size={'lg'}
+      min={1}
+      max={100}
+      defaultValue={1}
       error={!!(error || data?.getFoodItem === null)}
       isOpen={isOpen}
       onClose={onClose}
