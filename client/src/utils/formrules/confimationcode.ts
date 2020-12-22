@@ -19,7 +19,19 @@ const CodeRules = {
     message: GENERAL_ERROR_MESSAGE,
   },
 };
-export const confirmationCode: FormRulesType = {
+type GeneralRule<T> = {
+  value: T;
+  message: string;
+};
+export declare type ConfirmationCodeFormType = FormRulesType & {
+  rules: {
+    minLength: GeneralRule<number>;
+    maxLength: GeneralRule<number>;
+    required: GeneralRule<boolean>;
+    pattern: GeneralRule<RegExp>;
+  };
+};
+export const confirmationCode: ConfirmationCodeFormType = {
   label: 'Confirmation Code',
   id: 'confirmationCode',
   type: 'number',
