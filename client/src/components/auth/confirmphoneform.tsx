@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Auth } from 'aws-amplify';
-import { Box, Text, Flex, Button, useToast } from '@chakra-ui/react';
+import { Text, Flex, Button, useToast } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
@@ -12,7 +12,7 @@ interface ConfirmPhoneProps {
   callback: (success: boolean) => void | Promise<void>;
 }
 export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhoneProps): JSX.Element {
-  const { register, errors, handleSubmit } = useForm<{ confirmationCode: string }>();
+  const { register, errors, handleSubmit, watch } = useForm<{ confirmationCode: string }>();
   const toast = useToast();
   // Logic for our buttons
   const [isLoading, setIsLoading] = useState(false);
@@ -70,40 +70,42 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
     }
   );
 
+  const codeLength = confirmationCode.rules.minLength.value;
+  // The code should be the same amount of digits.
+  const isButtonDisabled = watch().confirmationCode?.length !== codeLength;
+
   return (
     <>
-      <Box>
-        <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
-          <Text>We sent you a text to the number you entered.</Text>
-          <FormInput
-            elementDetails={confirmationCode}
-            ref={register({
-              ...confirmationCode.rules,
-            })}
-            errorText={errors?.confirmationCode?.message}
-          />
-          <Button isLoading={isLoading} type="submit">
-            Confirm
+      <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
+        <Text>We sent you a text to the number you entered.</Text>
+        <FormInput
+          elementDetails={confirmationCode}
+          ref={register({
+            ...confirmationCode.rules,
+          })}
+          errorText={errors?.confirmationCode?.message}
+        />
+        <Button isDisabled={isButtonDisabled} isLoading={isLoading} type="submit">
+          Confirm
+        </Button>
+        <Flex flexDirection="column">
+          <Button
+            isLoading={resentTextLoading}
+            variant="ghost"
+            onClick={event => {
+              event.preventDefault();
+              event.stopPropagation();
+              if (!resentTextLoading) {
+                setResentTextLoading(true);
+              }
+              handleResendText();
+            }}
+            colorScheme="blue"
+          >
+            Resend confirmation text
           </Button>
-          <Flex flexDirection="column">
-            <Button
-              isLoading={resentTextLoading}
-              variant="ghost"
-              onClick={event => {
-                event.preventDefault();
-                event.stopPropagation();
-                if (!resentTextLoading) {
-                  setResentTextLoading(true);
-                }
-                handleResendText();
-              }}
-              colorScheme="blue"
-            >
-              Resend confirmation text
-            </Button>
-          </Flex>
-        </FormContainer>
-      </Box>
+        </Flex>
+      </FormContainer>
     </>
   );
 }
