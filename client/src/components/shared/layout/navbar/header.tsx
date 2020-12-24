@@ -5,6 +5,7 @@ import { Button, Box, useDisclosure, Text, Stack, Center } from '@chakra-ui/reac
 import { useAppContext } from 'libs/contextLib';
 import { ShoppingCart } from 'images/tsxicons';
 import { useSiteTitle } from 'utils/hooks/queries';
+import { CartDrawer } from 'components/order/cart';
 import { PublicSideMenuDrawer } from './publicnav';
 import { CustomerOrderSideDrawer } from './privatenav';
 
@@ -26,6 +27,7 @@ export const SiteLogo = (): JSX.Element => {
 };
 export function Header(): React.ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: cartOpen, onOpen: onOpenCart, onClose: onCloseCart } = useDisclosure();
   const { state } = useAppContext(); // we are only using it if it not null
   const isAuthenticated = !!state?.isAuthenticated;
   React.useEffect(() => {
@@ -63,6 +65,7 @@ export function Header(): React.ReactElement {
             _hover={{ bg: 'orange.500' }}
             _active={{ bg: 'orange.600' }}
             color="white"
+            onClick={onOpenCart}
           >
             <Stack direction="row">
               <ShoppingCart boxSize="18px" alt="shopping cart" />
@@ -79,6 +82,7 @@ export function Header(): React.ReactElement {
       ) : (
         <PublicSideMenuDrawer isOpen={isOpen} placement="left" onClose={onClose} />
       )}
+      <CartDrawer isOpen={cartOpen} onClose={onCloseCart} />
     </>
   );
 }
