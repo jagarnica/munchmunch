@@ -1,5 +1,5 @@
 import { RouteComponentProps } from '@reach/router';
-import { ValidationRules } from 'react-hook-form';
+import { RegisterOptions } from 'react-hook-form';
 
 export type MainRouteComponent = RouteComponentProps;
 /**
@@ -11,7 +11,7 @@ export type FormRulesType = {
   id: string;
   placeholder?: string;
   maxLength?: string;
-  rules: ValidationRules;
+  rules: RegisterOptions;
   type: string;
 };
 
