@@ -11,12 +11,17 @@ interface ConfirmPhoneProps {
   userEmailAddress: string;
   callback: (success: boolean) => void | Promise<void>;
 }
-export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhoneProps): JSX.Element {
+export function ConfirmSignUpForm({ userEmailAddress, callback }: ConfirmPhoneProps): JSX.Element {
   const { register, errors, handleSubmit, watch } = useForm<{ confirmationCode: string }>();
   const toast = useToast();
   // Logic for our buttons
   const [isLoading, setIsLoading] = useState(false);
   const [resentTextLoading, setResentTextLoading] = useState(false);
+
+  const codeLength = confirmationCode.rules.minLength.value;
+  // The code should be the same amount of digits.
+  const isButtonDisabled = watch().confirmationCode?.length !== codeLength;
+
   // This handles the confirmation portion
   const handleConfirmation = async (data: { confirmationCode: string }) => {
     try {
@@ -70,14 +75,10 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
     }
   );
 
-  const codeLength = confirmationCode.rules.minLength.value;
-  // The code should be the same amount of digits.
-  const isButtonDisabled = watch().confirmationCode?.length !== codeLength;
-
   return (
     <>
       <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
-        <Text>We sent you a text to the number you entered.</Text>
+        <Text>We sent you a text to the phone number you entered.</Text>
         <FormInput
           elementDetails={confirmationCode}
           ref={register({
@@ -103,6 +104,9 @@ export function ConfirmPhoneForm({ userEmailAddress, callback }: ConfirmPhonePro
             colorScheme="blue"
           >
             Resend confirmation text
+          </Button>
+          <Button isLoading={resentTextLoading} variant="ghost" colorScheme="blue">
+            Send To Email Instead
           </Button>
         </Flex>
       </FormContainer>

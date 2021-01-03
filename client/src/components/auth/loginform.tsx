@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
 import { customerEmail, customerPassword } from 'utils/formrules';
 import { AWSignInResponse } from 'types/';
-import { ConfirmPhoneForm } from 'components/auth/';
+import { ConfirmSignUpForm } from 'components/auth/';
 
 export type LoginCustomerFormType = {
   email: string;
@@ -75,7 +75,7 @@ export function LoginCustomerForm({ onLoginSuccess, onLoginFail }: LoginCustomer
     }
   }
   if (isVerifying && userEmail) {
-    return <ConfirmPhoneForm callback={handleUserVerification} userEmailAddress={userEmail} />;
+    return <ConfirmSignUpForm callback={handleUserVerification} userEmailAddress={userEmail} />;
   }
   return (
     <FormContainer formTitle="Login" onSubmit={handleSubmit(onSubmit)}>
