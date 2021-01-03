@@ -11,7 +11,7 @@ export function CartDrawer({ ...rest }: CartDrawerProps): JSX.Element {
 
   return (
     <GeneralDrawer {...rest}>
-      <DrawerCloseButton />
+      <DrawerCloseButton size="lg" />
       {!!cartItems && <DrawerHeader>Ordering from...</DrawerHeader>}
 
       <DrawerBody d="flex">

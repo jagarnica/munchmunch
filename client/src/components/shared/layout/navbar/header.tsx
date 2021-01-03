@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import * as React from 'react';
 import { HamburgerButton } from 'components/shared/buttons';
-import { Button, Box, useDisclosure, Text, Stack, Center } from '@chakra-ui/react';
+import { Button, Box, useDisclosure, Text, Stack, Center, useBreakpointValue } from '@chakra-ui/react';
 import { useAppContext } from 'libs/contextLib';
 import { ShoppingCart } from 'images/tsxicons';
 import { useSiteTitle } from 'utils/hooks/queries';
@@ -28,6 +28,7 @@ export const SiteLogo = (): JSX.Element => {
 export function Header(): React.ReactElement {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: cartOpen, onOpen: onOpenCart, onClose: onCloseCart } = useDisclosure();
+  const cartSize = useBreakpointValue({ base: 'md', sm: 'sm' });
   const { state } = useAppContext(); // we are only using it if it not null
   const isAuthenticated = !!state?.isAuthenticated;
   React.useEffect(() => {
@@ -82,7 +83,7 @@ export function Header(): React.ReactElement {
       ) : (
         <PublicSideMenuDrawer isOpen={isOpen} placement="left" onClose={onClose} />
       )}
-      <CartDrawer isOpen={cartOpen} onClose={onCloseCart} />
+      <CartDrawer size={cartSize} isOpen={cartOpen} onClose={onCloseCart} />
     </>
   );
 }
