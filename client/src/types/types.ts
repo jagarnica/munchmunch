@@ -1,5 +1,6 @@
 import { RouteComponentProps } from '@reach/router';
 import { RegisterOptions } from 'react-hook-form';
+import { ISignUpResult } from 'amazon-cognito-identity-js';
 
 export type MainRouteComponent = RouteComponentProps;
 /**
@@ -59,6 +60,10 @@ export type AWSignInResponse = {
     phone_number_verified: boolean;
   };
   username: string;
+};
+
+export type resendSignUpResponse = {
+  CodeDeliveryDetails: ISignUpResult['codeDeliveryDetails'];
 };
 
 /* eslint-disable  camelcase */

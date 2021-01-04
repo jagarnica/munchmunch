@@ -25,6 +25,8 @@ export function LoginCustomerForm({ onLoginSuccess, onLoginFail }: LoginCustomer
   const [isVerifying, setIsVerifying] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState<undefined | string>(undefined);
   const [userPassword, setUserPassword] = React.useState<undefined | string>(undefined);
+
+  // handleFunctions
   const onSubmit = async ({ email, password }: LoginCustomerFormType) => {
     try {
       setIsLoading(true);
@@ -36,8 +38,7 @@ export function LoginCustomerForm({ onLoginSuccess, onLoginFail }: LoginCustomer
         // Save the user details to state
         setUserEmail(email);
         setUserPassword(password);
-        // Resend the code
-        Auth.resendSignUp(email);
+
         // We are now in the reverifying phase
         setIsVerifying(true);
       } else {

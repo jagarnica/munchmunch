@@ -70,7 +70,12 @@ export function SignUpCustomerForm({ onSuccessfulSignUp }: SignUpCustomerFormPro
     }
   };
   return accountCreated && user ? (
-    <ConfirmSignUpForm callback={handleConfirmationCodeSubmit} userEmailAddress={user?.user?.getUsername()} />
+    <ConfirmSignUpForm
+      callback={handleConfirmationCodeSubmit}
+      sendCodeImmediately={false}
+      signUpResult={user}
+      userEmailAddress={user?.user?.getUsername()}
+    />
   ) : (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
       {/** FIRST NAME SECTION */}
