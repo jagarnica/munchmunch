@@ -4,7 +4,7 @@ import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Text, useToast, Link, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { navigate } from '@reach/router';
-import { ConfirmPhoneForm } from 'components/auth/';
+import { ConfirmSignUpForm } from 'components/auth/';
 import { formatToAWSPhoneNumber, getSignUpErrorMessage } from 'utils/aws';
 import { customerEmail, phoneNumber, customerPassword, firstName, lastName } from 'utils/formrules';
 import { FormInput, FormContainer, FormPhone } from '../formelements';
@@ -70,7 +70,12 @@ export function SignUpCustomerForm({ onSuccessfulSignUp }: SignUpCustomerFormPro
     }
   };
   return accountCreated && user ? (
-    <ConfirmPhoneForm callback={handleConfirmationCodeSubmit} userEmailAddress={user?.user?.getUsername()} />
+    <ConfirmSignUpForm
+      callback={handleConfirmationCodeSubmit}
+      sendCodeImmediately={false}
+      signUpResult={user}
+      userEmailAddress={user?.user?.getUsername()}
+    />
   ) : (
     <FormContainer formTitle="Sign Up" onSubmit={handleSubmit(onSubmit)}>
       {/** FIRST NAME SECTION */}
