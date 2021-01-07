@@ -7,7 +7,7 @@ import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
 import { confirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
-import { resendSignUpResponse } from 'types/';
+import { AuthResendSignUpResult } from 'types/';
 
 export interface ConfirmPhoneProps {
   userEmailAddress: string;
@@ -59,7 +59,7 @@ export function ConfirmSignUpForm({
   // The code should be the same amount of digits.
   const isButtonDisabled = watch().confirmationCode?.length !== codeLength;
 
-  function setDestinationDetails(codeDeliveryDetails: resendSignUpResponse['CodeDeliveryDetails']) {
+  function setDestinationDetails(codeDeliveryDetails: AuthResendSignUpResult['CodeDeliveryDetails']) {
     setDestinationLocation(codeDeliveryDetails.Destination);
     setDestinationAttribute(codeDeliveryDetails.AttributeName);
   }
@@ -72,7 +72,7 @@ export function ConfirmSignUpForm({
     // Handle the user wanting to resend their text message
     const sendCodeToUser = async () => {
       try {
-        const response: resendSignUpResponse = await Auth.resendSignUp(userEmailAddress);
+        const response: AuthResendSignUpResult = await Auth.resendSignUp(userEmailAddress);
         const { CodeDeliveryDetails } = response;
         setDestinationDetails(CodeDeliveryDetails);
 
@@ -147,7 +147,7 @@ export function ConfirmSignUpForm({
       try {
         setResentTextLoading(true);
 
-        const response: resendSignUpResponse = await Auth.resendSignUp(userEmailAddress);
+        const response: AuthResendSignUpResult = await Auth.resendSignUp(userEmailAddress);
         const { CodeDeliveryDetails } = response;
         setDestinationDetails(CodeDeliveryDetails);
         // This means we actually got to send the text

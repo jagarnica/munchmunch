@@ -2,24 +2,50 @@ import React from 'react';
 import { Auth } from 'aws-amplify';
 import { debounce } from 'lodash';
 import { getSignUpErrorMessage } from 'utils/aws';
-import { Button, useToast } from '@chakra-ui/react';
+import { Button, useToast, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { FormInput, FormContainer } from 'components/formelements/';
+import { AuthForgotPasswordResult } from 'types';
 import { customerEmail, confirmationCode as codeElement, customerPassword, confirmPassword } from 'utils/formrules';
 import { navigate } from 'gatsby';
 
+/** *
+ * TODO:
+ * Add error handling for no user found
+ * Add error handling for non verified user
+ * Add dynamic messaging based on where the code was actually sent.
+ * Move hard coded error code string to an enum file of some sort. It is really dangerous
+ * to just have them as hard coded strings.
+ *
+ */
+
+/**
+ * @function authForgotPassword Sends a code to the user. Then it runs the callback
+ * function, passing in the attempt result, the email used, and the response or error code.
+ * @author Jesus Garnica
+ * @param email
+ * @param callback
+ */
 const authForgotPassword = async (
   email: string,
-  callback: (success: boolean, username: string, errorCode?: string) => void
+  callback: (success: boolean, username: string, response: string | AuthForgotPasswordResult) => void
 ): Promise<void> => {
   try {
-    await Auth.forgotPassword(email);
-    callback(true, email);
+    const response: AuthForgotPasswordResult = await Auth.forgotPassword(email);
+    callback(true, email, response);
   } catch (e) {
     const { code } = e;
     callback(false, email, code);
   }
 };
+
+/**
+ * @name ForgotPasswordForm
+ * @description This is the main form. First it shows the form where the user has to
+ * enter their username. Afterwards, it shows the form to enter that code and reset
+ * their password.
+ * @returns JSX.Element
+ */
 export const ForgotPasswordForm = (): JSX.Element => {
   const [username, setUsername] = React.useState<string | null>(null);
   const [codeSent, setCodeSent] = React.useState(false);
@@ -31,11 +57,31 @@ export const ForgotPasswordForm = (): JSX.Element => {
   return codeSent && username ? <EnterCodeForm username={username} /> : <SendCodeForm onSentCode={handleCodeSent} />;
 };
 
-export const SendCodeForm = ({ onSentCode }: { onSentCode: (username: string) => void }): JSX.Element => {
+export interface SendCodeFormProps {
+  onSentCode: (username: string) => void;
+}
+
+/**
+ * @name SendCodeForm
+ * @description This form is for the user to enter their email. Then it will send a code
+ * to reset their password.
+ * @prop {void} onSentCode This is called when the code is successfully sent. The username/email it
+ * was sent to also gets passed in.
+ * @returns JSX.Element
+ */
+export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => {
+  const { handleSubmit, errors, register } = useForm<{ email: string }>();
+
+  /**
+   * Toast for sending feedback to the user.
+   */
   const toast = useToast();
+  /**
+   * State for awaitingCode(are we in the sending process) and attemptsExceeded
+   * (disables the send button).
+   */
   const [awaitingCode, setAwaitingCode] = React.useState(false);
   const [attemptsExceeded, setAttemptsExceeded] = React.useState(false);
-  const { handleSubmit, errors, register } = useForm<{ email: string }>();
 
   const handleCodeSendFail = debounce((errorCode?: string) => {
     if (errorCode === 'LimitExceededException') setAttemptsExceeded(true);
@@ -52,28 +98,39 @@ export const SendCodeForm = ({ onSentCode }: { onSentCode: (username: string) =>
     });
     setAwaitingCode(false);
   }, 1000);
-  const handleCodeAttempt = (success: boolean, username: string, code?: string) => {
+  const onSendCodeAttempt = (success: boolean, username: string, errorCode?: string | AuthForgotPasswordResult) => {
     if (success) {
       debounce(() => {
         toast({
           title: 'Code Sent!',
           description: 'If that account exists, we sent a code to the mobile number saved.',
-          duration: 2000,
+          duration: 4000,
           status: 'success',
         });
+        if (awaitingCode) setAwaitingCode(false);
 
-        setAwaitingCode(false);
         onSentCode(username);
       }, 1000)(); // The debounce is just here to make sure people don't spam it
+    } else if (typeof errorCode === 'string') {
+      handleCodeSendFail(errorCode);
     } else {
-      handleCodeSendFail(code);
+      handleCodeSendFail(``);
     }
   };
-  const handleUsername = debounce(
+
+  /**
+   * @function handleUsernameSubmit *SIDE EFFECT* This is called when the submit button is pressed
+   * and the username passes sanity checks. It is debounced to prevent spamming by the
+   * user. It calls another function to send the code.
+   * @returns Promise<void>
+   */
+  const handleUsernameSubmit = debounce(
     async ({ email }: { email: string }) => {
       setAwaitingCode(true);
+
+      // *SIDE EFFECT*
       // the callback will set the awaiting code status to false.
-      await authForgotPassword(email, handleCodeAttempt);
+      await authForgotPassword(email, onSendCodeAttempt);
     },
     250,
     {
@@ -81,28 +138,40 @@ export const SendCodeForm = ({ onSentCode }: { onSentCode: (username: string) =>
       trailing: false,
     }
   );
+
   return (
-    <>
-      <FormContainer onSubmit={handleSubmit(handleUsername)} formTitle="Reset your password">
-        <FormInput
-          isDisabled={attemptsExceeded}
-          errorText={attemptsExceeded ? `` : errors.email?.message}
-          elementDetails={customerEmail}
-          ref={register({ ...customerEmail.rules })}
-        />
-        <Button isDisabled={attemptsExceeded} isLoading={awaitingCode} type="submit">
-          Send Code
-        </Button>
-      </FormContainer>
-    </>
+    <FormContainer onSubmit={handleSubmit(handleUsernameSubmit)} formTitle="Reset your password">
+      <Text>Please enter your email below and we will send you a code to reset your password.</Text>
+      <FormInput
+        isDisabled={attemptsExceeded}
+        errorText={attemptsExceeded ? `` : errors.email?.message}
+        elementDetails={customerEmail}
+        ref={register({ ...customerEmail.rules })}
+      />
+      <Button isDisabled={attemptsExceeded} isLoading={awaitingCode} type="submit">
+        Send Code
+      </Button>
+    </FormContainer>
   );
 };
+
 interface EnterCodeFormTypes {
   confirmationCode: string;
   password: string;
   confirmPassword: string;
 }
-export const EnterCodeForm = ({ username }: { username: string }): JSX.Element => {
+export interface EnterCodeProps {
+  username: string;
+}
+/**
+ * @name EnterCodeForm
+ * @description Takes in the reset code sent to the user, along with the new password
+ * the user intends to use.
+ * @prop {string} username This is the username by the user. It is needed to reset
+ * their password.
+ * @returns JSX.Element
+ */
+export const EnterCodeForm = ({ username }: EnterCodeProps): JSX.Element => {
   const toast = useToast();
   // Form hook
   const { errors, register, handleSubmit, getValues } = useForm<EnterCodeFormTypes>();
@@ -110,8 +179,10 @@ export const EnterCodeForm = ({ username }: { username: string }): JSX.Element =
   const [verifyingCode, setVerifyingCode] = React.useState(false);
   const [sendingCode, setSendingCode] = React.useState(false);
 
-  function handleResendStatus(success: boolean, userEmail: string, errorCode?: string) {
-    const errorMessage = getSignUpErrorMessage(errorCode, 'There was an issue resending your code.');
+  function handleResendStatus(success: boolean, userEmail: string, errorCode?: string | AuthForgotPasswordResult) {
+    const defaultErrorMessage = `There was an issue resending your code.`;
+    const errorMessage =
+      typeof errorCode === 'string' ? getSignUpErrorMessage(errorCode, defaultErrorMessage) : defaultErrorMessage;
     // debounce the following actions.
     debounce(() => {
       setSendingCode(false);

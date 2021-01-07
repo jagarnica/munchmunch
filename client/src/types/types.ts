@@ -62,7 +62,10 @@ export type AWSignInResponse = {
   username: string;
 };
 
-export type resendSignUpResponse = {
+export type AuthResendSignUpResult = {
+  CodeDeliveryDetails: ISignUpResult['codeDeliveryDetails'];
+};
+export type AuthForgotPasswordResult = {
   CodeDeliveryDetails: ISignUpResult['codeDeliveryDetails'];
 };
 
