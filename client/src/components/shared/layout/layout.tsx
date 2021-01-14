@@ -1,14 +1,15 @@
 import React from 'react';
-import { Box, BoxProps, Link, Stack, Text } from '@chakra-ui/react';
+import { Box, Divider, Flex, Link, Spacer, Text } from '@chakra-ui/react';
 import { Header } from './navbar/header';
+import { SiteLogo } from '../logos/index';
 
-export interface LayoutProps extends BoxProps {
+export interface LayoutProps {
   fullWidth?: boolean;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false, ...rest }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false }) => {
   return (
-    <Box {...rest}>
+    <>
       <Header />
       <Box
         margin="0 auto"
@@ -20,30 +21,28 @@ export const Layout: React.FC<LayoutProps> = ({ children, fullWidth = false, ...
         }
       >
         <main style={{ minHeight: 'calc(100vh - 73px)' }}>{children}</main>
-        <Stack spacing="14px" mt="4em">
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px" shadow="lg">
+        <Flex bg="black" color="White">
+          <SiteLogo />
+          <Divider height="75px" padding="5px" orientation="vertical" />
+          <Box w="170px" h="100">
             <Link href="/newbusiness">Want to Join Munch Munch?</Link>
-          </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Text>© {new Date().getFullYear()} Munch Munch</Text>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
+          <Divider height="75px" padding="5px" orientation="vertical" />
+          <Spacer />
+          <Box w="175px" h="150">
             <Link href="/rewardslandingpage">Munch Munch Rewards</Link>
-          </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/termsofuse">Terms Of Use</Link>
           </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
+          <Divider height="75px" padding="5px" orientation="vertical" />
+          <Spacer />
+          <Box w="170px" h="100">
             <Link href="/legalpolicy">Privacy Policy</Link>
-          </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/caprivacynotice">CA Privacy Notice</Link>
-          </Box>
-          <Box w="225px" h="40px" bg="orange.400" borderRadius="lg" padding="8px">
             <Link href="/donotsellmydata">DO NOT SELL MY INFO</Link>
           </Box>
-        </Stack>
+        </Flex>
       </Box>
-    </Box>
+    </>
   );
 };
