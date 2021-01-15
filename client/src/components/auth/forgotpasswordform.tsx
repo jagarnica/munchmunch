@@ -8,14 +8,11 @@ import { FormInput, FormContainer } from 'components/formelements/';
 import { AuthForgotPasswordResult } from 'types';
 import { customerEmail, confirmationCode as codeElement, customerPassword, confirmPassword } from 'utils/formrules';
 import { navigate } from 'gatsby';
-
+import { SignUpErrors } from 'utils/aws/';
 /** *
  * TODO:
- * Add error handling for no user found
- * Add error handling for non verified user
- * Add dynamic messaging based on where the code was actually sent.
- * Move hard coded error code string to an enum file of some sort. It is really dangerous
- * to just have them as hard coded strings.
+ * Add error handling for no user found when resetting password.
+ * Add error handling for non verified user trying to reset password
  *
  */
 
@@ -84,7 +81,7 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
   const [attemptsExceeded, setAttemptsExceeded] = React.useState(false);
 
   const handleCodeSendFail = debounce((errorCode?: string) => {
-    if (errorCode === 'LimitExceededException') setAttemptsExceeded(true);
+    if (errorCode === SignUpErrors.LIMIT_EXCEEDED.code) setAttemptsExceeded(true);
     const errorMessage = getSignUpErrorMessage(
       errorCode,
       'There was an issue sending your code. Please try again later.'
