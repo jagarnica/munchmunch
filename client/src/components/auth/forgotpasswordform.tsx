@@ -9,32 +9,12 @@ import { AuthForgotPasswordResult } from 'types';
 import { customerEmail, confirmationCode as codeElement, customerPassword, confirmPassword } from 'utils/formrules';
 import { navigate } from 'gatsby';
 import { SignUpErrors } from 'utils/aws/';
+import { getMediumText, authForgotPassword } from './utils';
+
 /** *
  * TODO:
- * Add error handling for no user found when resetting password.
  * Add error handling for non verified user trying to reset password
- *
  */
-
-/**
- * @function authForgotPassword Sends a code to the user. Then it runs the callback
- * function, passing in the attempt result, the email used, and the response or error code.
- * @author Jesus Garnica
- * @param email
- * @param callback
- */
-const authForgotPassword = async (
-  email: string,
-  callback: (success: boolean, username: string, response: string | AuthForgotPasswordResult) => void
-): Promise<void> => {
-  try {
-    const response: AuthForgotPasswordResult = await Auth.forgotPassword(email);
-    callback(true, email, response);
-  } catch (e) {
-    const { code } = e;
-    callback(false, email, code);
-  }
-};
 
 /**
  * @name ForgotPasswordForm
@@ -95,12 +75,19 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
     });
     setAwaitingCode(false);
   }, 1000);
-  const onSendCodeAttempt = (success: boolean, username: string, errorCode?: string | AuthForgotPasswordResult) => {
+  const onSendCodeAttempt = (success: boolean, username: string, code?: string | AuthForgotPasswordResult) => {
     if (success) {
+      // that means the code was sent
+      let message = 'If that account exists, we sent a code to either your email or phone number.';
+      if (code && typeof code !== 'string') {
+        const medium = code.CodeDeliveryDetails.AttributeName;
+        const location = code.CodeDeliveryDetails.Destination;
+        message = getMediumText(medium, location);
+      }
       debounce(() => {
         toast({
           title: 'Code Sent!',
-          description: 'If that account exists, we sent a code to the mobile number saved.',
+          description: message,
           duration: 4000,
           status: 'success',
         });
@@ -108,8 +95,8 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
 
         onSentCode(username);
       }, 1000)(); // The debounce is just here to make sure people don't spam it
-    } else if (typeof errorCode === 'string') {
-      handleCodeSendFail(errorCode);
+    } else if (typeof code === 'string') {
+      handleCodeSendFail(code);
     } else {
       handleCodeSendFail(``);
     }
@@ -151,7 +138,7 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
     </FormContainer>
   );
 };
-
+/** ***************************************************************************************** */
 interface EnterCodeFormTypes {
   confirmationCode: string;
   password: string;
@@ -192,6 +179,7 @@ export const EnterCodeForm = ({ username }: EnterCodeProps): JSX.Element => {
       });
     }, 1000)(); // This is done to prevent spamming the resend button
   }
+
   /**
    * @function handleSendCode
    * @description If the user didn't receive their code, this can resend it.
@@ -200,6 +188,7 @@ export const EnterCodeForm = ({ username }: EnterCodeProps): JSX.Element => {
     setSendingCode(true);
     await authForgotPassword(username, handleResendStatus); // The callback will handle the results for us
   };
+
   async function handleCodeEntered({ confirmationCode, password }: EnterCodeFormTypes) {
     setVerifyingCode(true);
     let errorMessage = '';

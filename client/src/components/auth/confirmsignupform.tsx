@@ -8,6 +8,7 @@ import { FormContainer, FormInput } from 'components/formelements/';
 import { confirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
 import { AuthResendSignUpResult } from 'types/';
+import { getMediumText } from './utils';
 
 export interface ConfirmPhoneProps {
   userEmailAddress: string;
@@ -164,17 +165,6 @@ export function ConfirmSignUpForm({
     }
   );
 
-  /**
-   * @function getMediumText Util function to parse what message to display to
-   *  the user regarding where the code was sent
-   * @param {string} medium Should be 'email' or 'text' if passed in.
-   * @param {string} location The location as string where the code was sent in a hidden state.
-   */
-  function getMediumText(medium?: string, location?: string) {
-    return medium && location
-      ? `We sent you a verification code to the ${medium} you entered at ${location}.`
-      : `We sent you a code to either your phone or email.`;
-  }
   const headerText = getMediumText(destinationAttribute, destinationLocation);
   const isLoaded = !!destinationLocation && !!destinationAttribute;
   return (
