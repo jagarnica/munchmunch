@@ -7,6 +7,7 @@ type SignUpErrorsType = {
   USER_NAME_EXISTS: AWSErrorResponse;
   LIMIT_EXCEEDED: AWSErrorResponse;
   CODE_MISMATCH: AWSErrorResponse;
+  USER_NOT_FOUND: AWSErrorResponse;
 };
 
 /**
@@ -27,5 +28,9 @@ export const SignUpErrors: SignUpErrorsType = {
   CODE_MISMATCH: {
     code: 'CodeMismatchException',
     message: 'Invalid verification code provided, please check your code.',
+  },
+  USER_NOT_FOUND: {
+    code: 'UserNotFoundException',
+    message: 'There is no account with that email address. Please check your email address for any mistakes.',
   },
 };
