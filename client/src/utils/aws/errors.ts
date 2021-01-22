@@ -1,13 +1,11 @@
-export type AWSErrorResponse = {
-  code: string;
-  message: string;
-};
+import { AWSErrorResponse } from 'types';
 
-type SignUpErrorsType = {
+export type SignUpErrorsType = {
   USER_NAME_EXISTS: AWSErrorResponse;
   LIMIT_EXCEEDED: AWSErrorResponse;
   CODE_MISMATCH: AWSErrorResponse;
   USER_NOT_FOUND: AWSErrorResponse;
+  INVALID_PARAMETER_EXCEPTION: AWSErrorResponse;
 };
 
 /**
@@ -32,5 +30,9 @@ export const SignUpErrors: SignUpErrorsType = {
   USER_NOT_FOUND: {
     code: 'UserNotFoundException',
     message: 'There is no account with that email address. Please check your email address for any mistakes.',
+  },
+  INVALID_PARAMETER_EXCEPTION: {
+    code: 'InvalidParameterException',
+    message: 'Cannot reset password for the user as there is no registered/verified email or phone_number.',
   },
 };

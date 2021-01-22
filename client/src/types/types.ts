@@ -89,3 +89,8 @@ export type AWSConfig = Readonly<{
   aws_appsync_authenticationType: string;
 }>;
 /* eslint-enable  camelcase */
+
+export type AWSErrorResponse = {
+  code: string;
+  message: string;
+};

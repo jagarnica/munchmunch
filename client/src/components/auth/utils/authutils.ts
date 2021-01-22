@@ -1,4 +1,4 @@
-import { AuthForgotPasswordResult } from 'types';
+import { AuthForgotPasswordResult, AWSErrorResponse } from 'types';
 import { Auth } from 'aws-amplify';
 
 /**
@@ -21,13 +21,12 @@ export function getMediumText(medium?: string, location?: string): string {
  */
 export async function authForgotPassword(
   email: string,
-  callback: (success: boolean, username: string, response: string | AuthForgotPasswordResult) => void
+  callback: (success: boolean, username: string, response: AWSErrorResponse | AuthForgotPasswordResult) => void
 ): Promise<void> {
   try {
     const response: AuthForgotPasswordResult = await Auth.forgotPassword(email);
     callback(true, email, response);
   } catch (e) {
-    const { code } = e;
-    callback(false, email, code);
+    callback(false, email, e);
   }
 }

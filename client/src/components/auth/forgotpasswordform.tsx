@@ -4,18 +4,26 @@ import { debounce } from 'lodash';
 import { getSignUpErrorMessage } from 'utils/aws';
 import { Button, useToast, Text } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
+import { AWSErrorResponse, AuthForgotPasswordResult } from 'types';
 import { FormInput, FormContainer } from 'components/formelements/';
-import { AuthForgotPasswordResult } from 'types';
 import { customerEmail, confirmationCode as codeElement, customerPassword, confirmPassword } from 'utils/formrules';
 import { navigate } from 'gatsby';
 import { SignUpErrors } from 'utils/aws/';
 import { getMediumText, authForgotPassword } from './utils';
+import { ConfirmSignUpForm } from '.';
 
-/** *
- * TODO:
- * Add error handling for non verified user trying to reset password
- */
-
+export interface SendCodeFormProps {
+  onSentCode: (username: string) => void;
+  onReverifyAccount?: (username: string) => void;
+}
+interface EnterCodeFormTypes {
+  confirmationCode: string;
+  password: string;
+  confirmPassword: string;
+}
+export interface EnterCodeProps {
+  username: string;
+}
 /**
  * @name ForgotPasswordForm
  * @description This is the main form. First it shows the form where the user has to
@@ -26,17 +34,55 @@ import { getMediumText, authForgotPassword } from './utils';
 export const ForgotPasswordForm = (): JSX.Element => {
   const [username, setUsername] = React.useState<string | null>(null);
   const [codeSent, setCodeSent] = React.useState(false);
+  const [isUnverified, setIsUnverified] = React.useState(false);
+  const toast = useToast();
   function handleCodeSent(email: string) {
     // We save the username for later when entering the code.
     setUsername(email);
     setCodeSent(true);
   }
-  return codeSent && username ? <EnterCodeForm username={username} /> : <SendCodeForm onSentCode={handleCodeSent} />;
-};
 
-export interface SendCodeFormProps {
-  onSentCode: (username: string) => void;
-}
+  function handleVerifyAccount(emailAddress: string) {
+    // We have to verify the account
+    setUsername(emailAddress);
+    setIsUnverified(true);
+  }
+  function resetFormState() {
+    setUsername(null);
+    setCodeSent(false);
+    setIsUnverified(false);
+  }
+
+  function handleSentVerifyCode(success?: boolean) {
+    if (success) {
+      // User has verified their account
+      // Navigate back to the login page
+      toast({
+        title: 'Account Verified!',
+        description: 'Please try resetting your password again.',
+        status: 'success',
+        duration: 12000,
+        isClosable: true,
+      });
+      resetFormState();
+    } else {
+      toast({
+        title: 'Oops!',
+        description: 'Check your confirmation code for any typos!',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  }
+  if (isUnverified && username)
+    return <ConfirmSignUpForm userEmailAddress={username} sendCodeImmediately callback={handleSentVerifyCode} />;
+  return codeSent && username ? (
+    <EnterCodeForm username={username} />
+  ) : (
+    <SendCodeForm onReverifyAccount={handleVerifyAccount} onSentCode={handleCodeSent} />
+  );
+};
 
 /**
  * @name SendCodeForm
@@ -46,7 +92,7 @@ export interface SendCodeFormProps {
  * was sent to also gets passed in.
  * @returns JSX.Element
  */
-export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => {
+export const SendCodeForm = ({ onSentCode, onReverifyAccount }: SendCodeFormProps): JSX.Element => {
   const { handleSubmit, errors, register } = useForm<{ email: string }>();
 
   /**
@@ -60,26 +106,42 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
   const [awaitingCode, setAwaitingCode] = React.useState(false);
   const [attemptsExceeded, setAttemptsExceeded] = React.useState(false);
 
-  const handleCodeSendFail = debounce((errorCode?: string) => {
-    if (errorCode === SignUpErrors.LIMIT_EXCEEDED.code) setAttemptsExceeded(true);
-    const errorMessage = getSignUpErrorMessage(
-      errorCode,
-      'There was an issue sending your code. Please try again later.'
-    );
-    toast({
-      title: 'Oops!',
-      description: errorMessage,
-      duration: 4000,
-      status: 'error',
-      isClosable: true,
-    });
-    setAwaitingCode(false);
+  const handleCodeSendFail = debounce((username: string, errorCode?: AWSErrorResponse) => {
+    if (errorCode?.code === SignUpErrors.LIMIT_EXCEEDED.code) setAttemptsExceeded(true);
+    if (errorCode?.code === SignUpErrors.INVALID_PARAMETER_EXCEPTION.code) {
+      // The user has not verified their account :(
+      toast({
+        title: 'Account Not Verified',
+        description: `Your account has not been verified yet. We just sent you a code to verify it.`,
+        duration: 8000,
+        status: 'error',
+        isClosable: true,
+      });
+      onReverifyAccount?.(username);
+    } else {
+      const errorMessage = getSignUpErrorMessage(
+        errorCode?.code,
+        'There was an issue sending your code. Please try again later.'
+      );
+      toast({
+        title: 'Oops!',
+        description: errorMessage,
+        duration: 4000,
+        status: 'error',
+        isClosable: true,
+      });
+      setAwaitingCode(false);
+    }
   }, 1000);
-  const onSendCodeAttempt = (success: boolean, username: string, code?: string | AuthForgotPasswordResult) => {
+  const onSendCodeAttempt = (
+    success: boolean,
+    username: string,
+    code?: AWSErrorResponse | AuthForgotPasswordResult
+  ) => {
     if (success) {
       // that means the code was sent
       let message = 'If that account exists, we sent a code to either your email or phone number.';
-      if (code && typeof code !== 'string') {
+      if (code && 'CodeDeliveryDetails' in code) {
         const medium = code.CodeDeliveryDetails.AttributeName;
         const location = code.CodeDeliveryDetails.Destination;
         message = getMediumText(medium, location);
@@ -95,10 +157,10 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
 
         onSentCode(username);
       }, 1000)(); // The debounce is just here to make sure people don't spam it
-    } else if (typeof code === 'string') {
-      handleCodeSendFail(code);
+    } else if (code && 'code' in code) {
+      handleCodeSendFail(username, code);
     } else {
-      handleCodeSendFail(``);
+      handleCodeSendFail(username);
     }
   };
 
@@ -139,14 +201,7 @@ export const SendCodeForm = ({ onSentCode }: SendCodeFormProps): JSX.Element => 
   );
 };
 /** ***************************************************************************************** */
-interface EnterCodeFormTypes {
-  confirmationCode: string;
-  password: string;
-  confirmPassword: string;
-}
-export interface EnterCodeProps {
-  username: string;
-}
+
 /**
  * @name EnterCodeForm
  * @description Takes in the reset code sent to the user, along with the new password
@@ -163,10 +218,16 @@ export const EnterCodeForm = ({ username }: EnterCodeProps): JSX.Element => {
   const [verifyingCode, setVerifyingCode] = React.useState(false);
   const [sendingCode, setSendingCode] = React.useState(false);
 
-  function handleResendStatus(success: boolean, userEmail: string, errorCode?: string | AuthForgotPasswordResult) {
+  function handleResendStatus(
+    success: boolean,
+    userEmail: string,
+    errorCode?: AWSErrorResponse | AuthForgotPasswordResult
+  ) {
     const defaultErrorMessage = `There was an issue resending your code.`;
     const errorMessage =
-      typeof errorCode === 'string' ? getSignUpErrorMessage(errorCode, defaultErrorMessage) : defaultErrorMessage;
+      typeof errorCode === 'object' && 'code' in errorCode
+        ? getSignUpErrorMessage(errorCode.code, defaultErrorMessage)
+        : defaultErrorMessage;
     // debounce the following actions.
     debounce(() => {
       setSendingCode(false);

@@ -169,7 +169,7 @@ export function ConfirmSignUpForm({
   const isLoaded = !!destinationLocation && !!destinationAttribute;
   return (
     <>
-      <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
+      <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="Verify Your Account">
         <Skeleton isLoaded={isLoaded}>
           <Text>{headerText}</Text>
         </Skeleton>
