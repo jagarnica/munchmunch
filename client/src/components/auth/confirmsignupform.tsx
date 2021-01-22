@@ -7,7 +7,8 @@ import { getSignUpErrorMessage } from 'utils/aws';
 import { FormContainer, FormInput } from 'components/formelements/';
 import { confirmationCode } from 'utils/formrules';
 import { debounce } from 'lodash';
-import { resendSignUpResponse } from 'types/';
+import { AuthResendSignUpResult } from 'types/';
+import { getMediumText } from './utils';
 
 export interface ConfirmPhoneProps {
   userEmailAddress: string;
@@ -59,7 +60,7 @@ export function ConfirmSignUpForm({
   // The code should be the same amount of digits.
   const isButtonDisabled = watch().confirmationCode?.length !== codeLength;
 
-  function setDestinationDetails(codeDeliveryDetails: resendSignUpResponse['CodeDeliveryDetails']) {
+  function setDestinationDetails(codeDeliveryDetails: AuthResendSignUpResult['CodeDeliveryDetails']) {
     setDestinationLocation(codeDeliveryDetails.Destination);
     setDestinationAttribute(codeDeliveryDetails.AttributeName);
   }
@@ -72,7 +73,7 @@ export function ConfirmSignUpForm({
     // Handle the user wanting to resend their text message
     const sendCodeToUser = async () => {
       try {
-        const response: resendSignUpResponse = await Auth.resendSignUp(userEmailAddress);
+        const response: AuthResendSignUpResult = await Auth.resendSignUp(userEmailAddress);
         const { CodeDeliveryDetails } = response;
         setDestinationDetails(CodeDeliveryDetails);
 
@@ -147,7 +148,7 @@ export function ConfirmSignUpForm({
       try {
         setResentTextLoading(true);
 
-        const response: resendSignUpResponse = await Auth.resendSignUp(userEmailAddress);
+        const response: AuthResendSignUpResult = await Auth.resendSignUp(userEmailAddress);
         const { CodeDeliveryDetails } = response;
         setDestinationDetails(CodeDeliveryDetails);
         // This means we actually got to send the text
@@ -164,22 +165,11 @@ export function ConfirmSignUpForm({
     }
   );
 
-  /**
-   * @function getMediumText Util function to parse what message to display to
-   *  the user regarding where the code was sent
-   * @param {string} medium Should be 'email' or 'text' if passed in.
-   * @param {string} location The location as string where the code was sent in a hidden state.
-   */
-  function getMediumText(medium?: string, location?: string) {
-    return medium && location
-      ? `We sent you a verification code to the ${medium} you entered at ${location}.`
-      : `We sent you a code to either your phone or email.`;
-  }
   const headerText = getMediumText(destinationAttribute, destinationLocation);
   const isLoaded = !!destinationLocation && !!destinationAttribute;
   return (
     <>
-      <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="One last step!">
+      <FormContainer onSubmit={handleSubmit(handleConfirmation)} formTitle="Verify Your Account">
         <Skeleton isLoaded={isLoaded}>
           <Text>{headerText}</Text>
         </Skeleton>

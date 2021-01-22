@@ -1,5 +1,5 @@
 import { parsePhoneNumberFromString, CountryCode } from 'libphonenumber-js';
-
+import { SignUpErrors } from './errors';
 /**
  * @name formatToAWSPhoneNumber
  * @param {string} phoneNumber *Required* This is the phone number (as a string!) that will
@@ -20,13 +20,16 @@ export function formatToAWSPhoneNumber(phoneNumber: string, country: CountryCode
  * @returns {string} Returns a more descriptive and friendly error message.
  */
 export function getSignUpErrorMessage(code?: string, defaultMessage?: string): string {
+  const { CODE_MISMATCH, LIMIT_EXCEEDED, USER_NAME_EXISTS, USER_NOT_FOUND } = SignUpErrors;
   switch (code) {
-    case 'UsernameExistsException':
-      return 'An account with that email already exists.';
-    case 'LimitExceededException':
-      return 'There have been too many attempts! Please try again later.';
-    case 'CodeMismatchException':
-      return 'Invalid verification code provided, please check your code.';
+    case USER_NAME_EXISTS.code:
+      return USER_NAME_EXISTS.message;
+    case LIMIT_EXCEEDED.code:
+      return LIMIT_EXCEEDED.message;
+    case CODE_MISMATCH.code:
+      return CODE_MISMATCH.message;
+    case USER_NOT_FOUND.code:
+      return USER_NOT_FOUND.message;
     default:
       return defaultMessage || 'There was an issue creating your account.';
   }

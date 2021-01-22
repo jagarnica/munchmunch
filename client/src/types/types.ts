@@ -62,7 +62,10 @@ export type AWSignInResponse = {
   username: string;
 };
 
-export type resendSignUpResponse = {
+export type AuthResendSignUpResult = {
+  CodeDeliveryDetails: ISignUpResult['codeDeliveryDetails'];
+};
+export type AuthForgotPasswordResult = {
   CodeDeliveryDetails: ISignUpResult['codeDeliveryDetails'];
 };
 
@@ -86,3 +89,8 @@ export type AWSConfig = Readonly<{
   aws_appsync_authenticationType: string;
 }>;
 /* eslint-enable  camelcase */
+
+export type AWSErrorResponse = {
+  code: string;
+  message: string;
+};
